@@ -1,1 +1,1 @@
-add_executable(test_game main.cpp)
+add_library(main OBJECT main.cpp)
