@@ -1,10 +1,10 @@
 #include "Game.h"
 
-void Game::initWindow(){
-    window = new sf::RenderWindow(sf::VideoMode(800, 600), "test_game", sf::Style::Default);
+void Game::updateMousePos() {
+    mousePosOnWindow = sf::Mouse::getPosition(*window);
 }
 
-void Game::pollEvents() {
+void Game::processEvents() {
     while (window->pollEvent(ev)) {
         switch (ev.type) {
             case sf::Event::Closed:
@@ -18,23 +18,29 @@ void Game::pollEvents() {
     }
 }
 
+void Game::update(){
+    updateMousePos();
+}
+
+void Game::render(){
+    window->clear();
+    window->display();
+}
+
 Game::Game() {
-    initWindow();
+    //    window = new sf::RenderWindow(sf::VideoMode(800, 600), "test_game", sf::Style::Default);
+    window = new sf::RenderWindow(sf::VideoMode::getDesktopMode(), "test_game", sf::Style::Fullscreen);
+    window->setFramerateLimit(60);
 }
 
 Game::~Game(){
     delete window;
 }
 
-const bool Game::isWindowOpen() const {
-    return window->isOpen();
-}
-
-void Game::update(){
-    pollEvents();
-}
-
-void Game::render(){
-    window->clear();
-    window->display();
+void Game::run() {
+    while (window->isOpen()) {
+        processEvents();
+        update();
+        render();
+    }
 }

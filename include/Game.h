@@ -1,6 +1,8 @@
 #ifndef TEST_GAME_GAME_H
 #define TEST_GAME_GAME_H
 
+#include "iostream"
+
 #include "SFML/Graphics.hpp"
 #include "SFML/System.hpp"
 #include "SFML/Window.hpp"
@@ -10,16 +12,18 @@ private:
     sf::RenderWindow *window = nullptr;
     sf::Event ev;
 
-    void initWindow();
-    void pollEvents();
+    sf::Vector2i mousePosOnWindow;
+
+    void updateMousePos();
+    void processEvents();
+    void update();
+    void render();
 
 public:
     Game();
     ~Game();
 
-    const bool isWindowOpen() const;
-    void update();
-    void render();
+    void run();
 };
 
 
