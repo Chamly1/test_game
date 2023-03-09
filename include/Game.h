@@ -7,14 +7,14 @@
 #include "SFML/System.hpp"
 #include "SFML/Window.hpp"
 
+#include "Mouse.h"
+
 class Game {
 private:
     sf::RenderWindow *window = nullptr;
     sf::Event ev;
+    Mouse mouse;
 
-    sf::Vector2i mousePosOnWindow;
-
-    void updateMousePos();
     void processEvents();
     void update();
     void render();

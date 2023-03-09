@@ -1,12 +1,20 @@
 #include "Game.h"
 
-void Game::updateMousePos() {
-    mousePosOnWindow = sf::Mouse::getPosition(*window);
-}
-
 void Game::processEvents() {
     while (window->pollEvent(ev)) {
         switch (ev.type) {
+            case sf::Event::MouseButtonPressed:
+                mouse.processMouseButtonPressed(&ev);
+                break;
+
+            case sf::Event::MouseButtonReleased:
+                mouse.processMouseButtonReleased(&ev);
+                break;
+
+            case sf::Event::MouseMoved:
+                mouse.processMouseMoved(&ev);
+                break;
+
             case sf::Event::Closed:
                 window->close();
                 break;
@@ -19,11 +27,12 @@ void Game::processEvents() {
 }
 
 void Game::update(){
-    updateMousePos();
+
 }
 
 void Game::render(){
     window->clear();
+    mouse.draw();
     window->display();
 }
 
@@ -31,6 +40,8 @@ Game::Game() {
     //    window = new sf::RenderWindow(sf::VideoMode(800, 600), "test_game", sf::Style::Default);
     window = new sf::RenderWindow(sf::VideoMode::getDesktopMode(), "test_game", sf::Style::Fullscreen);
     window->setFramerateLimit(60);
+
+    mouse.setWindow(window);
 }
 
 Game::~Game(){
