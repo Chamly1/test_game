@@ -14,6 +14,8 @@ private:
     sf::RenderWindow *window = nullptr;
     sf::Event ev;
     Mouse mouse;
+    // as microseconds. 6944 for 144 Hz
+    sf::Int64 deltaTime = 6944;
 
     void processEvents();
     void update();

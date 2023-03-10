@@ -39,7 +39,8 @@ void Game::render(){
 Game::Game() {
     //    window = new sf::RenderWindow(sf::VideoMode(800, 600), "test_game", sf::Style::Default);
     window = new sf::RenderWindow(sf::VideoMode::getDesktopMode(), "test_game", sf::Style::Fullscreen);
-    window->setFramerateLimit(60);
+//    window->setFramerateLimit(60);
+//    window->setVerticalSyncEnabled(true);
 
     mouse.setWindow(window);
 }
@@ -49,9 +50,18 @@ Game::~Game(){
 }
 
 void Game::run() {
+    sf::Clock clock;
+    sf::Int64 accumulator = 0;
+
     while (window->isOpen()) {
-        processEvents();
-        update();
+        accumulator += clock.restart().asMicroseconds();
+
+        while (accumulator >= deltaTime) {
+            processEvents();
+            update();
+            accumulator -= deltaTime;
+        }
+
         render();
     }
 }
