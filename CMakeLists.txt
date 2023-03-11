@@ -17,3 +17,10 @@ add_subdirectory(src)
 add_executable(test_game)
 target_link_libraries(test_game PUBLIC main_obj)
 target_link_libraries(test_game PUBLIC sfml-system sfml-window sfml-graphics sfml-network sfml-audio sfml-main)
+
+# copy resources
+add_custom_command(TARGET test_game
+        POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${PROJECT_SOURCE_DIR}/resources
+        ${PROJECT_BINARY_DIR}/resources)
