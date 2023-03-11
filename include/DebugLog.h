@@ -7,6 +7,27 @@
 
 #include "SFML/Graphics.hpp"
 
+#ifndef NDEBUG
+
+#define DEBUG_INIT(window) \
+    DebugLog::init(window); \
+
+#define DEBUG_LOG(str) \
+    DebugLog::log(str); \
+
+#define DEBUG_DRAW() \
+    DebugLog::draw(); \
+
+#else
+
+#define DEBUG_INIT(window)
+
+#define DEBUG_LOG(str)
+
+#define DEBUG_DRAW()
+
+#endif
+
 class DebugLog {
 private:
     static sf::RenderWindow *window;
