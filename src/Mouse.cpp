@@ -6,7 +6,7 @@ Mouse::Mouse() {
     selectionRec.setFillColor(sf::Color(255, 255, 255, 50));
 }
 
-void Mouse::setWindow(sf::RenderWindow *window) {
+void Mouse::setRenderWindow(sf::RenderWindow *window) {
     this->window = window;
 }
 

@@ -42,7 +42,7 @@ Game::Game() {
 //    window->setFramerateLimit(60);
 //    window->setVerticalSyncEnabled(true);
 
-    mouse.setWindow(window);
+    mouse.setRenderWindow(window);
 }
 
 Game::~Game(){

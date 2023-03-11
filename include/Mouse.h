@@ -13,7 +13,7 @@ private:
 
 public:
     Mouse();
-    void setWindow(sf::RenderWindow *window);
+    void setRenderWindow(sf::RenderWindow *window);
     void processMouseButtonPressed(sf::Event *ev);
     void processMouseButtonReleased(sf::Event *ev);
     void processMouseMoved(sf::Event *ev);
