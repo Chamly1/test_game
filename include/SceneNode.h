@@ -23,6 +23,8 @@ public:
     void attachChild(std::unique_ptr<SceneNode> child);
     std::unique_ptr<SceneNode> detachChild(const SceneNode& node);
     void update(sf::Time dt);
+    sf::Transform getWorldTransform() const;
+    sf::Vector2f getWorldPosition() const;
 };
 
 #endif //TEST_GAME_SCENENODE_H
