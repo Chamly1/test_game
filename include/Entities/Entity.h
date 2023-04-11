@@ -3,7 +3,9 @@
 
 #include "SFML/Graphics.hpp"
 
-class Entity {
+#include "SceneNode.h"
+
+class Entity : SceneNode {
 private:
     sf::Vector2f velocity;
 

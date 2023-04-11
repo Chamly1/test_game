@@ -10,7 +10,7 @@ void TextureHolder::load(TextureIdentifier id, const std::string& filePath) {
     assert(inserted.second);
 }
 
-sf::Texture& TextureHolder::get(TextureIdentifier id) {
+const sf::Texture& TextureHolder::get(TextureIdentifier id) const {
     auto found = textureMap.find(id);
     assert(found != textureMap.end());
 

@@ -8,7 +8,7 @@
 #include "SFML/Graphics.hpp"
 
 enum class TextureIdentifier {
-
+    zombie
 };
 
 class TextureHolder {
@@ -17,7 +17,7 @@ private:
 
 public:
     void load(TextureIdentifier id, const std::string& filePath);
-    sf::Texture& get(TextureIdentifier id);
+    const sf::Texture& get(TextureIdentifier id) const;
 };
 
 #endif //TEST_GAME_TEXTUREHOLDER_H
