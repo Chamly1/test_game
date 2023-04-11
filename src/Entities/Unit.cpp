@@ -5,6 +5,7 @@ TextureIdentifier toTextureID (UnitType type) {
         case UnitType::zombie:
             return TextureIdentifier::zombie;
     }
+    return TextureIdentifier::zombie;
 }
 
 Unit::Unit(UnitType type, const TextureHolder& textures) :
