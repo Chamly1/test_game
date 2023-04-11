@@ -11,14 +11,14 @@
 
 class Game {
 private:
+    static const sf::Time deltaTime;
+
     sf::RenderWindow *window = nullptr;
     sf::Event ev;
     Mouse mouse;
-    // as microseconds. 6944 for 144 Hz
-    sf::Int64 deltaTime = 6944;
 
     void processEvents();
-    void update();
+    void update(sf::Time elapsedTime);
     void render();
 
 public:

@@ -1,4 +1,8 @@
 #include "Game.h"
+#include "DebugLog.h"
+
+// as microseconds. 6944 for 144 Hz
+const sf::Time Game::deltaTime = sf::microseconds(6944);
 
 Game::Game() {
     //    window = new sf::RenderWindow(sf::VideoMode(800, 600), "test_game", sf::Style::Default);
@@ -7,6 +11,7 @@ Game::Game() {
 //    window->setVerticalSyncEnabled(true);
 
     mouse.setRenderWindow(window);
+    DebugLog::init(window);
 }
 
 void Game::processEvents() {
@@ -35,7 +40,7 @@ void Game::processEvents() {
     }
 }
 
-void Game::update(){
+void Game::update(sf::Time elapsedTime){
 
 }
 
@@ -44,19 +49,20 @@ void Game::render(){
 
     mouse.draw();
 
+    DebugLog::draw();
     window->display();
 }
 
 void Game::run() {
     sf::Clock clock;
-    sf::Int64 accumulator = 0;
+    sf::Time accumulator;
 
     while (window->isOpen()) {
-        accumulator += clock.restart().asMicroseconds();
+        accumulator += clock.restart();
 
         while (accumulator >= deltaTime) {
             processEvents();
-            update();
+            update(deltaTime);
             accumulator -= deltaTime;
         }
 
