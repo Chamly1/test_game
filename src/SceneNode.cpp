@@ -14,6 +14,16 @@ void SceneNode::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) c
 
 }
 
+void SceneNode::updateCurrent(sf::Time dt) {
+
+}
+
+void SceneNode::updateChildren(sf::Time dt) {
+    for (const std::unique_ptr<SceneNode>& child : children) {
+        child->update(dt);
+    }
+}
+
 SceneNode::SceneNode() :children(), parent(nullptr) {
 
 }
@@ -33,4 +43,9 @@ std::unique_ptr<SceneNode> SceneNode::detachChild(const SceneNode& node) {
     res->parent = nullptr;
     children.erase(found);
     return res;
+}
+
+void SceneNode::update(sf::Time dt) {
+    updateCurrent(dt);
+    updateChildren(dt);
 }
