@@ -13,7 +13,7 @@ class Game {
 private:
     static const sf::Time deltaTime;
 
-    sf::RenderWindow *window = nullptr;
+    sf::RenderWindow window;
     sf::Event ev;
     Mouse mouse;
 

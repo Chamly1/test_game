@@ -1,17 +1,13 @@
 #include "Mouse.h"
 
-Mouse::Mouse() {
+Mouse::Mouse(sf::RenderWindow& window) : window(window) {
     selectionRec.setOutlineThickness(1.f);
     selectionRec.setOutlineColor(sf::Color(255, 255, 255));
     selectionRec.setFillColor(sf::Color(255, 255, 255, 50));
 }
 
-void Mouse::setRenderWindow(sf::RenderWindow *window) {
-    this->window = window;
-}
-
 void Mouse::processMouseButtonPressed(sf::Event *ev) {
-    mousePosOnWindow = sf::Mouse::getPosition(*window);
+    mousePosOnWindow = sf::Mouse::getPosition(window);
 
     switch (ev->mouseButton.button) {
         case sf::Mouse::Left:
@@ -31,7 +27,7 @@ void Mouse::processMouseButtonReleased(sf::Event *ev) {
 }
 
 void Mouse::processMouseMoved(sf::Event *ev) {
-    mousePosOnWindow = sf::Mouse::getPosition(*window);
+    mousePosOnWindow = sf::Mouse::getPosition(window);
 
     if (isSelectionRecVisible) {
         selectionRec.setSize(sf::Vector2f(mousePosOnWindow) - selectionRec.getPosition());
@@ -40,6 +36,6 @@ void Mouse::processMouseMoved(sf::Event *ev) {
 
 void Mouse::draw() {
     if (isSelectionRecVisible) {
-        window->draw(selectionRec);
+        window.draw(selectionRec);
     }
 }

@@ -5,15 +5,14 @@
 
 class Mouse {
 private:
-    sf::RenderWindow *window = nullptr;
+    sf::RenderWindow& window;
     sf::Vector2i mousePosOnWindow;
 
     sf::RectangleShape selectionRec;
     bool isSelectionRecVisible = false;
 
 public:
-    Mouse();
-    void setRenderWindow(sf::RenderWindow *window);
+    Mouse(sf::RenderWindow& window);
     void processMouseButtonPressed(sf::Event *ev);
     void processMouseButtonReleased(sf::Event *ev);
     void processMouseMoved(sf::Event *ev);
