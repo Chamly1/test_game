@@ -8,6 +8,7 @@
 #include "SFML/Graphics.hpp"
 
 enum class TextureIdentifier {
+    TileFlorDungeon,
     zombie
 };
 
