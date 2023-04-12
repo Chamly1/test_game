@@ -50,8 +50,9 @@ void Game::render(){
     window.clear();
 
     world.draw();
-    mouse.draw();
 
+    window.setView(window.getDefaultView());
+    mouse.draw();
     DebugLog::draw();
     window.display();
 }
