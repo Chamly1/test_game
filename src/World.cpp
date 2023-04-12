@@ -3,13 +3,37 @@
 #include "MapGenerateUtils.h"
 
 const float viewZoomFactor = 0.25f;
+const int TILE_SIZE = 8;
 
 void World::loadTextures() {
     textures.load(TextureIdentifier::TileBlack, "resources/textures/BlackTile.png");
+
+    std::string tilesFlorDungeonStr = "resources/textures/Minifantasy_Dungeon_Assets/Tileset/Minifantasy_DungeonFloorTiles.png";
     // load a 8x8 rectangle that starts at (0, 0)
-    textures.load(TextureIdentifier::TileFlorDungeon,
-                  "resources/textures/Minifantasy_Dungeon_Assets/Tileset/Minifantasy_DungeonFloorTiles.png",
-                  sf::IntRect(0, 0, 8, 8));
+    textures.load(TextureIdentifier::TileFlorDungeon, tilesFlorDungeonStr,
+                  sf::IntRect(0, 0, TILE_SIZE, TILE_SIZE));
+
+    std::string tilesWallDungeonStr = "resources/textures/Minifantasy_Dungeon_Assets/Tileset/Minifantasy_DungeonWallTiles.png";
+    textures.load(TextureIdentifier::TileWallDungeonTopLeftCornerTopPart, tilesWallDungeonStr,
+                  sf::IntRect(TILE_SIZE * 1, TILE_SIZE * 1, TILE_SIZE, TILE_SIZE));
+    textures.load(TextureIdentifier::TileWallDungeonTopRightCornerTopPart, tilesWallDungeonStr,
+                  sf::IntRect(TILE_SIZE * 3, TILE_SIZE * 1, TILE_SIZE, TILE_SIZE));
+
+    textures.load(TextureIdentifier::TileWallDungeonBottomLeftCornerTopPart, tilesWallDungeonStr,
+                  sf::IntRect(TILE_SIZE * 1, TILE_SIZE * 3, TILE_SIZE, TILE_SIZE));
+    textures.load(TextureIdentifier::TileWallDungeonBottomLeftCornerBottomPart, tilesWallDungeonStr,
+                  sf::IntRect(TILE_SIZE * 1, TILE_SIZE * 4, TILE_SIZE, TILE_SIZE));
+    textures.load(TextureIdentifier::TileWallDungeonBottomRightCornerTopPart, tilesWallDungeonStr,
+                  sf::IntRect(TILE_SIZE * 3, TILE_SIZE * 3, TILE_SIZE, TILE_SIZE));
+    textures.load(TextureIdentifier::TileWallDungeonBottomRightCornerBottomPart, tilesWallDungeonStr,
+                  sf::IntRect(TILE_SIZE * 3, TILE_SIZE * 4, TILE_SIZE, TILE_SIZE));
+
+    textures.load(TextureIdentifier::TileWallDungeonMiddleTopPart, tilesWallDungeonStr,
+                  sf::IntRect(TILE_SIZE * 2, TILE_SIZE * 1, TILE_SIZE, TILE_SIZE));
+    textures.load(TextureIdentifier::TileWallDungeonMiddleBottomPart, tilesWallDungeonStr,
+                  sf::IntRect(TILE_SIZE * 2, TILE_SIZE * 2, TILE_SIZE, TILE_SIZE));
+    textures.load(TextureIdentifier::TileWallDungeonSidePart, tilesWallDungeonStr,
+                  sf::IntRect(TILE_SIZE * 1, TILE_SIZE * 2, TILE_SIZE, TILE_SIZE));
 }
 
 void World::buildScene() {

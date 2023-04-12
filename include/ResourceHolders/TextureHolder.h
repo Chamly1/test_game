@@ -10,6 +10,19 @@
 enum class TextureIdentifier {
     TileBlack,
     TileFlorDungeon,
+
+    TileWallDungeonTopLeftCornerTopPart,
+    TileWallDungeonTopRightCornerTopPart,
+
+    TileWallDungeonBottomLeftCornerTopPart,
+    TileWallDungeonBottomLeftCornerBottomPart,
+    TileWallDungeonBottomRightCornerTopPart,
+    TileWallDungeonBottomRightCornerBottomPart,
+
+    TileWallDungeonMiddleTopPart,
+    TileWallDungeonMiddleBottomPart,
+    TileWallDungeonSidePart,
+
     zombie
 };
 
