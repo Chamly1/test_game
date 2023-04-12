@@ -17,7 +17,7 @@ private:
     std::map<TextureIdentifier, std::unique_ptr<sf::Texture>> textureMap;
 
 public:
-    void load(TextureIdentifier id, const std::string& filePath);
+    void load(TextureIdentifier id, const std::string& filePath, const sf::IntRect& area = sf::IntRect());
     const sf::Texture& get(TextureIdentifier id) const;
 };
 

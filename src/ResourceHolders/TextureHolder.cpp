@@ -1,8 +1,8 @@
 #include "ResourceHolders/TextureHolder.h"
 
-void TextureHolder::load(TextureIdentifier id, const std::string& filePath) {
+void TextureHolder::load(TextureIdentifier id, const std::string& filePath, const sf::IntRect& area) {
     std::unique_ptr<sf::Texture> texture(new sf::Texture);
-    if (!texture->loadFromFile(filePath)) {
+    if (!texture->loadFromFile(filePath, area)) {
         throw std::runtime_error("TextureHolder::load - Failed to load " + filePath);
     }
 
