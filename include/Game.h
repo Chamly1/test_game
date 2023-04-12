@@ -7,6 +7,7 @@
 #include "SFML/System.hpp"
 #include "SFML/Window.hpp"
 
+#include "World.h"
 #include "Mouse.h"
 
 class Game {
@@ -15,6 +16,7 @@ private:
 
     sf::RenderWindow window;
     sf::Event ev;
+    World world;
     Mouse mouse;
 
     void processEvents();
