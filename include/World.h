@@ -7,6 +7,7 @@
 
 #include "ResourceHolders/TextureHolder.h"
 #include "SceneNode.h"
+#include "CommandQueue.h"
 
 class World : private sf::NonCopyable {
 private:
@@ -18,8 +19,10 @@ private:
     sf::RenderWindow& window;
     sf::View worldView;
     TextureHolder textures;
+
     SceneNode sceneGraph;
     std::array<SceneNode*, LayerCount> sceneLayers;
+    CommandQueue commandQueue;
 
     void loadTextures();
     void buildScene();

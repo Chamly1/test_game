@@ -60,7 +60,9 @@ World::World(sf::RenderWindow& window)
 }
 
 void World::update(sf::Time dt) {
-
+    while (!commandQueue.isEmpty()) {
+        sceneGraph.onCommand(commandQueue.pop(), dt);
+    }
 }
 
 void World::draw() {
