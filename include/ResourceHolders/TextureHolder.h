@@ -23,7 +23,9 @@ enum class TextureIdentifier {
     TileWallDungeonMiddleBottomPart,
     TileWallDungeonSidePart,
 
-    zombie
+    zombie,
+
+    HumanBaseIdle
 };
 
 class TextureHolder {

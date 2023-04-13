@@ -4,6 +4,7 @@
 
 const float viewZoomFactor = 0.25f;
 const int TILE_SIZE = 8;
+const int UNIT_SIZE = 32;
 
 void World::loadTextures() {
     textures.load(TextureIdentifier::TileBlack, "resources/textures/BlackTile.png");
@@ -34,6 +35,10 @@ void World::loadTextures() {
                   sf::IntRect(TILE_SIZE * 2, TILE_SIZE * 2, TILE_SIZE, TILE_SIZE));
     textures.load(TextureIdentifier::TileWallDungeonSidePart, tilesWallDungeonStr,
                   sf::IntRect(TILE_SIZE * 1, TILE_SIZE * 2, TILE_SIZE, TILE_SIZE));
+
+    std::string HumanBaseIdleStr = "resources/textures/Minifantasy_Dungeon_Assets/Animations/Human/Minifantasy_CreaturesHumanBaseIdle.png";
+    textures.load(TextureIdentifier::HumanBaseIdle, HumanBaseIdleStr,
+                  sf::IntRect(0, 0, UNIT_SIZE, UNIT_SIZE));
 }
 
 void World::buildScene() {
@@ -46,6 +51,9 @@ void World::buildScene() {
 
     sceneLayers[Background]->attachChild(std::move(generateMapFromString(testMapStr1, textures)));
 
+    std::unique_ptr<SpriteNode> playerSprite(new SpriteNode(textures.get(TextureIdentifier::HumanBaseIdle)));
+    playerSprite->addSceneNodeCategory(SceneNodeCategory::Player);
+    sceneLayers[Units]->attachChild(std::move(playerSprite));
 }
 
 World::World(sf::RenderWindow& window)

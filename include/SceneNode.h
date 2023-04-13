@@ -15,7 +15,8 @@ namespace SceneNodeCategory {
         None = 0,
         Scene = 1 << 0,
         PlayerUnit = 1 << 1,
-        EnemyUnit = 1 << 2
+        EnemyUnit = 1 << 2,
+        Player = 1 << 3
     };
 }
 
