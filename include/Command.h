@@ -5,7 +5,7 @@
 
 #include "SFML/Graphics.hpp"
 
-#include "SceneNode.h"
+class SceneNode;
 
 class Command {
 public:
