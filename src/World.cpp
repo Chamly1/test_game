@@ -71,3 +71,7 @@ void World::draw() {
     window.setView(worldView);
     window.draw(sceneGraph);
 }
+
+CommandQueue& World::getCommandQueue() {
+    return commandQueue;
+}

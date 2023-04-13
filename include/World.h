@@ -31,6 +31,8 @@ public:
     explicit World(sf::RenderWindow& window);
     void update(sf::Time dt);
     void draw();
+
+    CommandQueue& getCommandQueue();
 };
 
 #endif //TEST_GAME_WORLD_H
