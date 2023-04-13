@@ -24,7 +24,7 @@ void SceneNode::updateChildren(sf::Time dt) {
     }
 }
 
-SceneNode::SceneNode() :children(), parent(nullptr) {
+SceneNode::SceneNode() :children(), parent(nullptr), sceneNodeCategory(SceneNodeCategory::None) {
 
 }
 
@@ -60,4 +60,12 @@ sf::Transform SceneNode::getWorldTransform() const {
 
 sf::Vector2f SceneNode::getWorldPosition() const {
     return getWorldTransform() * sf::Vector2f();
+}
+
+unsigned int SceneNode::getSceneNodeCategory() const {
+    return sceneNodeCategory;
+}
+
+void SceneNode::addSceneNodeCategory(unsigned int sceneNodeCategory) {
+    this->sceneNodeCategory |= sceneNodeCategory;
 }
