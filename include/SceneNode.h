@@ -8,6 +8,8 @@
 
 #include "SFML/Graphics.hpp"
 
+#include "Command.h"
+
 namespace SceneNodeCategory {
     enum Type {
         None = 0,
@@ -42,12 +44,20 @@ public:
 
     unsigned int getSceneNodeCategory() const;
     /**
-     * Add scene node category with the bitwise OR.
-     * Use categories from SceneNodeCategory namespace.
+     * Add the scene node category with the bitwise OR.
+     * You MUST use categories from SceneNodeCategory namespace.
      *
      * @param sceneNodeCategory category to add.
      */
     void addSceneNodeCategory(unsigned int sceneNodeCategory);
+
+    /**
+     * Execute the command if its sceneNodeCategory correspond to the SceneNode and pass the command to all children.
+     *
+     * @param command command to execute.
+     * @param dt delta time depending on which the command will be processed.
+     */
+    void onCommand(const Command& command, sf::Time dt);
 };
 
 #endif //TEST_GAME_SCENENODE_H

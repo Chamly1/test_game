@@ -69,3 +69,13 @@ unsigned int SceneNode::getSceneNodeCategory() const {
 void SceneNode::addSceneNodeCategory(unsigned int sceneNodeCategory) {
     this->sceneNodeCategory |= sceneNodeCategory;
 }
+
+void SceneNode::onCommand(const Command& command, sf::Time dt) {
+    if (command.sceneNodeCategory & sceneNodeCategory) {
+        command.action(*this, dt);
+    }
+
+    for (const std::unique_ptr<SceneNode>& child : children) {
+        child->onCommand(command, dt);
+    }
+}
