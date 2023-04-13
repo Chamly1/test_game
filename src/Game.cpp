@@ -6,12 +6,11 @@ const sf::Time Game::deltaTime = sf::microseconds(6944);
 
 Game::Game() :
 window(sf::VideoMode::getDesktopMode(), "test_game", sf::Style::Fullscreen)
-, world(window)
-, mouse(window) {
+, world(window) {
     //    window = new sf::RenderWindow(sf::VideoMode(800, 600), "test_game", sf::Style::Default);
 //    window = new sf::RenderWindow(sf::VideoMode::getDesktopMode(), "test_game", sf::Style::Fullscreen);
 //    window->setFramerateLimit(60);
-//    window->setVerticalSyncEnabled(true);
+//    window.setVerticalSyncEnabled(true);
 
     DebugLog::init(&window);
 }
@@ -20,15 +19,12 @@ void Game::processEvents() {
     while (window.pollEvent(ev)) {
         switch (ev.type) {
             case sf::Event::MouseButtonPressed:
-                mouse.processMouseButtonPressed(&ev);
                 break;
 
             case sf::Event::MouseButtonReleased:
-                mouse.processMouseButtonReleased(&ev);
                 break;
 
             case sf::Event::MouseMoved:
-                mouse.processMouseMoved(&ev);
                 break;
 
             case sf::Event::Closed:
@@ -52,7 +48,6 @@ void Game::render(){
     world.draw();
 
     window.setView(window.getDefaultView());
-    mouse.draw();
     DebugLog::draw();
     window.display();
 }
