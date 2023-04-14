@@ -5,13 +5,20 @@
 
 #include "SceneNode.h"
 
+enum class Direction {
+    Up, Down, Left, Right
+};
+
 class Entity : public SceneNode {
 private:
     sf::Vector2f velocity;
+    const float baseSpeed = 200.f;
+
+    void resetVelocity();
+    virtual void updateCurrent(sf::Time dt);
 
 public:
-    void setVelocity(sf::Vector2f velocity);
-    void setVelocity(float vx, float vy);
+    void accelerateTo(Direction direction);
 
 };
 
