@@ -24,7 +24,7 @@ public:
 class Entity : public SceneNode {
 private:
     sf::Vector2f velocity;
-    const float baseSpeed = 200.f;
+    const float baseSpeed = 75.f;
 
     void resetVelocity();
     virtual void updateCurrent(sf::Time dt);
