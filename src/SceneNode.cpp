@@ -24,7 +24,10 @@ void SceneNode::updateChildren(sf::Time dt) {
     }
 }
 
-SceneNode::SceneNode() :children(), parent(nullptr), sceneNodeCategory(SceneNodeCategory::None) {
+SceneNode::SceneNode()
+: children()
+, parent(nullptr)
+, sceneNodeCategory(SceneNodeCategory::None) {
 
 }
 

@@ -2,7 +2,8 @@
 
 #include "Entities/Entity.h"
 
-EntityMover::EntityMover(Direction direction) : direction(direction) {
+EntityMover::EntityMover(Direction direction)
+: direction(direction) {
 
 }
 void EntityMover::operator() (SceneNode& node, sf::Time dt) const {

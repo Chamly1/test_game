@@ -4,8 +4,10 @@
 // as microseconds. 6944 for 144 Hz
 const sf::Time Game::deltaTime = sf::microseconds(6944);
 
-Game::Game() :
-window(sf::VideoMode::getDesktopMode(), "test_game", sf::Style::Fullscreen)
+Game::Game()
+: window(sf::VideoMode::getDesktopMode()
+, "test_game"
+, sf::Style::Fullscreen)
 , world(window) {
     //    window = new sf::RenderWindow(sf::VideoMode(800, 600), "test_game", sf::Style::Default);
 //    window = new sf::RenderWindow(sf::VideoMode::getDesktopMode(), "test_game", sf::Style::Fullscreen);
