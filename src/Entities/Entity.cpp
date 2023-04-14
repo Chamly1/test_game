@@ -2,6 +2,14 @@
 
 #include "Entities/Entity.h"
 
+EntityMover::EntityMover(Direction direction) : direction(direction) {
+
+}
+void EntityMover::operator() (SceneNode& node, sf::Time dt) const {
+    Entity& entity = static_cast<Entity&>(node);
+    entity.accelerateTo(direction);
+}
+
 void Entity::resetVelocity() {
     velocity.x = 0.f;
     velocity.y = 0.f;

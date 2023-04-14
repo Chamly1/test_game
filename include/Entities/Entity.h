@@ -9,6 +9,18 @@ enum class Direction {
     Up, Down, Left, Right
 };
 
+/**
+ * Class to move the Entity through the Command class.
+ */
+class EntityMover {
+private:
+    Direction direction;
+
+public:
+    EntityMover(Direction direction);
+    void operator() (SceneNode& node, sf::Time dt) const;
+};
+
 class Entity : public SceneNode {
 private:
     sf::Vector2f velocity;
