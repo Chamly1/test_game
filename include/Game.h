@@ -8,6 +8,7 @@
 #include "SFML/Window.hpp"
 
 #include "World.h"
+#include "Player.h"
 
 class Game {
 private:
@@ -16,6 +17,7 @@ private:
     sf::RenderWindow window;
     sf::Event ev;
     World world;
+    Player player;
 
     void processEvents();
     void update(sf::Time elapsedTime);

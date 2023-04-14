@@ -16,26 +16,17 @@ window(sf::VideoMode::getDesktopMode(), "test_game", sf::Style::Fullscreen)
 }
 
 void Game::processEvents() {
+    CommandQueue& commands = world.getCommandQueue();
+
     while (window.pollEvent(ev)) {
-        switch (ev.type) {
-            case sf::Event::MouseButtonPressed:
-                break;
+        player.handleEvent(ev, commands);
 
-            case sf::Event::MouseButtonReleased:
-                break;
-
-            case sf::Event::MouseMoved:
-                break;
-
-            case sf::Event::Closed:
-                window.close();
-                break;
-            case sf::Event::KeyPressed:
-//                std::cout << "key pressed" << std::endl;
-//                std::cout << ev.key.code << std::endl;
-                break;
+        if (ev.type == sf::Event::Closed) {
+            window.close();
         }
     }
+
+    player.handleRealtimeInput(commands);
 }
 
 void Game::update(sf::Time elapsedTime){
