@@ -5,6 +5,7 @@
 #include "ResourceHolders/TextureHolder.h"
 
 enum class UnitType {
+    Human,
     zombie
 };
 

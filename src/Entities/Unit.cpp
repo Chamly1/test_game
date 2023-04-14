@@ -2,6 +2,8 @@
 
 TextureIdentifier toTextureID (UnitType type) {
     switch (type) {
+        case UnitType::Human:
+            return TextureIdentifier::HumanBaseIdle;
         case UnitType::zombie:
             return TextureIdentifier::zombie;
     }

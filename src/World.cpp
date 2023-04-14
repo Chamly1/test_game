@@ -1,6 +1,7 @@
 #include "World.h"
 #include "SpriteNode.h"
 #include "MapGenerateUtils.h"
+#include "Entities/Unit.h"
 
 const float viewZoomFactor = 0.25f;
 const int TILE_SIZE = 8;
@@ -51,9 +52,9 @@ void World::buildScene() {
 
     sceneLayers[Background]->attachChild(std::move(generateMapFromString(testMapStr1, textures)));
 
-    std::unique_ptr<SpriteNode> playerSprite(new SpriteNode(textures.get(TextureIdentifier::HumanBaseIdle)));
-    playerSprite->addSceneNodeCategory(SceneNodeCategory::Player);
-    sceneLayers[Units]->attachChild(std::move(playerSprite));
+    std::unique_ptr<Unit> player(new Unit(UnitType::Human, textures));
+    player->addSceneNodeCategory(SceneNodeCategory::Player);
+    sceneLayers[Units]->attachChild(std::move(player));
 }
 
 World::World(sf::RenderWindow& window)

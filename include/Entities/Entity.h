@@ -5,7 +5,7 @@
 
 #include "SceneNode.h"
 
-class Entity : SceneNode {
+class Entity : public SceneNode {
 private:
     sf::Vector2f velocity;
 
