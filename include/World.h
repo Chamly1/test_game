@@ -1,13 +1,11 @@
 #ifndef TEST_GAME_WORLD_H
 #define TEST_GAME_WORLD_H
 
-#include <array>
-
-#include "SFML/Graphics.hpp"
-
-#include "ResourceHolders/TextureHolder.h"
 #include "SceneNode.h"
+#include "ResourceHolders/TextureHolder.h"
 #include "CommandQueue.h"
+
+#include "SFML/Graphics/RenderWindow.hpp"
 
 class World : private sf::NonCopyable {
 private:

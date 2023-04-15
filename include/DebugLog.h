@@ -1,11 +1,11 @@
 #ifndef TEST_GAME_DEBUGLOG_H
 #define TEST_GAME_DEBUGLOG_H
 
-#include <iostream>
-#include <sstream>
-#include <deque>
+#include "SFML/Graphics/RenderWindow.hpp"
+#include "SFML/Graphics/Text.hpp"
+#include "SFML/Graphics/RectangleShape.hpp"
 
-#include "SFML/Graphics.hpp"
+#include <deque>
 
 #ifndef NDEBUG
 

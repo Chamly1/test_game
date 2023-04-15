@@ -1,9 +1,9 @@
 #ifndef TEST_GAME_COMMANDQUEUE_H
 #define TEST_GAME_COMMANDQUEUE_H
 
-#include <queue>
-
 #include "Command.h"
+
+#include <queue>
 
 class CommandQueue {
 private:

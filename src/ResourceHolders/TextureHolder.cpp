@@ -1,5 +1,8 @@
 #include "ResourceHolders/TextureHolder.h"
 
+#include <stdexcept>
+#include <cassert>
+
 void TextureHolder::load(TextureIdentifier id, const std::string& filePath, const sf::IntRect& area) {
     std::unique_ptr<sf::Texture> texture(new sf::Texture);
     if (!texture->loadFromFile(filePath, area)) {

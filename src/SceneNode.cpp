@@ -1,5 +1,7 @@
 #include "SceneNode.h"
 
+#include <cassert>
+
 void SceneNode::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     states.transform *= getTransform();
 

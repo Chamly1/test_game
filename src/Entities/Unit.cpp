@@ -1,5 +1,7 @@
 #include "Entities/Unit.h"
 
+#include "SFML/Graphics/RenderTarget.hpp"
+
 TextureIdentifier toTextureID (UnitType type) {
     switch (type) {
         case UnitType::Human:

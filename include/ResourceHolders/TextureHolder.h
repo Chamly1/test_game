@@ -1,11 +1,10 @@
 #ifndef TEST_GAME_TEXTUREHOLDER_H
 #define TEST_GAME_TEXTUREHOLDER_H
 
+#include "SFML/Graphics/Texture.hpp"
+
 #include <map>
 #include <memory>
-#include <cassert>
-
-#include "SFML/Graphics.hpp"
 
 enum class TextureIdentifier {
     TileBlack,

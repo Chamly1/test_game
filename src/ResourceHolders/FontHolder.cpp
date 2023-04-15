@@ -1,5 +1,8 @@
 #include "ResourceHolders/FontHolder.h"
 
+#include <stdexcept>
+#include <cassert>
+
 void FontHolder::load(FontIdentifier id, const std::string& filePath) {
     std::unique_ptr<sf::Font> font(new sf::Font());
     if (!font->loadFromFile(filePath)) {

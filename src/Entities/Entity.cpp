@@ -1,6 +1,6 @@
-#include <cmath>
-
 #include "Entities/Entity.h"
+
+#include <cmath>
 
 EntityMover::EntityMover(Direction direction)
 : direction(direction) {

@@ -1,9 +1,9 @@
 #ifndef TEST_GAME_COMMAND_H
 #define TEST_GAME_COMMAND_H
 
-#include <functional>
+#include "SFML/System/Time.hpp"
 
-#include "SFML/Graphics.hpp"
+#include <functional>
 
 class SceneNode;
 

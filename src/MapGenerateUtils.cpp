@@ -1,4 +1,5 @@
 #include "MapGenerateUtils.h"
+#include "SpriteNode.h"
 
 const float TILE_SIZE = 8.f;
 

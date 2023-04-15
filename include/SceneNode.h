@@ -1,14 +1,14 @@
 #ifndef TEST_GAME_SCENENODE_H
 #define TEST_GAME_SCENENODE_H
 
-#include <vector>
-#include <memory>
-#include <algorithm>
-#include <cassert>
-
-#include "SFML/Graphics.hpp"
-
 #include "Command.h"
+
+#include "SFML/Graphics/Transformable.hpp"
+#include "SFML/Graphics/Drawable.hpp"
+#include "SFML/System/NonCopyable.hpp"
+#include "SFML/System/Time.hpp"
+
+#include <memory>
 
 namespace SceneNodeCategory {
     enum Type {

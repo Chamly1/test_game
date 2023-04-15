@@ -1,9 +1,9 @@
 #ifndef TEST_GAME_SPRITENODE_H
 #define TEST_GAME_SPRITENODE_H
 
-#include "SFML/Graphics.hpp"
-
 #include "SceneNode.h"
+
+#include "SFML/Graphics/Sprite.hpp"
 
 class SpriteNode : public SceneNode {
 private:

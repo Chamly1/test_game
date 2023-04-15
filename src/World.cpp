@@ -1,6 +1,4 @@
 #include "World.h"
-#include "SpriteNode.h"
-#include "MapGenerateUtils.h"
 #include "Entities/Unit.h"
 
 const float viewZoomFactor = 0.25f;
@@ -50,7 +48,7 @@ void World::buildScene() {
         sceneGraph.attachChild(std::move(layer));
     }
 
-    sceneLayers[Background]->attachChild(std::move(generateMapFromString(testMapStr1, textures)));
+//    sceneLayers[Background]->attachChild(std::move(generateMapFromString(testMapStr1, textures)));
 
     std::unique_ptr<Unit> player(new Unit(UnitType::Human, textures));
     player->addSceneNodeCategory(SceneNodeCategory::Player);

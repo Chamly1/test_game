@@ -1,5 +1,8 @@
 #include "DebugLog.h"
 
+#include "iostream"
+#include "sstream"
+
 sf::RenderWindow *DebugLog::window;
 sf::Font DebugLog::font;
 sf::Text DebugLog::text;

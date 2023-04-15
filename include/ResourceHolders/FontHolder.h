@@ -1,11 +1,10 @@
 #ifndef TEST_GAME_FONTHOLDER_H
 #define TEST_GAME_FONTHOLDER_H
 
+#include "SFML/Graphics/Font.hpp"
+
 #include <map>
 #include <memory>
-#include <cassert>
-
-#include "SFML/Graphics.hpp"
 
 enum class FontIdentifier{
 

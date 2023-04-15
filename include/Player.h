@@ -1,11 +1,11 @@
 #ifndef TEST_GAME_PLAYER_H
 #define TEST_GAME_PLAYER_H
 
-#include <map>
+#include "CommandQueue.h"
 
 #include "SFML/Window/Event.hpp"
 
-#include "CommandQueue.h"
+#include <map>
 
 enum class PlayerAction {
     MoveUp,

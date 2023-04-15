@@ -1,8 +1,6 @@
 #ifndef TEST_GAME_ENTITY_H
 #define TEST_GAME_ENTITY_H
 
-#include "SFML/Graphics.hpp"
-
 #include "SceneNode.h"
 
 enum class Direction {

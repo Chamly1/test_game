@@ -1,12 +1,6 @@
 #ifndef TEST_GAME_GAME_H
 #define TEST_GAME_GAME_H
 
-#include "iostream"
-
-#include "SFML/Graphics.hpp"
-#include "SFML/System.hpp"
-#include "SFML/Window.hpp"
-
 #include "World.h"
 #include "Player.h"
 
