@@ -1,28 +1,34 @@
-#ifndef TEST_GAME_GAME_H
-#define TEST_GAME_GAME_H
+#ifndef TEST_GAME_APPLICATION_H
+#define TEST_GAME_APPLICATION_H
 
-#include "World.h"
 #include "Player.h"
+#include "ResourceHolders/TextureHolder.h"
+#include "ResourceHolders/FontHolder.h"
+#include "Scenes/SceneList.h"
 
-class Game {
+#include "SFML/Graphics/RenderWindow.hpp"
+
+class Application {
 private:
     static const sf::Time deltaTime;
 
     sf::RenderWindow window;
-    sf::Event ev;
-    World world;
+    TextureHolder textures;
+    FontHolder fonts;
     Player player;
 
+    SceneList sceneList;
+
+    void registerScenes();
+
     void processEvents();
-    void update(sf::Time elapsedTime);
+    void update(sf::Time dt);
     void render();
 
 public:
-    Game();
-    ~Game();
-
+    Application();
     void run();
+
 };
 
-
-#endif //TEST_GAME_GAME_H
+#endif //TEST_GAME_APPLICATION_H

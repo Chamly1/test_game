@@ -7,7 +7,7 @@
 #include <memory>
 
 enum class FontIdentifier{
-
+    Main
 };
 
 class FontHolder {

@@ -1,51 +1,57 @@
-#include "Game.h"
+#include "Application.h"
+#include "Scenes/GameScene.h"
 #include "Utils/DebugLog.h"
 
 // as microseconds. 6944 for 144 Hz
-const sf::Time Game::deltaTime = sf::microseconds(6944);
+const sf::Time Application::deltaTime = sf::microseconds(6944);
 
-Game::Game()
-: window(sf::VideoMode::getDesktopMode()
-, "test_game"
-, sf::Style::Fullscreen)
-, world(window) {
-    //    window = new sf::RenderWindow(sf::VideoMode(800, 600), "test_game", sf::Style::Default);
-//    window = new sf::RenderWindow(sf::VideoMode::getDesktopMode(), "test_game", sf::Style::Fullscreen);
-//    window->setFramerateLimit(60);
-//    window.setVerticalSyncEnabled(true);
-
-    DebugLog::init(&window);
+void Application::registerScenes() {
+    sceneList.registerScene<GameScene>(SceneIdentifier::Game);
 }
 
-void Game::processEvents() {
-    CommandQueue& commands = world.getCommandQueue();
+void Application::processEvents() {
+    sf::Event event;
+    while (window.pollEvent(event)) {
+        sceneList.handleEvent(event);
 
-    while (window.pollEvent(ev)) {
-        player.handleEvent(ev, commands);
-
-        if (ev.type == sf::Event::Closed) {
+        if (event.type == sf::Event::Closed) {
             window.close();
         }
     }
-
-    player.handleRealtimeInput(commands);
 }
 
-void Game::update(sf::Time elapsedTime){
-    world.update(elapsedTime);
+void Application::update(sf::Time dt) {
+    sceneList.update(dt);
 }
 
-void Game::render(){
+void Application::render(){
     window.clear();
 
-    world.draw();
-
-    window.setView(window.getDefaultView());
+    sceneList.draw();
     DebugLog::draw();
+
     window.display();
 }
 
-void Game::run() {
+Application::Application()
+        : window(sf::VideoMode::getDesktopMode(), "test_game", sf::Style::Fullscreen)
+        , textures()
+        , fonts()
+        , player()
+        , sceneList(SceneContext(window, textures, fonts, player)){
+//    window->setFramerateLimit(60);
+//    window.setVerticalSyncEnabled(true);
+
+
+    registerScenes();
+
+    DebugLog::init(&window);
+    fonts.load(FontIdentifier::Main, "resources/fonts/Early_GameBoy.ttf");
+
+    sceneList.pushBack(SceneIdentifier::Game);
+}
+
+void Application::run() {
     sf::Clock clock;
     sf::Time accumulator;
 
@@ -55,13 +61,14 @@ void Game::run() {
         while (accumulator >= deltaTime) {
             processEvents();
             update(deltaTime);
+
+            if (sceneList.isEmpty()) {
+                window.close();
+            }
+
             accumulator -= deltaTime;
         }
 
         render();
     }
-}
-
-Game::~Game(){
-
 }
