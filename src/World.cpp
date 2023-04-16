@@ -1,5 +1,5 @@
 #include "World.h"
-#include "Entities/Unit.h"
+#include "SceneNodes/Unit.h"
 
 const float viewZoomFactor = 0.25f;
 const int TILE_SIZE = 8;

@@ -1,4 +1,4 @@
-#include "Entities/Entity.h"
+#include "SceneNodes/Entity.h"
 
 #include <cmath>
 

@@ -1,6 +1,6 @@
 #include "Player.h"
-#include "SceneNode.h"
-#include "Entities/Entity.h"
+#include "SceneNodes/SceneNode.h"
+#include "SceneNodes/Entity.h"
 
 bool Player::isRealtimePlayerAction(PlayerAction action) {
     switch (action) {

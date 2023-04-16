@@ -1,7 +1,7 @@
 #ifndef TEST_GAME_UNIT_H
 #define TEST_GAME_UNIT_H
 
-#include "Entities/Entity.h"
+#include "SceneNodes/Entity.h"
 #include "ResourceHolders/TextureHolder.h"
 
 #include "SFML/Graphics/Sprite.hpp"

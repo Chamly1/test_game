@@ -1,7 +1,7 @@
 #ifndef TEST_GAME_WORLD_H
 #define TEST_GAME_WORLD_H
 
-#include "SceneNode.h"
+#include "SceneNodes/SceneNode.h"
 #include "ResourceHolders/TextureHolder.h"
 #include "CommandQueue.h"
 
