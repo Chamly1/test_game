@@ -1,7 +1,7 @@
 #include "Scenes/TitleScene.h"
 #include "Utils/Utils.h"
 
-static const float textBlinkingPeriodSec = 0.5f;
+static const float textBlinkingPeriodSec = 0.75f;
 
 TitleScene::TitleScene(SceneContext ctx, SceneList& sceneList)
 : Scene(ctx, sceneList)
