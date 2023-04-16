@@ -2,6 +2,12 @@
 
 #include <cassert>
 
+SceneList::PendingChange::PendingChange(PendingChangeAction action, SceneIdentifier sceneId)
+: action(action)
+, sceneId(sceneId) {
+
+}
+
 std::unique_ptr<Scene> SceneList::createScene(SceneIdentifier sceneId) {
     auto found = sceneFactory.find(sceneId);
     assert(found != sceneFactory.end());
