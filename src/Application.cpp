@@ -1,5 +1,6 @@
 #include "Application.h"
 #include "Scenes/GameScene.h"
+#include "Scenes/TitleScene.h"
 #include "Utils/DebugLog.h"
 
 // as microseconds. 6944 for 144 Hz
@@ -7,6 +8,7 @@ const sf::Time Application::deltaTime = sf::microseconds(6944);
 
 void Application::registerScenes() {
     sceneList.registerScene<GameScene>(SceneIdentifier::Game);
+    sceneList.registerScene<TitleScene>(SceneIdentifier::Title);
 }
 
 void Application::processEvents() {
@@ -48,7 +50,7 @@ Application::Application()
     DebugLog::init(&window);
     fonts.load(FontIdentifier::Main, "resources/fonts/Early_GameBoy.ttf");
 
-    sceneList.pushBack(SceneIdentifier::Game);
+    sceneList.pushBack(SceneIdentifier::Title);
 }
 
 void Application::run() {
