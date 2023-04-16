@@ -50,6 +50,7 @@ void SceneList::update(sf::Time dt) {
 void SceneList::draw() {
     for (std::unique_ptr<Scene>& scene : sceneList) {
         scene->draw();
+        sceneContext.window->setView(sceneContext.window->getDefaultView());
     }
 }
 
