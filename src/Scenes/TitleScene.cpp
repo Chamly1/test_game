@@ -11,6 +11,7 @@ TitleScene::TitleScene(SceneContext ctx, SceneList& sceneList)
 
     text.setFont(ctx.fonts->get(FontIdentifier::Main));
     text.setString("Press any key to play");
+    text.setCharacterSize(64);
     setOriginToCenter(text);
     text.setPosition(ctx.window->getView().getSize() / 2.f);
 }

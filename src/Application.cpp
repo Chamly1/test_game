@@ -48,7 +48,7 @@ Application::Application()
     registerScenes();
 
     DebugLog::init(&window);
-    fonts.load(FontIdentifier::Main, "resources/fonts/Early_GameBoy.ttf");
+    fonts.load(FontIdentifier::Main, "resources/fonts/game_over.ttf");
 
     sceneList.pushBack(SceneIdentifier::Title);
 }
