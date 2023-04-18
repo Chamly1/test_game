@@ -35,7 +35,7 @@ bool TitleScene::update(sf::Time dt) {
 bool TitleScene::handleEvent(const sf::Event& event) {
     if (event.type == sf::Event::KeyPressed) {
         requestListPopBack();
-        requestListPushBack(SceneIdentifier::Game);
+        requestListPushBack(SceneIdentifier::Menu);
     }
 
     return false;

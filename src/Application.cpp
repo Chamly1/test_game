@@ -1,14 +1,16 @@
 #include "Application.h"
-#include "Scenes/GameScene.h"
 #include "Scenes/TitleScene.h"
+#include "Scenes/MenuScene.h"
+#include "Scenes/GameScene.h"
 #include "Utils/DebugLog.h"
 
 // as microseconds. 6944 for 144 Hz
 const sf::Time Application::deltaTime = sf::microseconds(6944);
 
 void Application::registerScenes() {
-    sceneList.registerScene<GameScene>(SceneIdentifier::Game);
     sceneList.registerScene<TitleScene>(SceneIdentifier::Title);
+    sceneList.registerScene<MenuScene>(SceneIdentifier::Menu);
+    sceneList.registerScene<GameScene>(SceneIdentifier::Game);
 }
 
 void Application::processEvents() {
@@ -49,6 +51,9 @@ Application::Application()
 
     DebugLog::init(&window);
     fonts.load(FontIdentifier::Main, "resources/fonts/game_over.ttf");
+    textures.load(TextureIdentifier::MenuSelector,
+                  "resources/textures/Minifantasy_Userinterface_Assets/Menus/Selectors/Minifantasy_GuiSelectors.png",
+                  sf::IntRect(0, 16 * 20, 16, 16));
 
     sceneList.pushBack(SceneIdentifier::Title);
 }

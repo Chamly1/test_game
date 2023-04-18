@@ -7,6 +7,8 @@
 #include <memory>
 
 enum class TextureIdentifier {
+    MenuSelector,
+
     TileBlack,
     TileFlorDungeon,
 
