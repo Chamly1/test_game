@@ -24,11 +24,11 @@ bool Component::isActive() const {
     return mIsActive;
 }
 
-bool Component::activate() {
+void Component::activate() {
     mIsActive = true;
 }
 
-bool Component::deactivate() {
+void Component::deactivate() {
     mIsActive = false;
 }
 

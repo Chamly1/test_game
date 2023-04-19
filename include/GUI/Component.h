@@ -22,8 +22,8 @@ public:
     virtual void deselect();
 
     virtual bool isActive() const;
-    virtual bool activate();
-    virtual bool deactivate();
+    virtual void activate();
+    virtual void deactivate();
 
     virtual void handleEvent(const sf::Event& event) = 0;
 
