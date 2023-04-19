@@ -2,6 +2,7 @@
 #include "Scenes/TitleScene.h"
 #include "Scenes/MenuScene.h"
 #include "Scenes/GameScene.h"
+#include "Scenes/PauseScene.h"
 #include "Utils/DebugLog.h"
 
 // as microseconds. 6944 for 144 Hz
@@ -11,6 +12,7 @@ void Application::registerScenes() {
     sceneList.registerScene<TitleScene>(SceneIdentifier::Title);
     sceneList.registerScene<MenuScene>(SceneIdentifier::Menu);
     sceneList.registerScene<GameScene>(SceneIdentifier::Game);
+    sceneList.registerScene<PauseScene>(SceneIdentifier::Pause);
 }
 
 void Application::processEvents() {

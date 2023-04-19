@@ -24,9 +24,9 @@ bool GameScene::handleEvent(const sf::Event& event) {
     CommandQueue& commands = world.getCommandQueue();
     player.handleEvent(event, commands);
 
-//    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
-//        requestListPushBack(SceneIdentifier::Pause);
-//    }
+    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
+        requestListPushBack(SceneIdentifier::Pause);
+    }
 
     return true;
 }
