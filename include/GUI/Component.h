@@ -8,7 +8,7 @@
 
 namespace GUI {
 
-class Component : public sf::Drawable, public sf::Transform, private sf::NonCopyable {
+class Component : public sf::Drawable, public sf::Transformable, private sf::NonCopyable {
 private:
     bool mIsSelected;
     bool mIsActive;
