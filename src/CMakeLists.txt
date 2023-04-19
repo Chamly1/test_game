@@ -4,4 +4,5 @@ add_library(main_obj OBJECT main.cpp Application.cpp World.cpp  Command.cpp Comm
         SceneNodes/SceneNode.cpp SceneNodes/SpriteNode.cpp SceneNodes/Entity.cpp SceneNodes/Unit.cpp
         ResourceHolders/FontHolder.cpp ResourceHolders/TextureHolder.cpp
         Scenes/Scene.cpp Scenes/SceneList.cpp Scenes/SceneContext.cpp Scenes/GameScene.cpp Scenes/TitleScene.cpp Scenes/MenuScene.cpp Scenes/PauseScene.cpp
-        Utils/MapGenerateUtils.cpp Utils/DebugLog.cpp Utils/Utils.cpp)
+        Utils/MapGenerateUtils.cpp Utils/DebugLog.cpp Utils/Utils.cpp
+        GUI/Component.cpp)
