@@ -33,7 +33,7 @@ void Button::activate() {
     }
 }
 
-void handleEvent(const sf::Event& event) {
+void Button::handleEvent(const sf::Event& event) {
 
 }
 
