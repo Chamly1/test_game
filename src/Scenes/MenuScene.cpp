@@ -1,11 +1,9 @@
 #include "Scenes/MenuScene.h"
 #include "Utils/Utils.h"
 #include "GUI/Label.h"
-#include "GUI/Button.h"
 
 const unsigned int titleCharacterSize = 128;
 const unsigned int buttonsCharacterSize = 64;
-const unsigned int pixelsBetweenOptions = 32;
 
 std::shared_ptr<GUI::Label> MenuScene::createTitle(const std::string& titleName, const sf::Font& font) {
     std::shared_ptr<GUI::Label> title = std::make_shared<GUI::Label>(titleName, font);
@@ -16,16 +14,24 @@ std::shared_ptr<GUI::Label> MenuScene::createTitle(const std::string& titleName,
     return title;
 }
 
-std::shared_ptr<GUI::Button> MenuScene::createButton(const std::string& text, const sf::Font& font,
-                                                     const sf::Texture& selectorTexture) {
-    std::shared_ptr<GUI::Button> button = std::make_shared<GUI::Button>(text, font, selectorTexture);
-    button->setPosition(getSceneContext().window->getView().getCenter());
-    buttonsCount++;
-    //TODO change pixels shift to relative
-    button->move(0.f, pixelsBetweenOptions * buttonsCount);
-    button->setCharacterSize(buttonsCharacterSize);
+std::shared_ptr<GUI::ButtonList> MenuScene::createButtons(const sf::Font& font, const sf::Texture& selectorTexture) {
+    std::shared_ptr<GUI::ButtonList> buttons = std::make_shared<GUI::ButtonList>(buttonsCharacterSize, font, selectorTexture);
+    buttons->setPosition(getSceneContext().window->getView().getCenter());
 
-    return button;
+    buttons->addButton("play", [this] () {
+        requestListPopBack();
+        requestListPushBack(SceneIdentifier::Game);
+    });
+
+    buttons->addButton("settings", [this] () {
+
+    });
+
+    buttons->addButton("exit", [this] () {
+        requestListClear();
+    });
+
+    return buttons;
 }
 
 MenuScene::MenuScene(SceneContext ctx, SceneList& sceneList)
@@ -38,23 +44,11 @@ MenuScene::MenuScene(SceneContext ctx, SceneList& sceneList)
 
     std::shared_ptr<GUI::Label> title = createTitle("test_game", mainFont);
 
-    std::shared_ptr<GUI::Button> playButton = createButton("play", mainFont, selectorTexture);
-    playButton->setCallback([this] () {
-        requestListPopBack();
-        requestListPushBack(SceneIdentifier::Game);
-    });
-
-    std::shared_ptr<GUI::Button> settingsButton = createButton("settings", mainFont, selectorTexture);
-
-    std::shared_ptr<GUI::Button> exitButton = createButton("exit", mainFont, selectorTexture);
-    exitButton->setCallback([this] () {
-        requestListClear();
-    });
+    std::shared_ptr<GUI::ButtonList> buttons = createButtons(mainFont, selectorTexture);
+    buttons->activate();
 
     guiContainer.pushBack(title);
-    guiContainer.pushBack(playButton);
-    guiContainer.pushBack(settingsButton);
-    guiContainer.pushBack(exitButton);
+    guiContainer.pushBack(buttons);
 }
 
 void MenuScene::draw() {

@@ -4,7 +4,7 @@
 #include "Scenes/Scene.h"
 #include "GUI/Container.h"
 #include "GUI/Label.h"
-#include "GUI/Button.h"
+#include "GUI/ButtonList.h"
 
 class MenuScene : public Scene {
 private:
@@ -12,8 +12,7 @@ private:
     int buttonsCount;
 
     std::shared_ptr<GUI::Label> createTitle(const std::string& titleName, const sf::Font& font);
-    std::shared_ptr<GUI::Button> createButton(const std::string& text, const sf::Font& font,
-                                              const sf::Texture& selectorTexture);
+    std::shared_ptr<GUI::ButtonList> createButtons(const sf::Font& font, const sf::Texture& selectorTexture);
 
 public:
     MenuScene(SceneContext ctx, SceneList& sceneList);
