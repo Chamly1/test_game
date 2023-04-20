@@ -17,6 +17,7 @@ private:
     sf::Sprite selector;
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+    void correctSelector();
 
 public:
     Button(const std::string& text, const sf::Font& font, const sf::Texture& selectorTexture);
