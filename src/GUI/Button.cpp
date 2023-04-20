@@ -7,7 +7,7 @@ namespace GUI {
 void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     states.transform *= getTransform();
     target.draw(text, states);
-    if (isActive()) {
+    if (isSelected()) {
         target.draw(selector, states);
     }
 }
