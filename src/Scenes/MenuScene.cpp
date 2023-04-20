@@ -5,8 +5,8 @@
 const unsigned int titleCharacterSize = 128;
 const unsigned int buttonsCharacterSize = 64;
 
-std::shared_ptr<GUI::Label> MenuScene::createTitle(const std::string& titleName, const sf::Font& font) {
-    std::shared_ptr<GUI::Label> title = std::make_shared<GUI::Label>(titleName, font);
+std::shared_ptr<GUI::Label> MenuScene::createTitle(const sf::Font& font) {
+    std::shared_ptr<GUI::Label> title = std::make_shared<GUI::Label>("test_game", font);
     title->setPosition(getSceneContext().window->getView().getCenter());
     title->move(0, title->getPosition().y / -2);
     title->setCharacterSize(titleCharacterSize);
@@ -27,7 +27,7 @@ std::shared_ptr<GUI::ButtonList> MenuScene::createButtons(const sf::Font& font, 
 
     });
 
-    buttons->addButton("exit", [this] () {
+    buttons->addButton("quit to desktop", [this] () {
         requestListClear();
     });
 
@@ -36,13 +36,12 @@ std::shared_ptr<GUI::ButtonList> MenuScene::createButtons(const sf::Font& font, 
 
 MenuScene::MenuScene(SceneContext ctx, SceneList& sceneList)
 : Scene(ctx, sceneList)
-, guiContainer()
-, buttonsCount(0) {
+, guiContainer() {
 
     const sf::Font& mainFont = ctx.fonts->get(FontIdentifier::Main);
     const sf::Texture& selectorTexture = ctx.textures->get(TextureIdentifier::MenuSelector);
 
-    std::shared_ptr<GUI::Label> title = createTitle("test_game", mainFont);
+    std::shared_ptr<GUI::Label> title = createTitle(mainFont);
 
     std::shared_ptr<GUI::ButtonList> buttons = createButtons(mainFont, selectorTexture);
     buttons->activate();
