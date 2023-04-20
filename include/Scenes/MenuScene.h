@@ -2,26 +2,18 @@
 #define TEST_GAME_MENUSCENE_H
 
 #include "Scenes/Scene.h"
-
-#include "SFML/Graphics/Text.hpp"
-#include "SFML/Graphics/Sprite.hpp"
+#include "GUI/Container.h"
+#include "GUI/Label.h"
+#include "GUI/Button.h"
 
 class MenuScene : public Scene {
 private:
-    enum OptionNames {
-        Play,
-        Settings,
-        Exit
-    };
+    GUI::Container guiContainer;
+    int buttonsCount;
 
-    sf::Text title;
-    std::vector<sf::Text> options;
-    sf::Sprite selector;
-    int selectedOption;
-
-    void setTitle(const std::string& titleName);
-    void addMenuOption(const std::string& optionName);
-    void updateSelector();
+    std::shared_ptr<GUI::Label> createTitle(const std::string& titleName, const sf::Font& font);
+    std::shared_ptr<GUI::Button> createButton(const std::string& text, const sf::Font& font,
+                                              const sf::Texture& selectorTexture);
 
 public:
     MenuScene(SceneContext ctx, SceneList& sceneList);
