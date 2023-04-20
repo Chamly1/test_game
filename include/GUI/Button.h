@@ -25,6 +25,7 @@ public:
     virtual bool isSelectable() const;
     virtual void activate();
     virtual void handleEvent(const sf::Event& event);
+    void setCharacterSize(unsigned int size);
 
 };
 

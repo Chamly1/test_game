@@ -47,4 +47,10 @@ void Button::handleEvent(const sf::Event& event) {
 
 }
 
+void Button::setCharacterSize(unsigned int size) {
+    text.setCharacterSize(size);
+    setOriginToCenter(text);
+    correctSelector();
+}
+
 }
