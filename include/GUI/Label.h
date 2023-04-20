@@ -17,6 +17,7 @@ public:
     Label(const std::string& text, const sf::Font& font);
     virtual bool isSelectable() const;
     virtual void handleEvent(const sf::Event& event);
+    void setCharacterSize(unsigned int size);
 
 };
 
