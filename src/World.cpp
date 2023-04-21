@@ -35,9 +35,8 @@ void World::loadTextures() {
     textures.load(TextureIdentifier::TileWallDungeonSidePart, tilesWallDungeonStr,
                   sf::IntRect(TILE_SIZE * 1, TILE_SIZE * 2, TILE_SIZE, TILE_SIZE));
 
-    std::string HumanBaseIdleStr = "resources/textures/Minifantasy_Dungeon_Assets/Animations/Human/Minifantasy_CreaturesHumanBaseIdle.png";
-    textures.load(TextureIdentifier::HumanBaseIdle, HumanBaseIdleStr,
-                  sf::IntRect(0, 0, UNIT_SIZE, UNIT_SIZE));
+    textures.load(TextureIdentifier::HumanBaseIdleAnimation,
+                  "resources/textures/Minifantasy_Dungeon_Assets/Animations/Human/Minifantasy_CreaturesHumanBaseIdle.png");
 }
 
 void World::buildScene() {
