@@ -25,6 +25,8 @@ private:
     const float baseSpeed = 75.f;
 
     void resetVelocity();
+
+protected:
     virtual void updateCurrent(sf::Time dt);
 
 public:
