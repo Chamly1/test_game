@@ -8,6 +8,17 @@ void Animation::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(sprite, states);
 }
 
+Animation::Animation()
+: sprite()
+, frameSize()
+, numFrames(0)
+, currentFrame(0)
+, frameDuration(sf::Time::Zero)
+, elapsedTime(sf::Time::Zero)
+, repeat(false) {
+
+}
+
 Animation::Animation(const sf::Texture& texture, sf::Vector2i frameSize, int numFrames, sf::Time frameDuration, bool repeat)
 : sprite(texture)
 , frameSize(frameSize)
@@ -17,6 +28,16 @@ Animation::Animation(const sf::Texture& texture, sf::Vector2i frameSize, int num
 , elapsedTime(sf::Time::Zero)
 , repeat(repeat) {
 
+}
+
+void Animation::init(const sf::Texture& texture, sf::Vector2i frameSize, int numFrames, sf::Time frameDuration, bool repeat) {
+    this->sprite.setTexture(texture);
+    this->frameSize = frameSize;
+    this->numFrames = numFrames;
+    this->currentFrame = 0;
+    this->frameDuration = frameDuration;
+    this->elapsedTime = sf::Time::Zero;
+    this->repeat = repeat;
 }
 
 void Animation::update(sf::Time dt) {
