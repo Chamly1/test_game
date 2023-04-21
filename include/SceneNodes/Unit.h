@@ -3,8 +3,7 @@
 
 #include "SceneNodes/Entity.h"
 #include "ResourceHolders/TextureHolder.h"
-
-#include "SFML/Graphics/Sprite.hpp"
+#include "Animation.h"
 
 enum class UnitType {
     Human,
@@ -14,11 +13,13 @@ enum class UnitType {
 class Unit : public Entity {
 private:
     UnitType type;
-    sf::Sprite sprite;
+    Animation animation;
+
+    virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
+    virtual void updateCurrent(sf::Time dt);
 
 public:
     explicit Unit(UnitType type, const TextureHolder& textures);
-    virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
 
 };
 
