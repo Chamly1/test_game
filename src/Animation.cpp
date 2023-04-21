@@ -56,3 +56,7 @@ void Animation::update(sf::Time dt) {
 bool Animation::isFinished() const {
     return currentFrame >= numFrames;
 }
+
+sf::FloatRect Animation::getLocalBounds() const {
+    return sf::FloatRect(getOrigin(), static_cast<sf::Vector2f>(frameSize));
+}

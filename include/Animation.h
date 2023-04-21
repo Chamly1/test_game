@@ -22,6 +22,7 @@ public:
     explicit Animation(const sf::Texture& texture, sf::Vector2i frameSize, int numFrames, sf::Time frameDuration, bool repeat);
     void update(sf::Time dt);
     bool isFinished() const;
+    sf::FloatRect getLocalBounds() const;
 
 };
 
