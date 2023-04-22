@@ -1,12 +1,5 @@
 #include "DataTables.h"
 
-//Animation createAnimation(const TextureHolder& textures, const AnimationData& animationData,
-//                          const AnimationTextureData& animationTextureData) {
-//    return Animation(textures.get(animationTextureData.textureId),
-//                     sf::IntRect(animationTextureData.firstFramePosition, animationData.frameSize),
-//                     animationData.numFrames,animationData.frameDuration, animationData.repeat);
-//}
-
 Animation createAnimation(const TextureHolder& textures, UnitData& unitData, AnimationType animationType, DirectionType directionType) {
 #define ANIMATION_DATA unitData.animationData[animationType]
 #define ANIMATION_TEXTURE_DATA unitData.animationTextureData[animationType][directionType]
