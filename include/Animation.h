@@ -6,10 +6,22 @@
 #include "SFML/Graphics/Sprite.hpp"
 #include "SFML/System/Time.hpp"
 
+enum class DirectionType {
+    BottomRight,
+    BottomLeft,
+    TopRight,
+    TopLeft,
+};
+
+enum class AnimationType {
+    Idle,
+    Walk
+};
+
 class Animation : public sf::Drawable, public sf::Transformable {
 private:
     sf::Sprite sprite;
-    sf::Vector2i frameSize;
+    sf::IntRect firstFrame;
     int numFrames;
     int currentFrame;
     sf::Time frameDuration;
@@ -20,8 +32,8 @@ private:
 
 public:
     Animation();
-    explicit Animation(const sf::Texture& texture, sf::Vector2i frameSize, int numFrames, sf::Time frameDuration, bool repeat);
-    void init(const sf::Texture& texture, sf::Vector2i frameSize, int numFrames, sf::Time frameDuration, bool repeat);
+    explicit Animation(const sf::Texture& texture, sf::IntRect firstFrame, int numFrames, sf::Time frameDuration, bool repeat);
+    void init(const sf::Texture& texture, sf::IntRect firstFrame, int numFrames, sf::Time frameDuration, bool repeat);
     void update(sf::Time dt);
     bool isFinished() const;
     sf::FloatRect getLocalBounds() const;

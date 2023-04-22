@@ -22,14 +22,16 @@ public:
 class Entity : public SceneNode {
 private:
     sf::Vector2f velocity;
-    const float baseSpeed = 75.f;
+    float baseSpeed;
 
     void resetVelocity();
 
 protected:
     virtual void updateCurrent(sf::Time dt);
+    sf::Vector2f getVelocity();
 
 public:
+    Entity(float baseSpeed);
     void accelerateTo(Direction direction);
 
 };

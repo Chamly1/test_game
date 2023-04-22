@@ -10,7 +10,7 @@ void Animation::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 
 Animation::Animation()
 : sprite()
-, frameSize()
+, firstFrame()
 , numFrames(0)
 , currentFrame(0)
 , frameDuration(sf::Time::Zero)
@@ -19,9 +19,9 @@ Animation::Animation()
 
 }
 
-Animation::Animation(const sf::Texture& texture, sf::Vector2i frameSize, int numFrames, sf::Time frameDuration, bool repeat)
+Animation::Animation(const sf::Texture& texture, sf::IntRect firstFrame, int numFrames, sf::Time frameDuration, bool repeat)
 : sprite(texture)
-, frameSize(frameSize)
+, firstFrame(firstFrame)
 , numFrames(numFrames)
 , currentFrame(0)
 , frameDuration(frameDuration)
@@ -30,9 +30,9 @@ Animation::Animation(const sf::Texture& texture, sf::Vector2i frameSize, int num
 
 }
 
-void Animation::init(const sf::Texture& texture, sf::Vector2i frameSize, int numFrames, sf::Time frameDuration, bool repeat) {
+void Animation::init(const sf::Texture& texture, sf::IntRect firstFrame, int numFrames, sf::Time frameDuration, bool repeat) {
     this->sprite.setTexture(texture);
-    this->frameSize = frameSize;
+    this->firstFrame = firstFrame;
     this->numFrames = numFrames;
     this->currentFrame = 0;
     this->frameDuration = frameDuration;
@@ -45,7 +45,7 @@ void Animation::update(sf::Time dt) {
 
     sf::IntRect textureRect;
     if (currentFrame == 0) {
-        textureRect = sf::IntRect(0, 0, frameSize.x, frameSize.y);
+        textureRect = firstFrame;
     } else {
         textureRect = sprite.getTextureRect();
     }
@@ -64,7 +64,7 @@ void Animation::update(sf::Time dt) {
         if (repeat) {
             currentFrame = (currentFrame + 1) % numFrames;
             if (currentFrame == 0) {
-                textureRect = sf::IntRect(0, 0, frameSize.x, frameSize.y);
+                textureRect = firstFrame;
             }
         } else {
             currentFrame++;
@@ -79,5 +79,5 @@ bool Animation::isFinished() const {
 }
 
 sf::FloatRect Animation::getLocalBounds() const {
-    return sf::FloatRect(getOrigin(), static_cast<sf::Vector2f>(frameSize));
+    return sf::FloatRect(getOrigin(), sf::Vector2f(firstFrame.width, firstFrame.height));
 }

@@ -12,14 +12,17 @@ enum class UnitType {
 
 class Unit : public Entity {
 private:
-    UnitType type;
+    const TextureHolder& textures;
+    UnitType unitType;
     Animation animation;
+    AnimationType animationType;
+    DirectionType directionType;
 
     virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
     virtual void updateCurrent(sf::Time dt);
 
 public:
-    explicit Unit(UnitType type, const TextureHolder& textures);
+    explicit Unit(UnitType unitType, const TextureHolder& textures);
 
 };
 

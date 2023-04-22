@@ -21,6 +21,16 @@ void Entity::updateCurrent(sf::Time dt) {
     resetVelocity();
 }
 
+sf::Vector2f Entity::getVelocity() {
+    return velocity;
+}
+
+Entity::Entity(float baseSpeed)
+: velocity()
+, baseSpeed(baseSpeed) {
+
+}
+
 void Entity::accelerateTo(Direction direction) {
     switch (direction) {
         case Direction::Up:

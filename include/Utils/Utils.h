@@ -9,5 +9,6 @@
 void setOriginToCenter(sf::Text& text);
 void setOriginToCenter(sf::Sprite& sprite);
 void setOriginToCenter(Animation& sprite);
+DirectionType moveVelocityToAnimationDirection(const sf::Vector2f& velocity, DirectionType oldDirection);
 
 #endif //TEST_GAME_UTILS_H
