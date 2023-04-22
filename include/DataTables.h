@@ -9,21 +9,17 @@
 #include <memory>
 
 struct AnimationData {
+    TextureIdentifier textureId;
     sf::Vector2i frameSize;
     int numFrames;
     sf::Time frameDuration;
     bool repeat;
 };
 
-struct AnimationTextureData {
-    TextureIdentifier textureId;
-    sf::Vector2i firstFramePosition;
-};
-
 struct UnitData {
     float baseSpeed;
     std::unordered_map<AnimationType, AnimationData> animationData;
-    std::unordered_map<AnimationType, std::unordered_map<DirectionType, AnimationTextureData>> animationTextureData;
+    std::unordered_map<AnimationType, std::unordered_map<DirectionType, sf::Vector2i>> firstFramePosition;
 };
 
 Animation createAnimation(const TextureHolder& textures, UnitData& unitData, AnimationType animationType,
