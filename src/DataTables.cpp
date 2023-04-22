@@ -13,6 +13,7 @@ std::unordered_map<UnitType, UnitData> initUnitData() {
     std::unordered_map<UnitType, UnitData> data;
 
     data[UnitType::Human].baseSpeed = 75.f;
+
     data[UnitType::Human].animationData[AnimationType::Idle].frameSize = sf::Vector2i(32, 32);
     data[UnitType::Human].animationData[AnimationType::Idle].numFrames = 16;
     data[UnitType::Human].animationData[AnimationType::Idle].frameDuration = sf::milliseconds(400);
@@ -25,6 +26,19 @@ std::unordered_map<UnitType, UnitData> initUnitData() {
     data[UnitType::Human].animationTextureData[AnimationType::Idle][DirectionType::TopRight].firstFramePosition = sf::Vector2i(0, 64);
     data[UnitType::Human].animationTextureData[AnimationType::Idle][DirectionType::TopLeft].textureId = TextureIdentifier::HumanBaseIdleAnimation;
     data[UnitType::Human].animationTextureData[AnimationType::Idle][DirectionType::TopLeft].firstFramePosition = sf::Vector2i(0, 96);
+
+    data[UnitType::Human].animationData[AnimationType::Walk].frameSize = sf::Vector2i(32, 32);
+    data[UnitType::Human].animationData[AnimationType::Walk].numFrames = 4;
+    data[UnitType::Human].animationData[AnimationType::Walk].frameDuration = sf::milliseconds(150);
+    data[UnitType::Human].animationData[AnimationType::Walk].repeat = true;
+    data[UnitType::Human].animationTextureData[AnimationType::Walk][DirectionType::BottomRight].textureId = TextureIdentifier::HumanBaseWalkAnimation;
+    data[UnitType::Human].animationTextureData[AnimationType::Walk][DirectionType::BottomRight].firstFramePosition = sf::Vector2i(0, 0);
+    data[UnitType::Human].animationTextureData[AnimationType::Walk][DirectionType::BottomLeft].textureId = TextureIdentifier::HumanBaseWalkAnimation;
+    data[UnitType::Human].animationTextureData[AnimationType::Walk][DirectionType::BottomLeft].firstFramePosition = sf::Vector2i(0, 32);
+    data[UnitType::Human].animationTextureData[AnimationType::Walk][DirectionType::TopRight].textureId = TextureIdentifier::HumanBaseWalkAnimation;
+    data[UnitType::Human].animationTextureData[AnimationType::Walk][DirectionType::TopRight].firstFramePosition = sf::Vector2i(0, 64);
+    data[UnitType::Human].animationTextureData[AnimationType::Walk][DirectionType::TopLeft].textureId = TextureIdentifier::HumanBaseWalkAnimation;
+    data[UnitType::Human].animationTextureData[AnimationType::Walk][DirectionType::TopLeft].firstFramePosition = sf::Vector2i(0, 96);
 
     return data;
 }

@@ -14,6 +14,11 @@ void Unit::updateCurrent(sf::Time dt) {
     sf::Vector2f velocity = Entity::getVelocity();
 
     AnimationType oldAnimationType = animationType;
+    if (velocity.x != 0 || velocity.y != 0) {
+        animationType = AnimationType::Walk;
+    } else {
+        animationType = AnimationType::Idle;
+    }
 
     DirectionType oldDirectionType = directionType;
     directionType = moveVelocityToAnimationDirection(velocity, directionType);

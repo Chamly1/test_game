@@ -26,7 +26,8 @@ enum class TextureIdentifier {
 
     zombie,
 
-    HumanBaseIdleAnimation
+    HumanBaseIdleAnimation,
+    HumanBaseWalkAnimation
 };
 
 class TextureHolder {

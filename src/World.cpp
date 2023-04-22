@@ -37,6 +37,8 @@ void World::loadTextures() {
 
     textures.load(TextureIdentifier::HumanBaseIdleAnimation,
                   "resources/textures/Minifantasy_Dungeon_Assets/Animations/Human/Minifantasy_CreaturesHumanBaseIdle.png");
+    textures.load(TextureIdentifier::HumanBaseWalkAnimation,
+                  "resources/textures/Minifantasy_Dungeon_Assets/Animations/Human/Minifantasy_CreaturesHumanBaseWalk.png");
 }
 
 void World::buildScene() {
