@@ -22,9 +22,6 @@ struct UnitData {
     std::unordered_map<AnimationType, std::unordered_map<DirectionType, sf::Vector2i>> firstFramePosition;
 };
 
-Animation createAnimation(const TextureHolder& textures, UnitData& unitData, AnimationType animationType,
-                          DirectionType directionType);
-
 std::unordered_map<UnitType, UnitData> initUnitData();
 
 #endif //TEST_GAME_DATATABLES_H

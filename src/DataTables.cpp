@@ -1,14 +1,5 @@
 #include "DataTables.h"
 
-Animation createAnimation(const TextureHolder& textures, UnitData& unitData, AnimationType animationType, DirectionType directionType) {
-#define ANIMATION_DATA unitData.animationData[animationType]
-#define ANIMATION_TEXTURE_DATA unitData.firstFramePosition[animationType][directionType]
-
-    return Animation(textures.get(ANIMATION_DATA.textureId),
-                     sf::IntRect(ANIMATION_TEXTURE_DATA, ANIMATION_DATA.frameSize),
-                     ANIMATION_DATA.numFrames, ANIMATION_DATA.frameDuration, ANIMATION_DATA.repeat);
-}
-
 std::unordered_map<UnitType, UnitData> initUnitData() {
     std::unordered_map<UnitType, UnitData> data;
 
