@@ -3,12 +3,7 @@
 
 #include "SceneNodes/Entity.h"
 #include "ResourceHolders/TextureHolder.h"
-#include "Animation.h"
-
-enum class UnitType {
-    Human,
-    zombie
-};
+#include "AnimationManager.h"
 
 class Unit : public Entity {
 private:

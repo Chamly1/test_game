@@ -2,7 +2,7 @@
 #define TEST_GAME_DATATABLES_H
 
 #include "Animation.h"
-#include "SceneNodes/Unit.h"
+#include "SceneNodes/UnitType.h"
 #include "ResourceHolders/TextureHolder.h"
 
 #include <unordered_map>
