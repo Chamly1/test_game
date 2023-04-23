@@ -7,39 +7,36 @@
 std::unordered_map<UnitType, UnitData> unitData = initUnitData();
 
 void Unit::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const {
-    target.draw(animation, states);
+    target.draw(animationManager, states);
 }
 
 void Unit::updateCurrent(sf::Time dt) {
     sf::Vector2f velocity = Entity::getVelocity();
 
-    AnimationType oldAnimationType = animationType;
+    AnimationType newAnimationType;
     if (velocity.x != 0 || velocity.y != 0) {
-        animationType = AnimationType::Walk;
+        newAnimationType = AnimationType::Walk;
     } else {
-        animationType = AnimationType::Idle;
+        newAnimationType = AnimationType::Idle;
     }
 
-    DirectionType oldDirectionType = directionType;
-    directionType = moveVelocityToAnimationDirection(velocity, directionType);
+    DirectionType newDirectionType;
+    newDirectionType = moveVelocityToAnimationDirection(velocity, animationManager.getCurrentDirectionType());
     Entity::updateCurrent(dt);
 
-    if (oldAnimationType != animationType || oldDirectionType != directionType) {
-        animation = createAnimation(textures, unitData[unitType], animationType, directionType);
-        setOriginToCenter(animation);
+    if (animationManager.getCurrentAnimationType() != newAnimationType ||
+        animationManager.getCurrentDirectionType() != newDirectionType) {
+        animationManager.setAnimation(newAnimationType, newDirectionType);
+//        setOriginToCenter(animation);
     }
 
-    animation.update(dt);
+    animationManager.update(dt);
 }
 
 Unit::Unit(UnitType unitType, const TextureHolder& textures)
 : Entity(75.f)
-, textures(textures)
 , unitType(unitType)
-//, sprite(textures.get(toTextureID(type))) {
-, animation()
-, animationType(AnimationType::Idle)
-, directionType(DirectionType::BottomRight) {
-    animation = createAnimation(textures, unitData[unitType], animationType, directionType);
-    setOriginToCenter(animation);
+, animationManager(textures, unitData[unitType]) {
+//    animationManager.setAnimation(AnimationType::Idle, DirectionType::BottomRight);
+//    setOriginToCenter(animation);
 }

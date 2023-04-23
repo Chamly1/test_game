@@ -7,11 +7,8 @@
 
 class Unit : public Entity {
 private:
-    const TextureHolder& textures;
     UnitType unitType;
-    Animation animation;
-    AnimationType animationType;
-    DirectionType directionType;
+    AnimationManager animationManager;
 
     virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
     virtual void updateCurrent(sf::Time dt);
