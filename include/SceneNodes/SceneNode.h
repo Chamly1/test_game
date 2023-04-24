@@ -9,6 +9,7 @@
 #include "SFML/System/Time.hpp"
 
 #include <memory>
+#include <set>
 
 namespace SceneNodeCategory {
     enum Type {
@@ -26,6 +27,7 @@ private:
     SceneNode* parent;
 
     unsigned int sceneNodeCategory;
+    sf::FloatRect collisionRect;
 
     void draw(sf::RenderTarget& target, sf::RenderStates states) const final;
     virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
@@ -59,6 +61,41 @@ public:
      * @param dt delta time depending on which the command will be processed.
      */
     void onCommand(const Command& command, sf::Time dt);
+
+    virtual bool isCollidable() const;
+    bool isIntersect(SceneNode& intersectWith) const;
+    virtual void onCollision(SceneNode& collisionWith);
+
+    void setCollisionRectangle(sf::FloatRect collisionRect);
+
+    /**
+     * Check collisions between:
+     *  - this node and nodeToCheck
+     *  - children(and all tree) of this node and nodeToCheck.
+     * Store detected collision to collisionPairs.
+     *
+     * @param nodeToCheck SceneNode with which collision check.
+     * @param collisionPairs container where detected collision pairs are stored.
+     */
+    void checkNodeCollisions(SceneNode& nodeToCheck, std::set<std::pair<SceneNode*, SceneNode*>>& collisionPairs);
+
+    /**
+     * Check collisions between:
+     *  - this node and nodeToCheck
+     *  - each child(and all tree) of this node and each child(and all tree) of nodeToCheck.
+     * Store detected collision to collisionPairs.
+     *
+     * @param nodeToCheck SceneNode with which collision check.
+     * @param collisionPairs container where detected collision pairs are stored.
+     */
+    void checkNodeAndChildrenCollisions(SceneNode& nodeToCheck, std::set<std::pair<SceneNode*, SceneNode*>>& collisionPairs);
+
+    /**
+     * Check collisions of each SceneNode with each in tree. Store detected collision to collisionPairs.
+     *
+     * @param collisionPairs container where detected collision pairs are stored.
+     */
+    void checkAllCollisions(std::set<std::pair<SceneNode*, SceneNode*>>& collisionPairs);
 };
 
 #endif //TEST_GAME_SCENENODE_H

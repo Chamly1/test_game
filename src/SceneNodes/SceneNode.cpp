@@ -84,3 +84,46 @@ void SceneNode::onCommand(const Command& command, sf::Time dt) {
         child->onCommand(command, dt);
     }
 }
+
+bool SceneNode::isCollidable() const {
+    return false;
+}
+
+bool SceneNode::isIntersect(SceneNode& intersectWith) const {
+    return collisionRect.intersects(intersectWith.collisionRect);
+}
+
+void SceneNode::onCollision(SceneNode& collisionWith) {
+
+}
+
+void SceneNode::setCollisionRectangle(sf::FloatRect collisionRect) {
+    this->collisionRect = collisionRect;
+}
+
+void SceneNode::checkNodeCollisions(SceneNode& nodeToCheck, std::set<std::pair<SceneNode*, SceneNode*>>& collisionPairs) {
+    if (!nodeToCheck.isCollidable()) {
+        return;
+    }
+
+    if (this != &nodeToCheck && isCollidable() && isIntersect(nodeToCheck)) {
+        // std::minmax() to avoid duplication
+        collisionPairs.insert(std::minmax(this, &nodeToCheck));
+    }
+
+    for (std::unique_ptr<SceneNode>& child : children) {
+        child->checkNodeCollisions(nodeToCheck, collisionPairs);
+    }
+}
+
+void SceneNode::checkNodeAndChildrenCollisions(SceneNode& nodeToCheck, std::set<std::pair<SceneNode*, SceneNode*>>& collisionPairs) {
+    checkNodeCollisions(nodeToCheck, collisionPairs);
+
+    for (std::unique_ptr<SceneNode>& child : children) {
+        checkNodeAndChildrenCollisions(nodeToCheck, collisionPairs);
+    }
+}
+
+void SceneNode::checkAllCollisions(std::set<std::pair<SceneNode*, SceneNode*>>& collisionPairs) {
+    checkNodeAndChildrenCollisions(*this, collisionPairs);
+}
