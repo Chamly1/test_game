@@ -18,6 +18,7 @@ struct AnimationData {
 
 struct UnitData {
     float baseSpeed;
+    sf::Vector2f collisionBoxSize;
     std::unordered_map<AnimationType, AnimationData> animationData;
     std::unordered_map<AnimationType, std::unordered_map<DirectionType, sf::Vector2i>> firstFramePosition;
 };

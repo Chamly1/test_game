@@ -37,6 +37,7 @@ Unit::Unit(UnitType unitType, const TextureHolder& textures)
 : Entity(75.f)
 , unitType(unitType)
 , animationManager(textures, unitData[unitType]) {
+    setCollisionBoxSize(unitData[unitType].collisionBoxSize);
 //    animationManager.setAnimation(AnimationType::Idle, DirectionType::BottomRight);
 //    setOriginToCenter(animation);
 }

@@ -4,6 +4,7 @@ std::unordered_map<UnitType, UnitData> initUnitData() {
     std::unordered_map<UnitType, UnitData> data;
 
     data[UnitType::Human].baseSpeed = 75.f;
+    data[UnitType::Human].collisionBoxSize = sf::Vector2f(6.f, 6.f);
 
     data[UnitType::Human].animationData[AnimationType::Idle].textureId = TextureIdentifier::HumanBaseIdleAnimation;
     data[UnitType::Human].animationData[AnimationType::Idle].frameSize = sf::Vector2i(32, 32);
