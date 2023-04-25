@@ -1,5 +1,8 @@
 #include "SceneNodes/SceneNode.h"
 
+#include "SFML/Graphics/RectangleShape.hpp"
+#include "SFML/Graphics/RenderTarget.hpp"
+
 #include <cassert>
 
 void SceneNode::draw(sf::RenderTarget& target, sf::RenderStates states) const {
@@ -29,7 +32,8 @@ void SceneNode::updateChildren(sf::Time dt) {
 SceneNode::SceneNode()
 : children()
 , parent(nullptr)
-, sceneNodeCategory(SceneNodeCategory::None) {
+, sceneNodeCategory(SceneNodeCategory::None)
+, collisionBoxSize() {
 
 }
 
@@ -85,20 +89,25 @@ void SceneNode::onCommand(const Command& command, sf::Time dt) {
     }
 }
 
+void SceneNode::setCollisionBoxSize(sf::Vector2f collisionBoxSize) {
+    this->collisionBoxSize = collisionBoxSize;
+}
+
+sf::FloatRect SceneNode::getCollisionBoxRect() const {
+    // - collisionBoxSize / 2.f to set collision box center to position point
+    return sf::FloatRect(getPosition() - collisionBoxSize / 2.f, collisionBoxSize);
+}
+
 bool SceneNode::isCollidable() const {
     return false;
 }
 
 bool SceneNode::isIntersect(SceneNode& intersectWith) const {
-    return collisionRect.intersects(intersectWith.collisionRect);
+    return getCollisionBoxRect().intersects(intersectWith.getCollisionBoxRect());
 }
 
 void SceneNode::onCollision(SceneNode& collisionWith) {
 
-}
-
-void SceneNode::setCollisionRectangle(sf::FloatRect collisionRect) {
-    this->collisionRect = collisionRect;
 }
 
 void SceneNode::checkNodeCollisions(SceneNode& nodeToCheck, std::set<std::pair<SceneNode*, SceneNode*>>& collisionPairs) {

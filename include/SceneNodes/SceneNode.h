@@ -27,7 +27,7 @@ private:
     SceneNode* parent;
 
     unsigned int sceneNodeCategory;
-    sf::FloatRect collisionRect;
+    sf::Vector2f collisionBoxSize;
 
     void draw(sf::RenderTarget& target, sf::RenderStates states) const final;
     virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
@@ -62,11 +62,12 @@ public:
      */
     void onCommand(const Command& command, sf::Time dt);
 
+    void setCollisionBoxSize(sf::Vector2f collisionBoxSize);
+    sf::FloatRect getCollisionBoxRect() const;
+
     virtual bool isCollidable() const;
     bool isIntersect(SceneNode& intersectWith) const;
     virtual void onCollision(SceneNode& collisionWith);
-
-    void setCollisionRectangle(sf::FloatRect collisionRect);
 
     /**
      * Check collisions between:
