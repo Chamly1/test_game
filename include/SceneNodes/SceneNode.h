@@ -33,6 +33,7 @@ private:
     virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
     virtual void updateCurrent(sf::Time dt);
     void updateChildren(sf::Time dt);
+    void drawCollisionRec(sf::RenderTarget& target, sf::RenderStates states) const;
 
 public:
     SceneNode();

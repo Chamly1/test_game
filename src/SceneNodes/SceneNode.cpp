@@ -9,6 +9,7 @@ void SceneNode::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     states.transform *= getTransform();
 
     drawCurrent(target, states);
+    drawCollisionRec(target, states);
 
     for (const std::unique_ptr<SceneNode>& child : children) {
         child->draw(target, states);
@@ -27,6 +28,18 @@ void SceneNode::updateChildren(sf::Time dt) {
     for (const std::unique_ptr<SceneNode>& child : children) {
         child->update(dt);
     }
+}
+
+void SceneNode::drawCollisionRec(sf::RenderTarget& target, sf::RenderStates states) const {
+    sf::RectangleShape shape;
+    sf::FloatRect collisionBoxRect = getCollisionBoxRect();
+    shape.setPosition(sf::Vector2f(collisionBoxRect.left, collisionBoxRect.top));
+    shape.setSize(sf::Vector2f(collisionBoxRect.width, collisionBoxRect.height));
+    shape.setFillColor(sf::Color(0, 255, 0, 50));
+    shape.setOutlineColor(sf::Color(0, 255, 0, 150));
+    shape.setOutlineThickness(1.f);
+
+    target.draw(shape);
 }
 
 SceneNode::SceneNode()
