@@ -70,5 +70,9 @@ bool PauseScene::update(sf::Time dt) {
 bool PauseScene::handleEvent(const sf::Event& event) {
     guiContainer.handleEvent(event);
 
+    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
+        requestListPopBack();
+    }
+
     return false;
 }
