@@ -2,7 +2,6 @@
 #include "SceneNodes/Unit.h"
 #include "SceneNodes/CollidableNode.h"
 
-const float viewZoomFactor = 0.25f;
 const int TILE_SIZE = 8;
 const int UNIT_SIZE = 32;
 
@@ -56,8 +55,13 @@ void World::buildScene() {
     player->addSceneNodeCategory(SceneNodeCategory::Player);
     sceneLayers[Units]->attachChild(std::move(player));
 
-    std::unique_ptr<SceneNode> obstacle(new CollidableNode(sf::Vector2f(50.f, 50.f)));
-    obstacle->setPosition(90.f, -90.f);
+    std::unique_ptr<SceneNode> obstacle(new CollidableNode(sf::Vector2f(200.f, 200.f)));
+    obstacle->setPosition(400.f, -400.f);
+    obstacle->addSceneNodeCategory(SceneNodeCategory::ImpassableZone);
+    sceneLayers[ImpassableZones]->attachChild(std::move(obstacle));
+
+    obstacle = std::make_unique<CollidableNode>(sf::Vector2f(400.f, 100.f));
+    obstacle->setPosition(400.f, -400.f);
     obstacle->addSceneNodeCategory(SceneNodeCategory::ImpassableZone);
     sceneLayers[ImpassableZones]->attachChild(std::move(obstacle));
 }
@@ -69,7 +73,6 @@ World::World(sf::RenderWindow& window)
     loadTextures();
     buildScene();
 
-    worldView.zoom(viewZoomFactor);
     worldView.setCenter(0.f, 0.f);
 }
 

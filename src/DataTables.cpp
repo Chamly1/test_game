@@ -3,8 +3,11 @@
 std::unordered_map<UnitType, UnitData> initUnitData() {
     std::unordered_map<UnitType, UnitData> data;
 
-    data[UnitType::Human].baseSpeed = 75.f;
-    data[UnitType::Human].collisionBoxSize = sf::Vector2f(6.f, 6.f);
+    const float scaleFactor = 4.f;
+
+    data[UnitType::Human].baseSpeed = 300.f;
+    data[UnitType::Human].animationsScaleFactor = sf::Vector2f(scaleFactor, scaleFactor);
+    data[UnitType::Human].collisionBoxSize = sf::Vector2f(7.f * scaleFactor, 7.f * scaleFactor);
 
     data[UnitType::Human].animationData[AnimationType::Idle].textureId = TextureIdentifier::HumanBaseIdleAnimation;
     data[UnitType::Human].animationData[AnimationType::Idle].frameSize = sf::Vector2i(32, 32);
