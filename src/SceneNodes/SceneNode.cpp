@@ -141,8 +141,8 @@ void SceneNode::checkNodeCollisions(SceneNode& nodeToCheck, std::set<std::pair<S
 void SceneNode::checkNodeAndChildrenCollisions(SceneNode& nodeToCheck, std::set<std::pair<SceneNode*, SceneNode*>>& collisionPairs) {
     checkNodeCollisions(nodeToCheck, collisionPairs);
 
-    for (std::unique_ptr<SceneNode>& child : children) {
-        checkNodeAndChildrenCollisions(nodeToCheck, collisionPairs);
+    for (std::unique_ptr<SceneNode>& child : nodeToCheck.children) {
+        checkNodeAndChildrenCollisions(*child, collisionPairs);
     }
 }
 
