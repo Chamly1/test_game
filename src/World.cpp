@@ -79,6 +79,13 @@ void World::update(sf::Time dt) {
     }
 
     sceneGraph.update(dt);
+
+    std::set<std::pair<SceneNode*, SceneNode*>> collisionPairs;
+    sceneGraph.checkAllCollisions(collisionPairs);
+    for (std::pair<SceneNode*, SceneNode*> pair : collisionPairs) {
+        pair.first->onCollision(*pair.second);
+        pair.second->onCollision(*pair.first);
+    }
 }
 
 void World::draw() {
