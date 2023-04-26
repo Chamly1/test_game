@@ -53,35 +53,33 @@ void Unit::onCollision(SceneNode& collisionWith) {
         sf::FloatRect collisionBox = getCollisionBoxRect();
         collisionBox.intersects(collisionWith.getCollisionBoxRect(), intersection);
 
-        sf::Vector2f moveOffset(intersection.width, intersection.height);
+        sf::Vector2f moveOffset;
 
         if (collisionBox.top == intersection.top &&
             collisionBox.left == intersection.left) {
-            if (collisionBox.width == intersection.width) {
+            if (intersection.width > intersection.height) {
                 moveOffset.x = 0.f;
-            } else if (collisionBox.height == intersection.height) {
-                moveOffset.y = 0.f;
+                moveOffset.y = intersection.height;
             } else {
-                // to fix leap on the bottom right edge
-                if (intersection.width > intersection.height) {
-                    moveOffset.x = 0.f;
-                } else if (intersection.height > intersection.width) {
-                    moveOffset.y = 0.f;
-                }
+                moveOffset.x = intersection.width;
+                moveOffset.y = 0.f;
             }
+
         } else if (collisionBox.top == intersection.top) {
             if (intersection.width > intersection.height) {
                 moveOffset.x = 0.f;
+                moveOffset.y = intersection.height;
             } else {
+                moveOffset.x = 0.f - intersection.width;
                 moveOffset.y = 0.f;
-                moveOffset.x *= -1;
             }
 
         } else if (collisionBox.left == intersection.left) {
             if (intersection.width > intersection.height) {
-                moveOffset.y *= -1;
                 moveOffset.x = 0.f;
+                moveOffset.y = 0.f - intersection.height;
             } else {
+                moveOffset.x = intersection.width;
                 moveOffset.y = 0.f;
             }
 
@@ -89,10 +87,10 @@ void Unit::onCollision(SceneNode& collisionWith) {
             // to fix leap on the top left edge
             if (intersection.width > intersection.height) {
                 moveOffset.x = 0.f;
-                moveOffset.y *= -1;
+                moveOffset.y = 0.f - intersection.height;
             } else {
+                moveOffset.x = 0.f - intersection.width;
                 moveOffset.y = 0.f;
-                moveOffset.x *= -1;
             }
         }
 
