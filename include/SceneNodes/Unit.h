@@ -15,7 +15,8 @@ private:
 
 public:
     explicit Unit(UnitType unitType, const TextureHolder& textures);
-
+    virtual bool isCollidable() const;
+    virtual void onCollision(SceneNode& collisionWith);
 };
 
 #endif //TEST_GAME_UNIT_H
