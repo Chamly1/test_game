@@ -35,7 +35,7 @@ void Unit::updateCurrent(sf::Time dt) {
 }
 
 Unit::Unit(UnitType unitType, const TextureHolder& textures)
-: Entity(75.f)
+: Entity(unitData[unitType].baseSpeed)
 , unitType(unitType)
 , animationManager(textures, unitData[unitType]) {
     setCollisionBoxSize(unitData[unitType].collisionBoxSize);
