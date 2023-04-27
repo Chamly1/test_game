@@ -1,9 +1,11 @@
 #include "World.h"
+#include "SceneNodes/SpriteNode.h"
 #include "SceneNodes/Unit.h"
 #include "SceneNodes/CollidableNode.h"
 
 const int TILE_SIZE = 8;
 const int UNIT_SIZE = 32;
+static const sf::Vector2f mapScaleFactor(4.f, 4.f);
 
 void World::loadTextures() {
     textures.load(TextureIdentifier::TileBlack, "resources/textures/BlackTile.png");
@@ -39,6 +41,11 @@ void World::loadTextures() {
                   "resources/textures/Minifantasy_Dungeon_Assets/Animations/Human/Minifantasy_CreaturesHumanBaseIdle.png");
     textures.load(TextureIdentifier::HumanBaseWalkAnimation,
                   "resources/textures/Minifantasy_Dungeon_Assets/Animations/Human/Minifantasy_CreaturesHumanBaseWalk.png");
+
+    textures.load(TextureIdentifier::MapEmptyRoom,
+                  "resources/textures/maps/empty_room/empty_room.png");
+    textures.load(TextureIdentifier::MapImpassableZonesEmptyRoom,
+                  "resources/textures/maps/empty_room/empty_room_impassable_zones.png");
 }
 
 void World::buildScene() {
@@ -49,6 +56,9 @@ void World::buildScene() {
         sceneGraph.attachChild(std::move(layer));
     }
 
+    std::unique_ptr<SpriteNode> mapBackground(new SpriteNode(textures.get(TextureIdentifier::MapEmptyRoom)));
+    mapBackground->scale(mapScaleFactor);
+    sceneLayers[Units]->attachChild(std::move(mapBackground));
 //    sceneLayers[Background]->attachChild(std::move(generateMapFromString(testMapStr1, textures)));
 
     std::unique_ptr<Unit> player(new Unit(UnitType::Human, textures));

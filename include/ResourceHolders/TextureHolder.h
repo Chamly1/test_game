@@ -9,6 +9,9 @@
 enum class TextureIdentifier {
     MenuSelector,
 
+    MapEmptyRoom,
+    MapImpassableZonesEmptyRoom,
+
     TileBlack,
     TileFlorDungeon,
 
