@@ -10,6 +10,7 @@ void SceneNode::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 
     drawCurrent(target, states);
     drawCollisionRec(target, states);
+    drawNodePosition(target, states);
 
     for (const std::unique_ptr<SceneNode>& child : children) {
         child->draw(target, states);
@@ -38,6 +39,15 @@ void SceneNode::drawCollisionRec(sf::RenderTarget& target, sf::RenderStates stat
     shape.setFillColor(sf::Color(0, 255, 0, 50));
     shape.setOutlineColor(sf::Color(0, 255, 0, 150));
     shape.setOutlineThickness(1.f);
+
+    target.draw(shape);
+}
+
+void SceneNode::drawNodePosition(sf::RenderTarget& target, sf::RenderStates states) const {
+    sf::RectangleShape shape;
+    shape.setPosition(getPosition());
+    shape.setSize(sf::Vector2f(5.f, 5.f));
+    shape.setFillColor(sf::Color(0, 0, 255, 255));
 
     target.draw(shape);
 }
