@@ -29,6 +29,7 @@ private:
 
     unsigned int sceneNodeCategory;
     sf::Vector2f collisionBoxSize;
+    sf::Vector2f collisionBoxOrigin;
 
     void draw(sf::RenderTarget& target, sf::RenderStates states) const final;
     virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
@@ -65,6 +66,7 @@ public:
     void onCommand(const Command& command, sf::Time dt);
 
     void setCollisionBoxSize(sf::Vector2f collisionBoxSize);
+    void setCollisionBoxOrigin(sf::Vector2f collisionBoxOrigin);
     sf::FloatRect getCollisionBoxRect() const;
 
     virtual bool isCollidable() const;

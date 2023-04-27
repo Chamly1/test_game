@@ -46,7 +46,8 @@ SceneNode::SceneNode()
 : children()
 , parent(nullptr)
 , sceneNodeCategory(SceneNodeCategory::None)
-, collisionBoxSize() {
+, collisionBoxSize()
+, collisionBoxOrigin() {
 
 }
 
@@ -106,9 +107,12 @@ void SceneNode::setCollisionBoxSize(sf::Vector2f collisionBoxSize) {
     this->collisionBoxSize = collisionBoxSize;
 }
 
+void SceneNode::setCollisionBoxOrigin(sf::Vector2f collisionBoxOrigin) {
+    this->collisionBoxOrigin = collisionBoxOrigin;
+}
+
 sf::FloatRect SceneNode::getCollisionBoxRect() const {
-    // - collisionBoxSize / 2.f to set collision box center to position point
-    return sf::FloatRect(getPosition() - collisionBoxSize / 2.f, collisionBoxSize);
+    return sf::FloatRect(getPosition() - collisionBoxOrigin, collisionBoxSize);
 }
 
 bool SceneNode::isCollidable() const {
