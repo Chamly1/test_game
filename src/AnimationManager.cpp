@@ -18,7 +18,7 @@ AnimationManager::AnimationManager(const TextureHolder& textures, UnitData& unit
                     std::make_shared<Animation>(textures.get(animationData.second.textureId),
                                                 sf::IntRect(firstFramePosition.second, animationData.second.frameSize),
                                                 animationData.second.numFrames, animationData.second.frameDuration, animationData.second.repeat);
-            setOriginToCenter(*animations[animationData.first][firstFramePosition.first]);
+            animations[animationData.first][firstFramePosition.first]->setOrigin(animationData.second.frameOrigin);
             animations[animationData.first][firstFramePosition.first]->scale(unitData.animationsScaleFactor);
         }
     }
@@ -35,7 +35,7 @@ void AnimationManager::addAnimation(const TextureHolder& textures, UnitData& uni
     std::make_shared<Animation>(textures.get(ANIMATION_DATA.textureId),
                                 sf::IntRect(FIRST_FRAME_POSITION, ANIMATION_DATA.frameSize),
                                 ANIMATION_DATA.numFrames, ANIMATION_DATA.frameDuration, ANIMATION_DATA.repeat);
-    setOriginToCenter(*animations[animationType][directionType]);
+    animations[animationType][directionType]->setOrigin(ANIMATION_DATA.frameOrigin);
     animations[animationType][directionType]->scale(unitData.animationsScaleFactor);
 }
 

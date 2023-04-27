@@ -11,6 +11,7 @@
 struct AnimationData {
     TextureIdentifier textureId;
     sf::Vector2i frameSize;
+    sf::Vector2f frameOrigin;
     int numFrames;
     sf::Time frameDuration;
     bool repeat;

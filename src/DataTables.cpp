@@ -12,6 +12,7 @@ std::unordered_map<UnitType, UnitData> initUnitData() {
 
     data[UnitType::Human].animationData[AnimationType::Idle].textureId = TextureIdentifier::HumanBaseIdleAnimation;
     data[UnitType::Human].animationData[AnimationType::Idle].frameSize = sf::Vector2i(32, 32);
+    data[UnitType::Human].animationData[AnimationType::Idle].frameOrigin = sf::Vector2f(32.f, 32.f) / 2.f;
     data[UnitType::Human].animationData[AnimationType::Idle].numFrames = 16;
     data[UnitType::Human].animationData[AnimationType::Idle].frameDuration = sf::milliseconds(400);
     data[UnitType::Human].animationData[AnimationType::Idle].repeat = true;
@@ -22,6 +23,7 @@ std::unordered_map<UnitType, UnitData> initUnitData() {
 
     data[UnitType::Human].animationData[AnimationType::Walk].textureId = TextureIdentifier::HumanBaseWalkAnimation;
     data[UnitType::Human].animationData[AnimationType::Walk].frameSize = sf::Vector2i(32, 32);
+    data[UnitType::Human].animationData[AnimationType::Walk].frameOrigin = sf::Vector2f(32.f, 32.f) / 2.f;
     data[UnitType::Human].animationData[AnimationType::Walk].numFrames = 4;
     data[UnitType::Human].animationData[AnimationType::Walk].frameDuration = sf::milliseconds(150);
     data[UnitType::Human].animationData[AnimationType::Walk].repeat = true;
