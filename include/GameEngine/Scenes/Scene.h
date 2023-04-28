@@ -1,7 +1,7 @@
 #ifndef TEST_GAME_SCENE_H
 #define TEST_GAME_SCENE_H
 
-#include "SceneContext.h"
+#include "GameEngine/Scenes/SceneContext.h"
 
 class SceneList;
 
