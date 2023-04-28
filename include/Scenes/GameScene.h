@@ -1,7 +1,7 @@
 #ifndef TEST_GAME_GAMESCENE_H
 #define TEST_GAME_GAMESCENE_H
 
-#include "Scenes/Scene.h"
+#include "GameEngine/Scenes/Scene.h"
 #include "World.h"
 
 class GameScene : public Scene {

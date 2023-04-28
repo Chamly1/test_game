@@ -4,7 +4,7 @@
 #include "Player.h"
 #include "GameEngine/ResourceHolders/TextureHolder.h"
 #include "GameEngine/ResourceHolders/FontHolder.h"
-#include "Scenes/SceneList.h"
+#include "GameEngine/Scenes/SceneList.h"
 
 #include "SFML/Graphics/RenderWindow.hpp"
 

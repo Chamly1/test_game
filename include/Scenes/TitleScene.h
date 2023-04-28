@@ -1,7 +1,7 @@
 #ifndef TEST_GAME_TITLESCENE_H
 #define TEST_GAME_TITLESCENE_H
 
-#include "Scenes/Scene.h"
+#include "GameEngine/Scenes/Scene.h"
 
 #include "SFML/Graphics/Text.hpp"
 

@@ -1,7 +1,7 @@
 #ifndef TEST_GAME_SCENELIST_H
 #define TEST_GAME_SCENELIST_H
 
-#include "Scenes/Scene.h"
+#include "GameEngine/Scenes/Scene.h"
 
 #include <list>
 
@@ -15,19 +15,19 @@ private:
 
     struct PendingChange
     {
-        explicit PendingChange(PendingChangeAction action, SceneIdentifier sceneId = SceneIdentifier::None);
+        explicit PendingChange(PendingChangeAction action, unsigned int sceneId = 0);
 
         PendingChangeAction action;
-        SceneIdentifier sceneId;
+        unsigned int sceneId;
     };
 
     std::list<std::unique_ptr<Scene>> sceneList;
     std::list<PendingChange> pendingChangeList;
 
     SceneContext sceneContext;
-    std::map<SceneIdentifier, std::function<std::unique_ptr<Scene>()>> sceneFactory;
+    std::map<unsigned int, std::function<std::unique_ptr<Scene>()>> sceneFactory;
 
-    std::unique_ptr<Scene> createScene(SceneIdentifier sceneId);
+    std::unique_ptr<Scene> createScene(unsigned int sceneId);
     void applyPendingChanges();
 
 public:
@@ -38,9 +38,9 @@ public:
     void handleEvent(const sf::Event& event);
 
     template <typename T>
-    void registerScene(SceneIdentifier id);
+    void registerScene(unsigned int sceneId);
 
-    void pushBack(SceneIdentifier sceneId);
+    void pushBack(unsigned int sceneId);
     void popBack();
     void clear();
 
@@ -49,8 +49,8 @@ public:
 };
 
 template <typename T>
-void SceneList::registerScene(SceneIdentifier id) {
-    sceneFactory[id] = [this] () {
+void SceneList::registerScene(unsigned int sceneId) {
+    sceneFactory[sceneId] = [this] () {
         return std::unique_ptr<Scene>(new T(sceneContext, *this));
     };
 }

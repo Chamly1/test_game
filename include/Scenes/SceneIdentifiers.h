@@ -1,7 +1,9 @@
 #ifndef TEST_GAME_SCENEIDENTIFIERS_H
 #define TEST_GAME_SCENEIDENTIFIERS_H
 
-enum class SceneIdentifier {
+namespace SceneIdentifier {
+
+enum ID {
     None,
     Title,
     Menu,
@@ -9,5 +11,7 @@ enum class SceneIdentifier {
     Loading,
     Pause
 };
+
+}
 
 #endif //TEST_GAME_SCENEIDENTIFIERS_H

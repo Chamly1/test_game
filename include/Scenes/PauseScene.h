@@ -1,7 +1,7 @@
 #ifndef TEST_GAME_PAUSESCENE_H
 #define TEST_GAME_PAUSESCENE_H
 
-#include "Scenes/Scene.h"
+#include "GameEngine/Scenes/Scene.h"
 #include "GameEngine/GUI/Container.h"
 #include "GUI/Label.h"
 #include "GUI/ButtonList.h"

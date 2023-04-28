@@ -1,7 +1,7 @@
 #ifndef TEST_GAME_SCENE_H
 #define TEST_GAME_SCENE_H
 
-#include "Scenes/SceneContext.h"
+#include "SceneContext.h"
 #include "Scenes/SceneIdentifiers.h"
 
 class SceneList;
@@ -12,7 +12,7 @@ private:
     SceneList* sceneList;
 
 protected:
-    void requestListPushBack(SceneIdentifier sceneId);
+    void requestListPushBack(unsigned int sceneId);
     void requestListPopBack();
     void requestListClear();
     SceneContext getSceneContext() const;

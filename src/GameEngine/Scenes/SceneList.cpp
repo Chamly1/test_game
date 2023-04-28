@@ -1,14 +1,14 @@
-#include "Scenes/SceneList.h"
+#include "GameEngine/Scenes/SceneList.h"
 
 #include <cassert>
 
-SceneList::PendingChange::PendingChange(PendingChangeAction action, SceneIdentifier sceneId)
+SceneList::PendingChange::PendingChange(PendingChangeAction action, unsigned int sceneId)
 : action(action)
 , sceneId(sceneId) {
 
 }
 
-std::unique_ptr<Scene> SceneList::createScene(SceneIdentifier sceneId) {
+std::unique_ptr<Scene> SceneList::createScene(unsigned int sceneId) {
     auto found = sceneFactory.find(sceneId);
     assert(found != sceneFactory.end());
 
@@ -64,7 +64,7 @@ void SceneList::handleEvent(const sf::Event& event) {
     applyPendingChanges();
 }
 
-void SceneList::pushBack(SceneIdentifier sceneId) {
+void SceneList::pushBack(unsigned int sceneId) {
     pendingChangeList.push_back(PendingChange(PendingChangeAction::PushBack, sceneId));
 }
 
