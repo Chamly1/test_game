@@ -1,7 +1,10 @@
 #include "GameEngine/Player.h"
 #include "GameEngine/SceneNodes/SceneNode.h"
 
-Player::Player() {
+Player::Player()
+: keyBinding()
+, playerActionBinding()
+, isRealtimePlayerAction() {
 
 }
 
