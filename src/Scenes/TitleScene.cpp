@@ -11,6 +11,8 @@ TitleScene::TitleScene(SceneContext ctx, SceneList& sceneList)
 , showText(true)
 , textEffectTime() {
 
+    ctx.fonts->load(FontIdentifier::Main, "resources/fonts/game_over.ttf");
+
     text.setFont(ctx.fonts->get(FontIdentifier::Main));
     text.setString("Press any key to play");
     text.setCharacterSize(64);

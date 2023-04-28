@@ -38,6 +38,10 @@ MenuScene::MenuScene(SceneContext ctx, SceneList& sceneList)
 : Scene(ctx, sceneList)
 , guiContainer() {
 
+    ctx.textures->load(TextureIdentifier::MenuSelector,
+                       "resources/textures/Minifantasy_Userinterface_Assets/Menus/Selectors/Minifantasy_GuiSelectors.png",
+                       sf::IntRect(0, 16 * 20, 16, 16));
+
     const sf::Font& mainFont = ctx.fonts->get(FontIdentifier::Main);
     const sf::Texture& selectorTexture = ctx.textures->get(TextureIdentifier::MenuSelector);
 

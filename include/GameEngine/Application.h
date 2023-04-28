@@ -18,16 +18,22 @@ private:
 
     SceneList sceneList;
 
-    void registerScenes();
-
     void processEvents();
     void update(sf::Time dt);
     void render();
 
 public:
     Application();
+    template <typename T>
+    void registerScene(unsigned int sceneId);
+    void setStartScene(unsigned int sceneId);
     void run();
 
 };
+
+template <typename T>
+void Application::registerScene(unsigned int sceneId) {
+    sceneList.registerScene<T>(sceneId);
+}
 
 #endif //TEST_GAME_APPLICATION_H
