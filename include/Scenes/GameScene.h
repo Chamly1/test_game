@@ -10,6 +10,8 @@ private:
     World world;
     Player player;
 
+    void bindPlayerActions();
+
 public:
     GameScene(SceneContext ctx, SceneList& sceneList);
     virtual void draw();

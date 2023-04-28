@@ -31,6 +31,8 @@ private:
 
 public:
     Player();
+    void addPlayerActionBinding(sf::Keyboard::Key key, unsigned int playerActionId,
+                                Command command, bool isRealtimePlayerAction);
     void handleEvent(const sf::Event& event, CommandQueue& commands);
     void handleRealtimeInput(CommandQueue& commands);
 };
