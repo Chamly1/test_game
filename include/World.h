@@ -3,7 +3,7 @@
 
 #include "GameEngine/SceneNodes/SceneNode.h"
 #include "GameEngine/ResourceHolders/TextureHolder.h"
-#include "CommandQueue.h"
+#include "GameEngine/Commands/CommandQueue.h"
 #include "PlayerCamera.h"
 
 #include "SFML/Graphics/RenderWindow.hpp"

@@ -1,7 +1,7 @@
 #ifndef TEST_GAME_PLAYER_H
 #define TEST_GAME_PLAYER_H
 
-#include "CommandQueue.h"
+#include "GameEngine/Commands/CommandQueue.h"
 
 #include "SFML/Window/Event.hpp"
 

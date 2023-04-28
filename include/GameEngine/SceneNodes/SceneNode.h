@@ -1,7 +1,7 @@
 #ifndef TEST_GAME_SCENENODE_H
 #define TEST_GAME_SCENENODE_H
 
-#include "Command.h"
+#include "GameEngine/Commands/Command.h"
 
 #include "SFML/Graphics/Transformable.hpp"
 #include "SFML/Graphics/Drawable.hpp"
