@@ -1,5 +1,6 @@
 #include "Utils/MapGenerateUtils.h"
 #include "GameEngine/SceneNodes/SpriteNode.h"
+#include "ResourceHolders/TextureIdentifier.h"
 
 const float TILE_SIZE = 8.f;
 
@@ -27,7 +28,7 @@ std::vector<std::vector<int>> intStringToVector (const std::string& str) {
     return resVector;
 }
 
-static TextureIdentifier vectorNumToTextureID(const std::vector<std::vector<int>>& vec, int row, int column) {
+static unsigned int vectorNumToTextureID(const std::vector<std::vector<int>>& vec, int row, int column) {
     switch (vec[row][column]) {
         case 0:
             return TextureIdentifier::TileBlack;

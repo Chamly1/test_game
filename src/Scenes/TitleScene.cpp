@@ -1,5 +1,6 @@
 #include "Scenes/TitleScene.h"
 #include "Utils/Utils.h"
+#include "ResourceHolders/FontIdentifier.h"
 
 #include "SFML/Window.hpp"
 

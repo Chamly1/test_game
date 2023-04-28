@@ -6,17 +6,13 @@
 #include <map>
 #include <memory>
 
-enum class FontIdentifier{
-    Main
-};
-
 class FontHolder {
 private:
-    std::map<FontIdentifier, std::unique_ptr<sf::Font>> fontMap;
+    std::map<unsigned int, std::unique_ptr<sf::Font>> fontMap;
 
 public:
-    void load(FontIdentifier id, const std::string& filePath);
-    sf::Font& get(FontIdentifier id);
+    void load(unsigned int id, const std::string& filePath);
+    sf::Font& get(unsigned int id);
 };
 
 #endif //TEST_GAME_FONTHOLDER_H

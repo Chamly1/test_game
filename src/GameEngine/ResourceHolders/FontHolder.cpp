@@ -3,7 +3,7 @@
 #include <stdexcept>
 #include <cassert>
 
-void FontHolder::load(FontIdentifier id, const std::string& filePath) {
+void FontHolder::load(unsigned int id, const std::string& filePath) {
     std::unique_ptr<sf::Font> font(new sf::Font());
     if (!font->loadFromFile(filePath)) {
         throw std::runtime_error("FontHolder::load - Failed to load " + filePath);
@@ -13,7 +13,7 @@ void FontHolder::load(FontIdentifier id, const std::string& filePath) {
     assert(inserted.second);
 }
 
-sf::Font& FontHolder::get(FontIdentifier id) {
+sf::Font& FontHolder::get(unsigned int id) {
     auto found = fontMap.find(id);
     assert(found != fontMap.end());
 

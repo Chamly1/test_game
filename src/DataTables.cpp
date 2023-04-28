@@ -1,4 +1,5 @@
 #include "DataTables.h"
+#include "ResourceHolders/TextureIdentifier.h"
 
 std::unordered_map<UnitType, UnitData> initUnitData() {
     std::unordered_map<UnitType, UnitData> data;

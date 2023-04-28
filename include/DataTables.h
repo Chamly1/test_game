@@ -9,7 +9,7 @@
 #include <memory>
 
 struct AnimationData {
-    TextureIdentifier textureId;
+    unsigned int textureId;
     sf::Vector2i frameSize;
     sf::Vector2f frameOrigin;
     int numFrames;

@@ -6,40 +6,13 @@
 #include <map>
 #include <memory>
 
-enum class TextureIdentifier {
-    MenuSelector,
-
-    MapEmptyRoom,
-    MapImpassableZonesEmptyRoom,
-
-    TileBlack,
-    TileFlorDungeon,
-
-    TileWallDungeonTopLeftCornerTopPart,
-    TileWallDungeonTopRightCornerTopPart,
-
-    TileWallDungeonBottomLeftCornerTopPart,
-    TileWallDungeonBottomLeftCornerBottomPart,
-    TileWallDungeonBottomRightCornerTopPart,
-    TileWallDungeonBottomRightCornerBottomPart,
-
-    TileWallDungeonMiddleTopPart,
-    TileWallDungeonMiddleBottomPart,
-    TileWallDungeonSidePart,
-
-    zombie,
-
-    HumanBaseIdleAnimation,
-    HumanBaseWalkAnimation
-};
-
 class TextureHolder {
 private:
-    std::map<TextureIdentifier, std::unique_ptr<sf::Texture>> textureMap;
+    std::map<unsigned int, std::unique_ptr<sf::Texture>> textureMap;
 
 public:
-    void load(TextureIdentifier id, const std::string& filePath, const sf::IntRect& area = sf::IntRect());
-    const sf::Texture& get(TextureIdentifier id) const;
+    void load(unsigned int id, const std::string& filePath, const sf::IntRect& area = sf::IntRect());
+    const sf::Texture& get(unsigned int id) const;
 };
 
 #endif //TEST_GAME_TEXTUREHOLDER_H

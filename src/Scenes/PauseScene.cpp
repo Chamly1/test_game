@@ -1,5 +1,7 @@
 #include "Scenes/PauseScene.h"
 #include "Utils/Utils.h"
+#include "ResourceHolders/FontIdentifier.h"
+#include "ResourceHolders/TextureIdentifier.h"
 
 const unsigned int titleCharacterSize = 128;
 const unsigned int buttonsCharacterSize = 64;
