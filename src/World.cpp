@@ -62,6 +62,7 @@ void World::buildScene() {
 //    sceneLayers[Background]->attachChild(std::move(generateMapFromString(testMapStr1, textures)));
 
     std::unique_ptr<Unit> player(new Unit(UnitType::Human, textures));
+    playerCamera.setPlayer(player.get());
     player->addSceneNodeCategory(SceneNodeCategory::Player);
     sceneLayers[Units]->attachChild(std::move(player));
 
@@ -78,12 +79,12 @@ void World::buildScene() {
 
 World::World(sf::RenderWindow& window)
 : window(window)
-, worldView(window.getDefaultView())
+, playerCamera(window.getDefaultView())
 , sceneGraph() {
     loadTextures();
     buildScene();
 
-    worldView.setCenter(0.f, 0.f);
+    playerCamera.resetCenterToPlayer();
 }
 
 void World::update(sf::Time dt) {
@@ -99,10 +100,12 @@ void World::update(sf::Time dt) {
         pair.first->onCollision(*pair.second);
         pair.second->onCollision(*pair.first);
     }
+
+    playerCamera.update(dt);
 }
 
 void World::draw() {
-    window.setView(worldView);
+    window.setView(playerCamera.getView());
     window.draw(sceneGraph);
 }
 

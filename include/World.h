@@ -4,6 +4,7 @@
 #include "SceneNodes/SceneNode.h"
 #include "ResourceHolders/TextureHolder.h"
 #include "CommandQueue.h"
+#include "PlayerCamera.h"
 
 #include "SFML/Graphics/RenderWindow.hpp"
 
@@ -17,7 +18,7 @@ private:
     };
 
     sf::RenderWindow& window;
-    sf::View worldView;
+    PlayerCamera playerCamera;
     TextureHolder textures;
 
     SceneNode sceneGraph;
