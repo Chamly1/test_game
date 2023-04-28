@@ -23,7 +23,7 @@ void Application::render(){
     window.clear();
 
     sceneList.draw();
-    DebugLog::draw();
+    DEBUG_DRAW()
 
     window.display();
 }
@@ -35,7 +35,7 @@ Application::Application()
         , sceneList(SceneContext(window, textures, fonts)){
 //    window->setFramerateLimit(60);
 //    window.setVerticalSyncEnabled(true);
-    DebugLog::init(&window);
+    DEBUG_INIT(&window)
 }
 
 void Application::setStartScene(unsigned int sceneId) {
