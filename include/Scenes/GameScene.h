@@ -3,7 +3,7 @@
 
 #include "GameEngine/Scenes/Scene.h"
 #include "World.h"
-#include "Player.h"
+#include "GameEngine/Player.h"
 
 class GameScene : public Scene {
 private:

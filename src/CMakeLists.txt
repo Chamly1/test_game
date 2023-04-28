@@ -6,8 +6,9 @@ add_library(main_obj OBJECT
         GameEngine/Commands/CommandQueue.cpp
         GameEngine/ResourceHolders/FontHolder.cpp GameEngine/ResourceHolders/TextureHolder.cpp
         GameEngine/GUI/Component.cpp GameEngine/GUI/Container.cpp
+        GameEngine/Player.cpp
 
-        main.cpp Application.cpp World.cpp Player.cpp Animation.cpp DataTables.cpp AnimationManager.cpp PlayerCamera.cpp
+        main.cpp Application.cpp World.cpp Animation.cpp DataTables.cpp AnimationManager.cpp PlayerCamera.cpp
         SceneNodes/Entity.cpp SceneNodes/Unit.cpp
         Scenes/GameScene.cpp Scenes/TitleScene.cpp Scenes/MenuScene.cpp Scenes/PauseScene.cpp
         Utils/MapGenerateUtils.cpp Utils/DebugLog.cpp Utils/Utils.cpp

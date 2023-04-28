@@ -1,7 +1,7 @@
 #ifndef TEST_GAME_APPLICATION_H
 #define TEST_GAME_APPLICATION_H
 
-#include "Player.h"
+#include "GameEngine/Player.h"
 #include "GameEngine/ResourceHolders/TextureHolder.h"
 #include "GameEngine/ResourceHolders/FontHolder.h"
 #include "GameEngine/Scenes/SceneList.h"
