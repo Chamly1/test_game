@@ -11,17 +11,6 @@
 #include <memory>
 #include <set>
 
-namespace SceneNodeCategory {
-    enum Type {
-        None = 0,
-        Scene = 1 << 0,
-        PlayerUnit = 1 << 1,
-        EnemyUnit = 1 << 2,
-        Player = 1 << 3,
-        ImpassableZone = 1 << 4
-    };
-}
-
 class SceneNode : public sf::Transformable, public sf::Drawable, private sf::NonCopyable {
 private:
     std::vector<std::unique_ptr<SceneNode>> children;
@@ -51,15 +40,20 @@ public:
 
     unsigned int getSceneNodeCategory() const;
     /**
-     * Add the scene node category with the bitwise OR.
-     * You MUST use categories from SceneNodeCategory namespace.
+     * Add the scene node category with the bitwise OR. It is highly recommended to use one specific bit as one
+     * category, as a result you can easily combine them.
+     * For example:
+     *      1 << 0 // category 1
+     *      1 << 1 // category 2
+     *      1 << 2 // category 3
+     *      and so on...
      *
      * @param sceneNodeCategory category to add.
      */
     void addSceneNodeCategory(unsigned int sceneNodeCategory);
 
     /**
-     * Execute the command if its sceneNodeCategory correspond to the SceneNode and pass the command to all children.
+     * Execute the command if its sceneNodeCategory correspond to the SceneNode. Do the same for all children.
      *
      * @param command command to execute.
      * @param dt delta time depending on which the command will be processed.

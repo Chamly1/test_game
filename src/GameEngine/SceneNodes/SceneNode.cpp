@@ -1,4 +1,4 @@
-#include "SceneNodes/SceneNode.h"
+#include "GameEngine/SceneNodes/SceneNode.h"
 
 #include "SFML/Graphics/RectangleShape.hpp"
 #include "SFML/Graphics/RenderTarget.hpp"
@@ -55,7 +55,7 @@ void SceneNode::drawNodePosition(sf::RenderTarget& target, sf::RenderStates stat
 SceneNode::SceneNode()
 : children()
 , parent(nullptr)
-, sceneNodeCategory(SceneNodeCategory::None)
+, sceneNodeCategory(0)
 , collisionBoxSize()
 , collisionBoxOrigin() {
 

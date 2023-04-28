@@ -1,5 +1,6 @@
 #include "Player.h"
-#include "SceneNodes/SceneNode.h"
+#include "SceneNodes/SceneNodeCategory.h"
+#include "GameEngine/SceneNodes/SceneNode.h"
 #include "SceneNodes/Entity.h"
 
 bool Player::isRealtimePlayerAction(PlayerAction action) {

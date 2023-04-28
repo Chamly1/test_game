@@ -1,5 +1,5 @@
 #include "Utils/MapGenerateUtils.h"
-#include "SceneNodes/SpriteNode.h"
+#include "GameEngine/SceneNodes/SpriteNode.h"
 
 const float TILE_SIZE = 8.f;
 

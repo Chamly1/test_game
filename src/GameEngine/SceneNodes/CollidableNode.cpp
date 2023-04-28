@@ -1,4 +1,4 @@
-#include "SceneNodes/CollidableNode.h"
+#include "GameEngine/SceneNodes/CollidableNode.h"
 
 CollidableNode::CollidableNode(sf::Vector2f collisionBoxSize) {
     setCollisionBoxSize(collisionBoxSize);

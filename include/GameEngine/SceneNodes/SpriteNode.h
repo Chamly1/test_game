@@ -1,7 +1,7 @@
 #ifndef TEST_GAME_SPRITENODE_H
 #define TEST_GAME_SPRITENODE_H
 
-#include "SceneNodes/SceneNode.h"
+#include "GameEngine/SceneNodes/SceneNode.h"
 
 #include "SFML/Graphics/Sprite.hpp"
 

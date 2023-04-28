@@ -1,7 +1,7 @@
 #ifndef TEST_GAME_MAPGENERATEUTILS_H
 #define TEST_GAME_MAPGENERATEUTILS_H
 
-#include "SceneNodes/SceneNode.h"
+#include "GameEngine/SceneNodes/SceneNode.h"
 #include "GameEngine/ResourceHolders/TextureHolder.h"
 
 const std::string testMapStr1= "0, 0, 0, 0, 0, 0, 0, 0, 0,\n"

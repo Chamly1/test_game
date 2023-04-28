@@ -1,7 +1,7 @@
 #ifndef TEST_GAME_COLLIDABLENODE_H
 #define TEST_GAME_COLLIDABLENODE_H
 
-#include "SceneNodes/SceneNode.h"
+#include "GameEngine/SceneNodes/SceneNode.h"
 
 class CollidableNode : public SceneNode {
 public:

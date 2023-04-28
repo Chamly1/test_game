@@ -1,4 +1,4 @@
-#include "SceneNodes/SpriteNode.h"
+#include "GameEngine/SceneNodes/SpriteNode.h"
 
 #include "SFML/Graphics/RenderTarget.hpp"
 

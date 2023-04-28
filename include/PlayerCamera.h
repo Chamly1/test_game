@@ -1,7 +1,7 @@
 #ifndef TEST_GAME_PLAYERCAMERA_H
 #define TEST_GAME_PLAYERCAMERA_H
 
-#include "SceneNodes/SceneNode.h"
+#include "GameEngine/SceneNodes/SceneNode.h"
 
 #include "SFML/Graphics/View.hpp"
 #include "SFML/System/Time.hpp"

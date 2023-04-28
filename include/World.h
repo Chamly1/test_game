@@ -1,7 +1,7 @@
 #ifndef TEST_GAME_WORLD_H
 #define TEST_GAME_WORLD_H
 
-#include "SceneNodes/SceneNode.h"
+#include "GameEngine/SceneNodes/SceneNode.h"
 #include "GameEngine/ResourceHolders/TextureHolder.h"
 #include "CommandQueue.h"
 #include "PlayerCamera.h"

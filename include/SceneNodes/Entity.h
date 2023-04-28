@@ -1,7 +1,7 @@
 #ifndef TEST_GAME_ENTITY_H
 #define TEST_GAME_ENTITY_H
 
-#include "SceneNodes/SceneNode.h"
+#include "GameEngine/SceneNodes/SceneNode.h"
 
 enum class Direction {
     Up, Down, Left, Right

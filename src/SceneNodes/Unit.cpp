@@ -1,4 +1,5 @@
 #include "SceneNodes/Unit.h"
+#include "SceneNodes/SceneNodeCategory.h"
 #include "Utils/Utils.h"
 #include "DataTables.h"
 #include "Utils/DebugLog.h"
