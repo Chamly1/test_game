@@ -1,7 +1,8 @@
 #ifndef TEST_GAME_UTILS_H
 #define TEST_GAME_UTILS_H
 
-#include "Animation.h"
+#include "GameEngine/Animation.h"
+#include "DataTables.h"
 
 #include "SFML/Graphics/Text.hpp"
 #include "SFML/Graphics/Sprite.hpp"

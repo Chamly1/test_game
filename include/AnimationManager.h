@@ -1,7 +1,7 @@
 #ifndef TEST_GAME_ANIMATIONMANAGER_H
 #define TEST_GAME_ANIMATIONMANAGER_H
 
-#include "Animation.h"
+#include "GameEngine/Animation.h"
 #include "DataTables.h"
 
 #include <memory>

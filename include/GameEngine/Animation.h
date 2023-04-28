@@ -6,18 +6,6 @@
 #include "SFML/Graphics/Sprite.hpp"
 #include "SFML/System/Time.hpp"
 
-enum class DirectionType {
-    BottomRight,
-    BottomLeft,
-    TopRight,
-    TopLeft,
-};
-
-enum class AnimationType {
-    Idle,
-    Walk
-};
-
 class Animation : public sf::Drawable, public sf::Transformable {
 private:
     sf::Sprite sprite;

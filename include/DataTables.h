@@ -1,7 +1,7 @@
 #ifndef TEST_GAME_DATATABLES_H
 #define TEST_GAME_DATATABLES_H
 
-#include "Animation.h"
+#include "GameEngine/Animation.h"
 #include "SceneNodes/UnitType.h"
 #include "GameEngine/ResourceHolders/TextureHolder.h"
 
@@ -15,6 +15,18 @@ struct AnimationData {
     int numFrames;
     sf::Time frameDuration;
     bool repeat;
+};
+
+enum class DirectionType {
+    BottomRight,
+    BottomLeft,
+    TopRight,
+    TopLeft,
+};
+
+enum class AnimationType {
+    Idle,
+    Walk
 };
 
 struct UnitData {
