@@ -1,4 +1,4 @@
-#include "PlayerCamera.h"
+#include "Game/PlayerCamera.h"
 
 // an area in the center of the view where the center of the view doesn't change position because of player position change
 static const sf::Vector2f noMoveAreaSize(16.f * 30, 9.f * 30);

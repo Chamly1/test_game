@@ -1,9 +1,9 @@
 #ifndef TEST_GAME_UNIT_H
 #define TEST_GAME_UNIT_H
 
-#include "SceneNodes/Entity.h"
+#include "Entity.h"
 #include "GameEngine/ResourceHolders/TextureHolder.h"
-#include "AnimationManager.h"
+#include "Game/AnimationManager.h"
 
 class Unit : public Entity {
 private:

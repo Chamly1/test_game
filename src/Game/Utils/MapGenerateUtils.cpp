@@ -1,6 +1,6 @@
-#include "Utils/MapGenerateUtils.h"
+#include "Game/Utils/MapGenerateUtils.h"
 #include "GameEngine/SceneNodes/SpriteNode.h"
-#include "ResourceHolders/TextureIdentifier.h"
+#include "Game/ResourceHolders/TextureIdentifier.h"
 
 const float TILE_SIZE = 8.f;
 

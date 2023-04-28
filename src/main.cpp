@@ -1,9 +1,9 @@
 #include "GameEngine/Application.h"
-#include "Scenes/SceneIdentifiers.h"
-#include "Scenes/TitleScene.h"
-#include "Scenes/MenuScene.h"
-#include "Scenes/GameScene.h"
-#include "Scenes/PauseScene.h"
+#include "Game/Scenes/SceneIdentifiers.h"
+#include "Game/Scenes/TitleScene.h"
+#include "Game/Scenes/MenuScene.h"
+#include "Game/Scenes/GameScene.h"
+#include "Game/Scenes/PauseScene.h"
 
 int main()
 {

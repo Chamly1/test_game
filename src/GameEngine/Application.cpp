@@ -1,5 +1,5 @@
 #include "GameEngine/Application.h"
-#include "Utils/DebugLog.h"
+#include "Game/Utils/DebugLog.h"
 
 // as microseconds. 6944 for 144 Hz
 const sf::Time Application::deltaTime = sf::microseconds(6944);

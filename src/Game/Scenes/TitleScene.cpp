@@ -1,6 +1,7 @@
-#include "Scenes/TitleScene.h"
-#include "Utils/Utils.h"
-#include "ResourceHolders/FontIdentifier.h"
+#include "Game/Scenes/TitleScene.h"
+#include "Game/Utils/Utils.h"
+#include "Game/ResourceHolders/FontIdentifier.h"
+#include "Game/Scenes/SceneIdentifiers.h"
 
 #include "SFML/Window.hpp"
 

@@ -1,8 +1,8 @@
-#include "SceneNodes/Unit.h"
-#include "SceneNodes/SceneNodeCategory.h"
-#include "Utils/Utils.h"
-#include "DataTables.h"
-#include "Utils/DebugLog.h"
+#include "Game/SceneNodes/Unit.h"
+#include "Game/SceneNodes/SceneNodeCategory.h"
+#include "Game/Utils/Utils.h"
+#include "Game/DataTables.h"
+#include "Game/Utils/DebugLog.h"
 
 #include "SFML/Graphics/RenderTarget.hpp"
 

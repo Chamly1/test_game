@@ -3,8 +3,8 @@
 
 #include "GameEngine/Scenes/Scene.h"
 #include "GameEngine/GUI/Container.h"
-#include "GUI/Label.h"
-#include "GUI/ButtonList.h"
+#include "Game/GUI/Label.h"
+#include "Game/GUI/ButtonList.h"
 
 class MenuScene : public Scene {
 private:

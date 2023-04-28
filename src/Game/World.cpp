@@ -1,9 +1,9 @@
-#include "World.h"
-#include "SceneNodes/SceneNodeCategory.h"
+#include "Game/World.h"
+#include "Game/SceneNodes/SceneNodeCategory.h"
 #include "GameEngine/SceneNodes/SpriteNode.h"
-#include "SceneNodes/Unit.h"
+#include "Game/SceneNodes/Unit.h"
 #include "GameEngine/SceneNodes/CollidableNode.h"
-#include "ResourceHolders/TextureIdentifier.h"
+#include "Game/ResourceHolders/TextureIdentifier.h"
 
 const int TILE_SIZE = 8;
 const int UNIT_SIZE = 32;

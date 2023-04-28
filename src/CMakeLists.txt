@@ -10,8 +10,10 @@ add_library(main_obj OBJECT
         GameEngine/Player.cpp
         GameEngine/Animation.cpp
 
-        main.cpp World.cpp DataTables.cpp AnimationManager.cpp PlayerCamera.cpp
-        SceneNodes/Entity.cpp SceneNodes/Unit.cpp
-        Scenes/GameScene.cpp Scenes/TitleScene.cpp Scenes/MenuScene.cpp Scenes/PauseScene.cpp
-        Utils/MapGenerateUtils.cpp Utils/DebugLog.cpp Utils/Utils.cpp
-        GUI/Label.cpp GUI/Button.cpp GUI/ButtonList.cpp)
+        main.cpp
+
+        Game/World.cpp Game/DataTables.cpp Game/AnimationManager.cpp Game/PlayerCamera.cpp
+        Game/SceneNodes/Entity.cpp Game/SceneNodes/Unit.cpp
+        Game/Scenes/GameScene.cpp Game/Scenes/TitleScene.cpp Game/Scenes/MenuScene.cpp Game/Scenes/PauseScene.cpp
+        Game/Utils/MapGenerateUtils.cpp Game/Utils/DebugLog.cpp Game/Utils/Utils.cpp
+        Game/GUI/Label.cpp Game/GUI/Button.cpp Game/GUI/ButtonList.cpp)

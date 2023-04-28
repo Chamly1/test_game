@@ -2,7 +2,7 @@
 #define TEST_GAME_GAMESCENE_H
 
 #include "GameEngine/Scenes/Scene.h"
-#include "World.h"
+#include "Game/World.h"
 #include "GameEngine/Player.h"
 
 class GameScene : public Scene {
