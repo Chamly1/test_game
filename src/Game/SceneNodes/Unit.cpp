@@ -2,7 +2,7 @@
 #include "Game/SceneNodes/SceneNodeCategory.h"
 #include "Game/Utils/Utils.h"
 #include "Game/DataTables.h"
-#include "Game/Utils/DebugLog.h"
+#include "GameEngine/Utils/DebugLog.h"
 
 #include "SFML/Graphics/RenderTarget.hpp"
 

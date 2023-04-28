@@ -9,11 +9,12 @@ add_library(main_obj OBJECT
         GameEngine/GUI/Component.cpp GameEngine/GUI/Container.cpp
         GameEngine/Player.cpp
         GameEngine/Animation.cpp
+        GameEngine/Utils/DebugLog.cpp
 
         main.cpp
 
         Game/World.cpp Game/DataTables.cpp Game/AnimationManager.cpp Game/PlayerCamera.cpp
         Game/SceneNodes/Entity.cpp Game/SceneNodes/Unit.cpp
         Game/Scenes/GameScene.cpp Game/Scenes/TitleScene.cpp Game/Scenes/MenuScene.cpp Game/Scenes/PauseScene.cpp
-        Game/Utils/MapGenerateUtils.cpp Game/Utils/DebugLog.cpp Game/Utils/Utils.cpp
+        Game/Utils/MapGenerateUtils.cpp Game/Utils/Utils.cpp
         Game/GUI/Label.cpp Game/GUI/Button.cpp Game/GUI/ButtonList.cpp)
