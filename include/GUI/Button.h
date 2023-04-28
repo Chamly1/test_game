@@ -1,7 +1,7 @@
 #ifndef TEST_GAME_BUTTON_H
 #define TEST_GAME_BUTTON_H
 
-#include "GUI/Component.h"
+#include "GameEngine/GUI/Component.h"
 
 #include "SFML/Graphics/Text.hpp"
 #include "SFML/Graphics/Sprite.hpp"

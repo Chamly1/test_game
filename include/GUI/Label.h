@@ -1,7 +1,7 @@
 #ifndef TEST_GAME_LABEL_H
 #define TEST_GAME_LABEL_H
 
-#include "GUI/Component.h"
+#include "GameEngine/GUI/Component.h"
 
 #include "SFML/Graphics/Text.hpp"
 

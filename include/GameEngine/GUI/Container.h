@@ -1,7 +1,7 @@
 #ifndef TEST_GAME_CONTAINER_H
 #define TEST_GAME_CONTAINER_H
 
-#include "GUI/Component.h"
+#include "GameEngine/GUI/Component.h"
 
 #include <vector>
 #include <memory>

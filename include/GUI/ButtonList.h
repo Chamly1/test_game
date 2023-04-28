@@ -1,8 +1,8 @@
 #ifndef TEST_GAME_BUTTONLIST_H
 #define TEST_GAME_BUTTONLIST_H
 
-#include "GUI/Component.h"
-#include "GUI/Container.h"
+#include "GameEngine/GUI/Component.h"
+#include "GameEngine/GUI/Container.h"
 
 #include "SFML/Graphics/Font.hpp"
 
