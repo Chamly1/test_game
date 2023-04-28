@@ -7,17 +7,6 @@
 
 #include <map>
 
-namespace PlayerActionIdentifier {
-
-enum PlayerAction {
-    MoveUp,
-    MoveDown,
-    MoveLeft,
-    MoveRight
-};
-
-}
-
 class Player {
 private:
     // map<key, player action id>
