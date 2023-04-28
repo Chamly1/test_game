@@ -1,4 +1,4 @@
-#include "ResourceHolders/TextureHolder.h"
+#include "GameEngine/ResourceHolders/TextureHolder.h"
 
 #include <stdexcept>
 #include <cassert>

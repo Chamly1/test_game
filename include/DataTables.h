@@ -3,7 +3,7 @@
 
 #include "Animation.h"
 #include "SceneNodes/UnitType.h"
-#include "ResourceHolders/TextureHolder.h"
+#include "GameEngine/ResourceHolders/TextureHolder.h"
 
 #include <unordered_map>
 #include <memory>

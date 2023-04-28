@@ -2,8 +2,8 @@
 #define TEST_GAME_APPLICATION_H
 
 #include "Player.h"
-#include "ResourceHolders/TextureHolder.h"
-#include "ResourceHolders/FontHolder.h"
+#include "GameEngine/ResourceHolders/TextureHolder.h"
+#include "GameEngine/ResourceHolders/FontHolder.h"
 #include "Scenes/SceneList.h"
 
 #include "SFML/Graphics/RenderWindow.hpp"

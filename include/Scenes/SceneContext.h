@@ -1,8 +1,8 @@
 #ifndef TEST_GAME_SCENECONTEXT_H
 #define TEST_GAME_SCENECONTEXT_H
 
-#include "ResourceHolders/TextureHolder.h"
-#include "ResourceHolders/FontHolder.h"
+#include "GameEngine/ResourceHolders/TextureHolder.h"
+#include "GameEngine/ResourceHolders/FontHolder.h"
 #include "Player.h"
 
 #include "SFML/Graphics/RenderWindow.hpp"

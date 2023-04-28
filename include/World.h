@@ -2,7 +2,7 @@
 #define TEST_GAME_WORLD_H
 
 #include "SceneNodes/SceneNode.h"
-#include "ResourceHolders/TextureHolder.h"
+#include "GameEngine/ResourceHolders/TextureHolder.h"
 #include "CommandQueue.h"
 #include "PlayerCamera.h"
 
