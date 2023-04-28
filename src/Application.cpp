@@ -43,8 +43,7 @@ Application::Application()
         : window(sf::VideoMode::getDesktopMode(), "test_game", sf::Style::Fullscreen)
         , textures()
         , fonts()
-        , player()
-        , sceneList(SceneContext(window, textures, fonts, player)){
+        , sceneList(SceneContext(window, textures, fonts)){
 //    window->setFramerateLimit(60);
 //    window.setVerticalSyncEnabled(true);
 

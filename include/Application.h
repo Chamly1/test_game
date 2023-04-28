@@ -15,7 +15,6 @@ private:
     sf::RenderWindow window;
     TextureHolder textures;
     FontHolder fonts;
-    Player player;
 
     SceneList sceneList;
 

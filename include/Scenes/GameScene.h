@@ -3,11 +3,12 @@
 
 #include "GameEngine/Scenes/Scene.h"
 #include "World.h"
+#include "Player.h"
 
 class GameScene : public Scene {
 private:
     World world;
-    Player& player;
+    Player player;
 
 public:
     GameScene(SceneContext ctx, SceneList& sceneList);

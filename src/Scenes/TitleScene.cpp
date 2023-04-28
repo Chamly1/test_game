@@ -1,6 +1,8 @@
 #include "Scenes/TitleScene.h"
 #include "Utils/Utils.h"
 
+#include "SFML/Window.hpp"
+
 static const float textBlinkingPeriodSec = 0.75f;
 
 TitleScene::TitleScene(SceneContext ctx, SceneList& sceneList)

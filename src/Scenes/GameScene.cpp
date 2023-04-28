@@ -3,7 +3,7 @@
 GameScene::GameScene(SceneContext ctx, SceneList& sceneList)
 : Scene(ctx, sceneList)
 , world(*ctx.window)
-, player(*ctx.player) {
+, player() {
 
 }
 
