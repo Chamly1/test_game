@@ -8,7 +8,7 @@ std::unordered_map<UnitType, UnitData> initUnitData() {
 
     data[UnitType::Human].baseSpeed = 300.f;
     data[UnitType::Human].animationsScaleFactor = sf::Vector2f(scaleFactor, scaleFactor);
-    data[UnitType::Human].collisionBoxSize = sf::Vector2f(7.f * scaleFactor, 7.f * scaleFactor);
+    data[UnitType::Human].collisionBoxSize = sf::Vector2f(6.f * scaleFactor, 7.f * scaleFactor);
     data[UnitType::Human].collisionBoxOrigin = data[UnitType::Human].collisionBoxSize / 2.f;
 
     data[UnitType::Human].animationData[AnimationType::Idle].textureId = TextureIdentifier::HumanBaseIdleAnimation;
