@@ -9,8 +9,10 @@ void SceneNode::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     states.transform *= getTransform();
 
     drawCurrent(target, states);
+#ifndef NDEBUG
     drawCollisionRec(target, states);
     drawNodePosition(target, states);
+#endif
 
     for (const std::unique_ptr<SceneNode>& child : children) {
         child->draw(target, states);
