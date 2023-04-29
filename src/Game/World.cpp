@@ -49,6 +49,10 @@ void World::loadTextures() {
                   "resources/textures/maps/empty_room/empty_room.png");
     textures.load(TextureIdentifier::MapImpassableZonesEmptyRoom,
                   "resources/textures/maps/empty_room/empty_room_impassable_zones.png");
+    textures.load(TextureIdentifier::MapNotEmptyRoom,
+                  "resources/textures/maps/not_empty_room/not_empty_room.png");
+    textures.load(TextureIdentifier::MapImpassableZonesNotEmptyRoom,
+                  "resources/textures/maps/not_empty_room/not_empty_room_impassable_zones.png");
 }
 
 void World::buildScene() {
@@ -59,7 +63,8 @@ void World::buildScene() {
         sceneGraph.attachChild(std::move(layer));
     }
 
-    std::unique_ptr<SpriteNode> mapBackground(new SpriteNode(textures.get(TextureIdentifier::MapEmptyRoom)));
+//    std::unique_ptr<SpriteNode> mapBackground(new SpriteNode(textures.get(TextureIdentifier::MapEmptyRoom)));
+    std::unique_ptr<SpriteNode> mapBackground(new SpriteNode(textures.get(TextureIdentifier::MapNotEmptyRoom)));
     mapBackground->scale(mapScaleFactor);
     sceneLayers[Background]->attachChild(std::move(mapBackground));
 
@@ -69,7 +74,10 @@ void World::buildScene() {
     player->setPosition(100.f, 100.f);
     sceneLayers[Units]->attachChild(std::move(player));
 
-    sceneLayers[ImpassableZones]->attachChild(generateImpassableZonesMap(textures.get(TextureIdentifier::MapImpassableZonesEmptyRoom),
+//    sceneLayers[ImpassableZones]->attachChild(generateImpassableZonesMap(textures.get(TextureIdentifier::MapImpassableZonesEmptyRoom),
+//                                                                         sf::Color(255, 0, 0),
+//                                                                         mapScaleFactor));
+    sceneLayers[ImpassableZones]->attachChild(generateImpassableZonesMap(textures.get(TextureIdentifier::MapImpassableZonesNotEmptyRoom),
                                                                          sf::Color(255, 0, 0),
                                                                          mapScaleFactor));
 }

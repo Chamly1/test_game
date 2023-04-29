@@ -8,6 +8,8 @@ enum id {
 
     MapEmptyRoom,
     MapImpassableZonesEmptyRoom,
+    MapNotEmptyRoom,
+    MapImpassableZonesNotEmptyRoom,
 
     TileBlack,
     TileFlorDungeon,
