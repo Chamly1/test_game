@@ -1,6 +1,7 @@
 #include "Game/Scenes/TitleScene.h"
 #include "Game/Utils/Utils.h"
 #include "Game/ResourceHolders/FontIdentifier.h"
+#include "Game/ResourceHolders/TextureIdentifier.h"
 #include "Game/Scenes/SceneIdentifiers.h"
 
 #include "SFML/Window.hpp"
@@ -14,6 +15,10 @@ TitleScene::TitleScene(SceneContext ctx, SceneList& sceneList)
 , textEffectTime() {
 
     ctx.fonts->load(FontIdentifier::Main, "resources/fonts/game_over.ttf");
+    //TODO this texture must load somewhere else but not here
+    ctx.textures->load(TextureIdentifier::MenuSelector,
+                       "resources/textures/Minifantasy_Userinterface_Assets/Menus/Selectors/Minifantasy_GuiSelectors.png",
+                       sf::IntRect(0, 16 * 20, 16, 16));
 
     text.setFont(ctx.fonts->get(FontIdentifier::Main));
     text.setString("Press any key to play");
