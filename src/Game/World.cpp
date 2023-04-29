@@ -8,7 +8,7 @@
 
 const int TILE_SIZE = 8;
 const int UNIT_SIZE = 32;
-static const sf::Vector2f mapScaleFactor(4.f, 4.f);
+static const sf::Vector2f mapScaleFactor(5.f, 5.f);
 
 void World::loadTextures() {
     textures.load(TextureIdentifier::TileBlack, "resources/textures/BlackTile.png");
