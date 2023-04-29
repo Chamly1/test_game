@@ -4,6 +4,7 @@
 #include "Game/SceneNodes/Unit.h"
 #include "GameEngine/SceneNodes/CollidableNode.h"
 #include "Game/ResourceHolders/TextureIdentifier.h"
+#include "Game/Utils/MapGenerateUtils.h"
 
 const int TILE_SIZE = 8;
 const int UNIT_SIZE = 32;
@@ -60,23 +61,17 @@ void World::buildScene() {
 
     std::unique_ptr<SpriteNode> mapBackground(new SpriteNode(textures.get(TextureIdentifier::MapEmptyRoom)));
     mapBackground->scale(mapScaleFactor);
-    sceneLayers[Units]->attachChild(std::move(mapBackground));
-//    sceneLayers[Background]->attachChild(std::move(generateMapFromString(testMapStr1, textures)));
+    sceneLayers[Background]->attachChild(std::move(mapBackground));
 
     std::unique_ptr<Unit> player(new Unit(UnitType::Human, textures));
     playerCamera.setPlayer(player.get());
     player->addSceneNodeCategory(SceneNodeCategory::Player);
+    player->setPosition(100.f, 100.f);
     sceneLayers[Units]->attachChild(std::move(player));
 
-    std::unique_ptr<SceneNode> obstacle(new CollidableNode(sf::Vector2f(200.f, 200.f)));
-    obstacle->setPosition(400.f, -400.f);
-    obstacle->addSceneNodeCategory(SceneNodeCategory::ImpassableZone);
-    sceneLayers[ImpassableZones]->attachChild(std::move(obstacle));
-
-    obstacle = std::make_unique<CollidableNode>(sf::Vector2f(400.f, 100.f));
-    obstacle->setPosition(400.f, -400.f);
-    obstacle->addSceneNodeCategory(SceneNodeCategory::ImpassableZone);
-    sceneLayers[ImpassableZones]->attachChild(std::move(obstacle));
+    sceneLayers[ImpassableZones]->attachChild(generateImpassableZonesMap(textures.get(TextureIdentifier::MapImpassableZonesEmptyRoom),
+                                                                         sf::Color(255, 0, 0),
+                                                                         mapScaleFactor));
 }
 
 World::World(sf::RenderWindow& window)

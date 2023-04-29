@@ -37,4 +37,15 @@ std::unique_ptr<SceneNode> generateMapFromVector(const std::vector<std::vector<i
 
 std::unique_ptr<SceneNode> generateMapFromString(const std::string& str, const TextureHolder& textures);
 
+/**
+ * Generate a SceneNode of CollidableNode with SceneNodeCategory::ImpassableZone category based on a texture and a color.
+ *
+ * @param unpassableZonesMap texture which contain map of impassable zones.
+ * @param color a color which represent impassable zones in unpassableZonesMap texture.
+ *
+ * @return result SceneNode.
+ */
+std::unique_ptr<SceneNode> generateImpassableZonesMap(const sf::Texture& impassableZonesMap, sf::Color color,
+                                                      sf::Vector2f mapScaleFactor);
+
 #endif //TEST_GAME_MAPGENERATEUTILS_H

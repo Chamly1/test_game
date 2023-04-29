@@ -1,6 +1,8 @@
 #include "Game/Utils/MapGenerateUtils.h"
 #include "GameEngine/SceneNodes/SpriteNode.h"
 #include "Game/ResourceHolders/TextureIdentifier.h"
+#include "GameEngine/SceneNodes/CollidableNode.h"
+#include "Game/SceneNodes/SceneNodeCategory.h"
 
 const float TILE_SIZE = 8.f;
 
@@ -100,4 +102,91 @@ std::unique_ptr<SceneNode> generateMapFromVector(const std::vector<std::vector<i
 std::unique_ptr<SceneNode> generateMapFromString(const std::string& str, const TextureHolder& textures) {
     std::vector<std::vector<int>> vec = intStringToVector(str);
     return generateMapFromVector(vec, textures);
+}
+
+std::unique_ptr<SceneNode> generateImpassableZonesMap(const sf::Texture& impassableZonesMap, sf::Color color,
+                                                      sf::Vector2f mapScaleFactor) {
+    std::unique_ptr<SceneNode> resMap(new SceneNode());
+
+    sf::Image image = impassableZonesMap.copyToImage();
+    sf::Vector2u imageSize = image.getSize();
+
+    std::unique_ptr<CollidableNode> impassableNode;
+    sf::Vector2f collisionBoxSize;
+    sf::Vector2f position;
+
+    bool **isChecked = new bool *[imageSize.x];
+    for (unsigned int x = 0; x < imageSize.x; x++) {
+        isChecked[x] = new bool[imageSize.y]();
+    }
+
+    unsigned int zoneSizeX = 0;
+    unsigned int zoneSizeY = 0;
+
+    for (unsigned int y = 0; y < imageSize.y; y++) {
+        for (unsigned int x = 0; x < imageSize.x; x++) {
+            if (isChecked[x][y]) {
+                continue;
+            } else {
+                if (image.getPixel(x, y) == color) {
+
+                    // find x size
+                    for (unsigned int tmpX = x; tmpX < imageSize.x; tmpX++) {
+                        if (image.getPixel(tmpX, y) != color || isChecked[tmpX][y]) {
+                            zoneSizeX = tmpX - x;
+                            break;
+                        }
+                    }
+                    if (zoneSizeX == 0) {
+                        zoneSizeX = imageSize.x - x;
+                    }
+
+                    // find y size
+                    for (unsigned int tmpY = y; tmpY < imageSize.y; tmpY++) {
+                        for (unsigned int tmpX = x; tmpX < x + zoneSizeX; tmpX++) {
+                            if (image.getPixel(tmpX, tmpY) != color || isChecked[tmpX][tmpY]) {
+                                zoneSizeY = tmpY - y;
+
+                                // discard last incomplete row from checked array
+                                for (unsigned int toDiscardX = x; toDiscardX < tmpX; toDiscardX++) {
+                                    isChecked[toDiscardX][tmpY] = false;
+                                }
+
+                                goto size_found;
+                            }
+
+                            isChecked[tmpX][tmpY] = true;
+                        }
+                    }
+                    if (zoneSizeY == 0) {
+                        zoneSizeY = imageSize.y - y;
+                    }
+
+                    size_found:
+                    position.x = static_cast<float>(x) * mapScaleFactor.x;
+                    position.y = static_cast<float>(y) * mapScaleFactor.y;
+                    collisionBoxSize.x = static_cast<float>(zoneSizeX) * mapScaleFactor.x;
+                    collisionBoxSize.y = static_cast<float>(zoneSizeY) * mapScaleFactor.y;
+
+                    impassableNode = std::make_unique<CollidableNode>(collisionBoxSize);
+                    impassableNode->setPosition(position);
+                    impassableNode->addSceneNodeCategory(SceneNodeCategory::ImpassableZone);
+
+                    resMap->attachChild(std::move(impassableNode));
+
+                    zoneSizeX = 0;
+                    zoneSizeY = 0;
+                }
+            }
+
+            isChecked[x][y] = true;
+        }
+    }
+
+    for (unsigned int x = 0; x < imageSize.x; x++) {
+        delete[] isChecked[x];
+    }
+    delete[] isChecked;
+
+    return resMap;
 }
