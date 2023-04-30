@@ -26,10 +26,11 @@ enum id {
     TileWallDungeonMiddleBottomPart,
     TileWallDungeonSidePart,
 
-    zombie,
-
     HumanBaseIdleAnimation,
-    HumanBaseWalkAnimation
+    HumanBaseWalkAnimation,
+
+    ZombieIdleAnimation,
+    ZombieWalkAnimation
 };
 
 }
