@@ -36,10 +36,10 @@ void GameScene::draw() {
 }
 
 bool GameScene::update(sf::Time dt){
-    world.update(dt);
-
     CommandQueue& commands = world.getCommandQueue();
     player.handleRealtimeInput(commands);
+
+    world.update(dt);
 
     return true;
 }
