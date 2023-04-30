@@ -61,7 +61,7 @@ void World::loadTextures() {
 }
 
 void World::buildScene() {
-    for (std::size_t i = 0; i < LayerCount; ++i) {
+    for (std::size_t i = 0; i < Layer::LayerCount; ++i) {
         std::unique_ptr<SceneNode> layer(new SceneNode);
         sceneLayers[i] = layer.get();
 
@@ -71,13 +71,18 @@ void World::buildScene() {
 //    std::unique_ptr<SpriteNode> mapBackground(new SpriteNode(textures.get(TextureIdentifier::MapEmptyRoom)));
     std::unique_ptr<SpriteNode> mapBackground(new SpriteNode(textures.get(TextureIdentifier::MapNotEmptyRoom)));
     mapBackground->scale(mapScaleFactor);
-    sceneLayers[Background]->attachChild(std::move(mapBackground));
+    sceneLayers[Layer::Background]->attachChild(std::move(mapBackground));
 
     std::unique_ptr<Unit> player(new Unit(UnitType::Human, textures));
     playerCamera.setPlayer(player.get());
     player->addSceneNodeCategory(SceneNodeCategory::Player);
     player->setPosition(100.f, 100.f);
-    sceneLayers[Units]->attachChild(std::move(player));
+    sceneLayers[Layer::Units]->attachChild(std::move(player));
+
+    std::unique_ptr<Unit> enemy(new Unit(UnitType::Zombie, textures));
+    enemy->addSceneNodeCategory(SceneNodeCategory::EnemyUnit);
+    enemy->setPosition(200.f, 100.f);
+    sceneLayers[Layer::Units]->attachChild(std::move(enemy));
 
 //    sceneLayers[ImpassableZones]->attachChild(generateImpassableZonesMap(textures.get(TextureIdentifier::MapImpassableZonesEmptyRoom),
 //                                                                         sf::Color(255, 0, 0),
