@@ -2,63 +2,63 @@
 #include "GameEngine/Utils/DebugLog.hpp"
 
 // as microseconds. 6944 for 144 Hz
-const sf::Time Application::deltaTime = sf::microseconds(6944);
+const sf::Time Application::mDeltaTime = sf::microseconds(6944);
 
 void Application::processEvents() {
     sf::Event event;
-    while (window.pollEvent(event)) {
-        sceneList.handleEvent(event);
+    while (mWindow.pollEvent(event)) {
+        mSceneList.handleEvent(event);
 
         if (event.type == sf::Event::Closed) {
-            window.close();
+            mWindow.close();
         }
     }
 }
 
 void Application::update(sf::Time dt) {
-    sceneList.update(dt);
+    mSceneList.update(dt);
 }
 
 void Application::render(){
-    window.clear();
+    mWindow.clear();
 
-    sceneList.draw();
+    mSceneList.draw();
     DEBUG_DRAW()
 
-    window.display();
+    mWindow.display();
 }
 
 Application::Application()
-        : window(sf::VideoMode::getDesktopMode(), "test_game", sf::Style::Fullscreen)
-        , textures()
-        , fonts()
-        , sceneList(SceneContext(window, textures, fonts)){
+        : mWindow(sf::VideoMode::getDesktopMode(), "test_game", sf::Style::Fullscreen)
+        , mTextures()
+        , mFonts()
+        , mSceneList(SceneContext(mWindow, mTextures, mFonts)){
 //    window->setFramerateLimit(60);
 //    window.setVerticalSyncEnabled(true);
-    DEBUG_INIT(&window)
+    DEBUG_INIT(&mWindow)
 }
 
 void Application::setStartScene(unsigned int sceneId) {
-    sceneList.clear();
-    sceneList.pushBack(sceneId);
+    mSceneList.clear();
+    mSceneList.pushBack(sceneId);
 }
 
 void Application::run() {
     sf::Clock clock;
     sf::Time accumulator;
 
-    while (window.isOpen()) {
+    while (mWindow.isOpen()) {
         accumulator += clock.restart();
 
-        while (accumulator >= deltaTime) {
+        while (accumulator >= mDeltaTime) {
             processEvents();
-            update(deltaTime);
+            update(mDeltaTime);
 
-            if (sceneList.isEmpty()) {
-                window.close();
+            if (mSceneList.isEmpty()) {
+                mWindow.close();
             }
 
-            accumulator -= deltaTime;
+            accumulator -= mDeltaTime;
         }
 
         render();

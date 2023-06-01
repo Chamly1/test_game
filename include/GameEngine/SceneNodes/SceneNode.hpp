@@ -13,12 +13,12 @@
 
 class SceneNode : public sf::Transformable, public sf::Drawable, private sf::NonCopyable {
 private:
-    std::vector<std::unique_ptr<SceneNode>> children;
-    SceneNode* parent;
+    std::vector<std::unique_ptr<SceneNode>> mChildren;
+    SceneNode* mParent;
 
-    unsigned int sceneNodeCategory;
-    sf::Vector2f collisionBoxSize;
-    sf::Vector2f collisionBoxOrigin;
+    unsigned int mSceneNodeCategory;
+    sf::Vector2f mCollisionBoxSize;
+    sf::Vector2f mCollisionBoxOrigin;
 
     void draw(sf::RenderTarget& target, sf::RenderStates states) const final;
     virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;

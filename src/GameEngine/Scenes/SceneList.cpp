@@ -9,36 +9,36 @@ SceneList::PendingChange::PendingChange(PendingChangeAction action, unsigned int
 }
 
 std::unique_ptr<Scene> SceneList::createScene(unsigned int sceneId) {
-    auto found = sceneFactory.find(sceneId);
-    assert(found != sceneFactory.end());
+    auto found = mSceneFactory.find(sceneId);
+    assert(found != mSceneFactory.end());
 
     return found->second();
 }
 
 void SceneList::applyPendingChanges() {
-    for (PendingChange change : pendingChangeList) {
+    for (PendingChange change : mPendingChangeList) {
         switch (change.action) {
             case PendingChangeAction::PushBack:
-                sceneList.push_back(createScene(change.sceneId));
+                mSceneList.push_back(createScene(change.sceneId));
                 break;
             case PendingChangeAction::PopBack:
-                sceneList.pop_back();
+                mSceneList.pop_back();
                 break;
             case PendingChangeAction::Clear:
-                sceneList.clear();
+                mSceneList.clear();
                 break;
         }
     }
-    pendingChangeList.clear();
+    mPendingChangeList.clear();
 }
 
 SceneList::SceneList(SceneContext sceneContext)
-: sceneContext(sceneContext) {
+: mSceneContext(sceneContext) {
 
 }
 
 void SceneList::update(sf::Time dt) {
-    for (auto it = sceneList.rbegin(); it != sceneList.rend(); ++it) {
+    for (auto it = mSceneList.rbegin(); it != mSceneList.rend(); ++it) {
         if (!(*it)->update(dt)) {
             break;
         }
@@ -48,14 +48,14 @@ void SceneList::update(sf::Time dt) {
 }
 
 void SceneList::draw() {
-    for (std::unique_ptr<Scene>& scene : sceneList) {
+    for (std::unique_ptr<Scene>& scene : mSceneList) {
         scene->draw();
-        sceneContext.window->setView(sceneContext.window->getDefaultView());
+        mSceneContext.window->setView(mSceneContext.window->getDefaultView());
     }
 }
 
 void SceneList::handleEvent(const sf::Event& event) {
-    for (auto it = sceneList.rbegin(); it != sceneList.rend(); ++it) {
+    for (auto it = mSceneList.rbegin(); it != mSceneList.rend(); ++it) {
         if (!(*it)->handleEvent(event)) {
             break;
         }
@@ -65,17 +65,17 @@ void SceneList::handleEvent(const sf::Event& event) {
 }
 
 void SceneList::pushBack(unsigned int sceneId) {
-    pendingChangeList.push_back(PendingChange(PendingChangeAction::PushBack, sceneId));
+    mPendingChangeList.push_back(PendingChange(PendingChangeAction::PushBack, sceneId));
 }
 
 void SceneList::popBack() {
-    pendingChangeList.push_back(PendingChange(PendingChangeAction::PopBack));
+    mPendingChangeList.push_back(PendingChange(PendingChangeAction::PopBack));
 }
 
 void SceneList::clear() {
-    pendingChangeList.push_back(PendingChange(PendingChangeAction::Clear));
+    mPendingChangeList.push_back(PendingChange(PendingChangeAction::Clear));
 }
 
 bool SceneList::isEmpty() const {
-    return sceneList.empty();
+    return mSceneList.empty();
 }

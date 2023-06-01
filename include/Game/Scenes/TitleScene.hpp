@@ -7,9 +7,9 @@
 
 class TitleScene : public Scene {
 private:
-    sf::Text text;
-    bool showText;
-    sf::Time textEffectTime;
+    sf::Text mText;
+    bool mShowText;
+    sf::Time mTextEffectTime;
 
 public:
     TitleScene(SceneContext ctx, SceneList& sceneList);

@@ -4,55 +4,55 @@
 #include "SFML/Graphics/RenderTarget.hpp"
 
 void AnimationManager::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-    target.draw(*currentAnimation, states);
+    target.draw(*mCurrentAnimation, states);
 }
 
 AnimationManager::AnimationManager(const TextureHolder& textures, UnitData& unitData)
-: currentAnimation()
-, currentAnimationType()
-, currentDirectionType()
-, animations() {
+: mCurrentAnimation()
+, mCurrentAnimationType()
+, mCurrentDirectionType()
+, mAnimations() {
     for (auto const& animationData : unitData.animationData) {
         for (auto const& firstFramePosition : unitData.firstFramePosition[animationData.first]) {
-            animations[animationData.first][firstFramePosition.first] =
+            mAnimations[animationData.first][firstFramePosition.first] =
                     std::make_shared<Animation>(textures.get(animationData.second.textureId),
                                                 sf::IntRect(firstFramePosition.second, animationData.second.frameSize),
                                                 animationData.second.numFrames, animationData.second.frameDuration, animationData.second.repeat);
-            animations[animationData.first][firstFramePosition.first]->setOrigin(animationData.second.frameOrigin);
-            animations[animationData.first][firstFramePosition.first]->scale(unitData.animationsScaleFactor);
+            mAnimations[animationData.first][firstFramePosition.first]->setOrigin(animationData.second.frameOrigin);
+            mAnimations[animationData.first][firstFramePosition.first]->scale(unitData.animationsScaleFactor);
         }
     }
 
     // set first animation
-    setAnimation(animations.begin()->first, animations.begin()->second.begin()->first);
+    setAnimation(mAnimations.begin()->first, mAnimations.begin()->second.begin()->first);
 }
 
 void AnimationManager::addAnimation(const TextureHolder& textures, UnitData& unitData, AnimationType animationType,
                                     DirectionType directionType) {
 #define ANIMATION_DATA unitData.animationData[animationType]
 #define FIRST_FRAME_POSITION unitData.firstFramePosition[animationType][directionType]
-    animations[animationType][directionType] =
+    mAnimations[animationType][directionType] =
     std::make_shared<Animation>(textures.get(ANIMATION_DATA.textureId),
                                 sf::IntRect(FIRST_FRAME_POSITION, ANIMATION_DATA.frameSize),
                                 ANIMATION_DATA.numFrames, ANIMATION_DATA.frameDuration, ANIMATION_DATA.repeat);
-    animations[animationType][directionType]->setOrigin(ANIMATION_DATA.frameOrigin);
-    animations[animationType][directionType]->scale(unitData.animationsScaleFactor);
+    mAnimations[animationType][directionType]->setOrigin(ANIMATION_DATA.frameOrigin);
+    mAnimations[animationType][directionType]->scale(unitData.animationsScaleFactor);
 }
 
 void AnimationManager::setAnimation(AnimationType animationType, DirectionType directionType) {
-    currentAnimation = animations[animationType][directionType];
-    currentAnimationType = animationType;
-    currentDirectionType = directionType;
+    mCurrentAnimation = mAnimations[animationType][directionType];
+    mCurrentAnimationType = animationType;
+    mCurrentDirectionType = directionType;
 }
 
 void AnimationManager::update(sf::Time dt) {
-    currentAnimation->update(dt);
+    mCurrentAnimation->update(dt);
 }
 
 AnimationType AnimationManager::getCurrentAnimationType() const {
-    return currentAnimationType;
+    return mCurrentAnimationType;
 }
 
 DirectionType AnimationManager::getCurrentDirectionType() const {
-    return currentDirectionType;
+    return mCurrentDirectionType;
 }

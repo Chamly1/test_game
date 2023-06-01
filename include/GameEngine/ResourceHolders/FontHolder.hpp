@@ -8,7 +8,7 @@
 
 class FontHolder {
 private:
-    std::map<unsigned int, std::unique_ptr<sf::Font>> fontMap;
+    std::map<unsigned int, std::unique_ptr<sf::Font>> mFontMap;
 
 public:
     void load(unsigned int id, const std::string& filePath);

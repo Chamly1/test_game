@@ -7,8 +7,8 @@ class SceneList;
 
 class Scene {
 private:
-    SceneContext ctx;
-    SceneList* sceneList;
+    SceneContext mCtx;
+    SceneList* mSceneList;
 
 protected:
     void requestListPushBack(unsigned int sceneId);

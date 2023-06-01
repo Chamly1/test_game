@@ -7,22 +7,22 @@ namespace GUI {
 void Container::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     states.transform *= getTransform();
 
-    for (const std::shared_ptr<Component>& child : children) {
+    for (const std::shared_ptr<Component>& child : mChildren) {
         target.draw(*child, states);
     }
 }
 
 bool Container::hasSelection() const {
-    return selectedChild >= 0;
+    return mSelectedChild >= 0;
 }
 
 void Container::select(int index) {
-    if (children[index]->isSelectable()) {
+    if (mChildren[index]->isSelectable()) {
         if (hasSelection()) {
-            children[selectedChild]->deselect();
+            mChildren[mSelectedChild]->deselect();
         }
-        children[index]->select();
-        selectedChild = index;
+        mChildren[index]->select();
+        mSelectedChild = index;
     }
 }
 
@@ -31,10 +31,10 @@ void Container::selectNext() {
         return;
     }
 
-    int next = selectedChild;
+    int next = mSelectedChild;
     do {
-        next = (next + 1) % children.size();
-    } while (!children[next]->isSelectable());
+        next = (next + 1) % mChildren.size();
+    } while (!mChildren[next]->isSelectable());
 
     select(next);
 }
@@ -44,25 +44,25 @@ void Container::selectPrevious() {
         return;
     }
 
-    int prev = selectedChild;
+    int prev = mSelectedChild;
     do {
-        prev = (prev - 1 + children.size()) % children.size();
-    } while (!children[prev]->isSelectable());
+        prev = (prev - 1 + mChildren.size()) % mChildren.size();
+    } while (!mChildren[prev]->isSelectable());
 
     select(prev);
 }
 
 Container::Container()
-: children()
-, selectedChild(-1) {
+: mChildren()
+, mSelectedChild(-1) {
 
 }
 
 void Container::pushBack(std::shared_ptr<Component> component) {
-    children.push_back(component);
+    mChildren.push_back(component);
 
     if (!hasSelection() && component->isSelectable()) {
-        select(children.size() - 1);
+        select(mChildren.size() - 1);
     }
 }
 
@@ -71,8 +71,8 @@ bool Container::isSelectable() const {
 }
 
 void Container::handleEvent(const sf::Event& event) {
-    if (hasSelection() && children[selectedChild]->isActive()) {
-        children[selectedChild]->handleEvent(event);
+    if (hasSelection() && mChildren[mSelectedChild]->isActive()) {
+        mChildren[mSelectedChild]->handleEvent(event);
     } else if (event.type == sf::Event::KeyPressed) {
         switch (event.key.code) {
             case sf::Keyboard::Up:
@@ -85,7 +85,7 @@ void Container::handleEvent(const sf::Event& event) {
 
             case sf::Keyboard::Return:
                 if (hasSelection()) {
-                    children[selectedChild]->activate();
+                    mChildren[mSelectedChild]->activate();
                 }
                 break;
         }

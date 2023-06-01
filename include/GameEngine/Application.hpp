@@ -10,13 +10,13 @@
 
 class Application {
 private:
-    static const sf::Time deltaTime;
+    static const sf::Time mDeltaTime;
 
-    sf::RenderWindow window;
-    TextureHolder textures;
-    FontHolder fonts;
+    sf::RenderWindow mWindow;
+    TextureHolder mTextures;
+    FontHolder mFonts;
 
-    SceneList sceneList;
+    SceneList mSceneList;
 
     void processEvents();
     void update(sf::Time dt);
@@ -33,7 +33,7 @@ public:
 
 template <typename T>
 void Application::registerScene(unsigned int sceneId) {
-    sceneList.registerScene<T>(sceneId);
+    mSceneList.registerScene<T>(sceneId);
 }
 
 #endif //TEST_GAME_APPLICATION_HPP

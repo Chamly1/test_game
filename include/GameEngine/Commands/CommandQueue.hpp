@@ -7,7 +7,7 @@
 
 class CommandQueue {
 private:
-    std::queue<Command> queue;
+    std::queue<Command> mQueue;
 
 public:
     void push(const Command& command);

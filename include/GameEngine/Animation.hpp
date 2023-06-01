@@ -8,13 +8,13 @@
 
 class Animation : public sf::Drawable, public sf::Transformable {
 private:
-    sf::Sprite sprite;
-    sf::IntRect firstFrame;
-    int numFrames;
-    int currentFrame;
-    sf::Time frameDuration;
-    sf::Time elapsedTime;
-    bool repeat;
+    sf::Sprite mSprite;
+    sf::IntRect mFirstFrame;
+    int mNumFrames;
+    int mCurrentFrame;
+    sf::Time mFrameDuration;
+    sf::Time mElapsedTime;
+    bool mRepeat;
 
     void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 

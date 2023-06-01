@@ -21,11 +21,11 @@ private:
         unsigned int sceneId;
     };
 
-    std::list<std::unique_ptr<Scene>> sceneList;
-    std::list<PendingChange> pendingChangeList;
+    std::list<std::unique_ptr<Scene>> mSceneList;
+    std::list<PendingChange> mPendingChangeList;
 
-    SceneContext sceneContext;
-    std::map<unsigned int, std::function<std::unique_ptr<Scene>()>> sceneFactory;
+    SceneContext mSceneContext;
+    std::map<unsigned int, std::function<std::unique_ptr<Scene>()>> mSceneFactory;
 
     std::unique_ptr<Scene> createScene(unsigned int sceneId);
     void applyPendingChanges();
@@ -50,8 +50,8 @@ public:
 
 template <typename T>
 void SceneList::registerScene(unsigned int sceneId) {
-    sceneFactory[sceneId] = [this] () {
-        return std::unique_ptr<Scene>(new T(sceneContext, *this));
+    mSceneFactory[sceneId] = [this] () {
+        return std::unique_ptr<Scene>(new T(mSceneContext, *this));
     };
 }
 

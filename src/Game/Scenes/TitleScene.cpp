@@ -10,9 +10,9 @@ static const float textBlinkingPeriodSec = 0.75f;
 
 TitleScene::TitleScene(SceneContext ctx, SceneList& sceneList)
 : Scene(ctx, sceneList)
-, text()
-, showText(true)
-, textEffectTime() {
+, mText()
+, mShowText(true)
+, mTextEffectTime() {
 
     ctx.fonts->load(FontIdentifier::Main, "resources/fonts/game_over.ttf");
     //TODO this texture must load somewhere else but not here
@@ -20,24 +20,24 @@ TitleScene::TitleScene(SceneContext ctx, SceneList& sceneList)
                        "resources/textures/Minifantasy_Userinterface_Assets/Menus/Selectors/Minifantasy_GuiSelectors.png",
                        sf::IntRect(0, 16 * 20, 16, 16));
 
-    text.setFont(ctx.fonts->get(FontIdentifier::Main));
-    text.setString("Press any key to play");
-    text.setCharacterSize(64);
-    setOriginToCenter(text);
-    text.setPosition(ctx.window->getView().getSize() / 2.f);
+    mText.setFont(ctx.fonts->get(FontIdentifier::Main));
+    mText.setString("Press any key to play");
+    mText.setCharacterSize(64);
+    setOriginToCenter(mText);
+    mText.setPosition(ctx.window->getView().getSize() / 2.f);
 }
 void TitleScene::draw() {
-    if (showText) {
-        getSceneContext().window->draw(text);
+    if (mShowText) {
+        getSceneContext().window->draw(mText);
     }
 }
 
 bool TitleScene::update(sf::Time dt) {
-    textEffectTime += dt;
+    mTextEffectTime += dt;
 
-    if (textEffectTime.asSeconds() >= textBlinkingPeriodSec) {
-        showText = !showText;
-        textEffectTime -= sf::seconds(textBlinkingPeriodSec);
+    if (mTextEffectTime.asSeconds() >= textBlinkingPeriodSec) {
+        mShowText = !mShowText;
+        mTextEffectTime -= sf::seconds(textBlinkingPeriodSec);
     }
 
     return false;

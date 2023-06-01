@@ -7,30 +7,30 @@ namespace GUI {
 
 void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     states.transform *= getTransform();
-    target.draw(text, states);
+    target.draw(mText, states);
     if (isSelected()) {
-        target.draw(selector, states);
+        target.draw(mSelector, states);
     }
 }
 
 void Button::correctSelector() {
-    selector.setPosition(text.getPosition());
-    selector.move(text.getLocalBounds().width * -0.5f, 0.f);
-    selector.setScale(text.getLocalBounds().height * 2 / selector.getTexture()->getSize().x,
-                      text.getLocalBounds().height * 2 / selector.getTexture()->getSize().y);
+    mSelector.setPosition(mText.getPosition());
+    mSelector.move(mText.getLocalBounds().width * -0.5f, 0.f);
+    mSelector.setScale(mText.getLocalBounds().height * 2 / mSelector.getTexture()->getSize().x,
+                       mText.getLocalBounds().height * 2 / mSelector.getTexture()->getSize().y);
 }
 
 Button::Button(const std::string& text, const sf::Font& font, const sf::Texture& selectorTexture)
-: callback()
-, text(text, font)
-, selector(selectorTexture) {
-    setOriginToCenter(this->text);
-    setOriginToCenter(selector);
+: mCallback()
+, mText(text, font)
+, mSelector(selectorTexture) {
+    setOriginToCenter(this->mText);
+    setOriginToCenter(mSelector);
     correctSelector();
 }
 
 void Button::setCallback(std::function<void()> callback) {
-    this->callback = std::move(callback);
+    this->mCallback = std::move(callback);
 }
 
 bool Button::isSelectable() const {
@@ -38,8 +38,8 @@ bool Button::isSelectable() const {
 }
 
 void Button::activate() {
-    if (callback) {
-        callback();
+    if (mCallback) {
+        mCallback();
     }
 }
 
@@ -48,8 +48,8 @@ void Button::handleEvent(const sf::Event& event) {
 }
 
 void Button::setCharacterSize(unsigned int size) {
-    text.setCharacterSize(size);
-    setOriginToCenter(text);
+    mText.setCharacterSize(size);
+    setOriginToCenter(mText);
     correctSelector();
 }
 

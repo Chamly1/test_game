@@ -11,10 +11,10 @@
  */
 class AnimationManager : public sf::Drawable {
 private:
-    std::shared_ptr<Animation> currentAnimation;
-    AnimationType currentAnimationType;
-    DirectionType currentDirectionType;
-    std::unordered_map<AnimationType, std::unordered_map<DirectionType, std::shared_ptr<Animation>>> animations;
+    std::shared_ptr<Animation> mCurrentAnimation;
+    AnimationType mCurrentAnimationType;
+    DirectionType mCurrentDirectionType;
+    std::unordered_map<AnimationType, std::unordered_map<DirectionType, std::shared_ptr<Animation>>> mAnimations;
 
     void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 

@@ -3,12 +3,12 @@
 #include <cmath>
 
 EntityMover::EntityMover(Direction direction)
-: direction(direction) {
+: mDirection(direction) {
 
 }
 void EntityMover::operator() (SceneNode& node, sf::Time dt) const {
     Entity& entity = static_cast<Entity&>(node);
-    entity.accelerateTo(direction);
+    entity.accelerateTo(mDirection);
 }
 
 void Entity::resetVelocity() {

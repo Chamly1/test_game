@@ -42,8 +42,8 @@ std::shared_ptr<GUI::ButtonList> PauseScene::createButtons(const sf::Font& font,
 
 PauseScene::PauseScene(SceneContext ctx, SceneList& sceneList)
 : Scene(ctx, sceneList)
-, guiContainer()
-, backgroundShape() {
+, mGuiContainer()
+, mBackgroundShape() {
     const sf::Font& mainFont = ctx.fonts->get(FontIdentifier::Main);
     const sf::Texture& selectorTexture = ctx.textures->get(TextureIdentifier::MenuSelector);
 
@@ -52,18 +52,18 @@ PauseScene::PauseScene(SceneContext ctx, SceneList& sceneList)
     std::shared_ptr<GUI::ButtonList> buttons = createButtons(mainFont, selectorTexture);
     buttons->activate();
 
-    guiContainer.pushBack(title);
-    guiContainer.pushBack(buttons);
+    mGuiContainer.pushBack(title);
+    mGuiContainer.pushBack(buttons);
 
-    backgroundShape.setFillColor(sf::Color(0, 0, 0, 150));
-    backgroundShape.setSize(ctx.window->getView().getSize());
+    mBackgroundShape.setFillColor(sf::Color(0, 0, 0, 150));
+    mBackgroundShape.setSize(ctx.window->getView().getSize());
 }
 
 void PauseScene::draw() {
     sf::RenderWindow& window = *getSceneContext().window;
 
-    window.draw(backgroundShape);
-    window.draw(guiContainer);
+    window.draw(mBackgroundShape);
+    window.draw(mGuiContainer);
 }
 
 bool PauseScene::update(sf::Time dt) {
@@ -71,7 +71,7 @@ bool PauseScene::update(sf::Time dt) {
 }
 
 bool PauseScene::handleEvent(const sf::Event& event) {
-    guiContainer.handleEvent(event);
+    mGuiContainer.handleEvent(event);
 
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
         requestListPopBack();

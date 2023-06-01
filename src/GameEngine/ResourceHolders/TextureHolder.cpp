@@ -9,13 +9,13 @@ void TextureHolder::load(unsigned int id, const std::string& filePath, const sf:
         throw std::runtime_error("TextureHolder::load - Failed to load " + filePath);
     }
 
-    auto inserted = textureMap.insert(std::make_pair(id, std::move(texture)));
+    auto inserted = mTextureMap.insert(std::make_pair(id, std::move(texture)));
     assert(inserted.second);
 }
 
 const sf::Texture& TextureHolder::get(unsigned int id) const {
-    auto found = textureMap.find(id);
-    assert(found != textureMap.end());
+    auto found = mTextureMap.find(id);
+    assert(found != mTextureMap.end());
 
     return *found->second;
 }

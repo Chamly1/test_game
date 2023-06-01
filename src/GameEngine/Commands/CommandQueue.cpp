@@ -1,15 +1,15 @@
 #include "GameEngine/Commands/CommandQueue.hpp"
 
 void CommandQueue::push(const Command& command) {
-    queue.push(command);
+    mQueue.push(command);
 }
 
 Command CommandQueue::pop() {
-    Command command = queue.front();
-    queue.pop();
+    Command command = mQueue.front();
+    mQueue.pop();
     return command;
 }
 
 bool CommandQueue::isEmpty() const {
-    return queue.empty();
+    return mQueue.empty();
 }

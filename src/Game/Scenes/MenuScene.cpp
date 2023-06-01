@@ -39,7 +39,7 @@ std::shared_ptr<GUI::ButtonList> MenuScene::createButtons(const sf::Font& font, 
 
 MenuScene::MenuScene(SceneContext ctx, SceneList& sceneList)
 : Scene(ctx, sceneList)
-, guiContainer() {
+, mGuiContainer() {
 
     const sf::Font& mainFont = ctx.fonts->get(FontIdentifier::Main);
     const sf::Texture& selectorTexture = ctx.textures->get(TextureIdentifier::MenuSelector);
@@ -49,13 +49,13 @@ MenuScene::MenuScene(SceneContext ctx, SceneList& sceneList)
     std::shared_ptr<GUI::ButtonList> buttons = createButtons(mainFont, selectorTexture);
     buttons->activate();
 
-    guiContainer.pushBack(title);
-    guiContainer.pushBack(buttons);
+    mGuiContainer.pushBack(title);
+    mGuiContainer.pushBack(buttons);
 }
 
 void MenuScene::draw() {
     sf::RenderWindow& window = *getSceneContext().window;
-    window.draw(guiContainer);
+    window.draw(mGuiContainer);
 }
 
 bool MenuScene::update(sf::Time dt) {
@@ -63,7 +63,7 @@ bool MenuScene::update(sf::Time dt) {
 }
 
 bool MenuScene::handleEvent(const sf::Event& event) {
-    guiContainer.handleEvent(event);
+    mGuiContainer.handleEvent(event);
 
     return false;
 }

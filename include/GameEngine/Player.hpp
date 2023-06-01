@@ -10,10 +10,10 @@
 class Player {
 private:
     // map<key, player action id>
-    std::map<sf::Keyboard::Key, unsigned int> keyBinding;
+    std::map<sf::Keyboard::Key, unsigned int> mKeyBinding;
     // map<player action id, command>
-    std::map<unsigned int, Command> playerActionBinding;
-    std::map<unsigned int, bool> isRealtimePlayerAction;
+    std::map<unsigned int, Command> mPlayerActionBinding;
+    std::map<unsigned int, bool> mIsRealtimePlayerAction;
 
     void initialKeyBinding();
     void initialPlayerActionBinding();

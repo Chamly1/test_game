@@ -4,28 +4,28 @@
 static const sf::Vector2f noMoveAreaSize(16.f * 30, 9.f * 30);
 
 PlayerCamera::PlayerCamera(const sf::View& view)
-: view(view)
-, player(nullptr) {
+: mView(view)
+, mPlayer(nullptr) {
 
 }
 
 void PlayerCamera::setPlayer(SceneNode *player) {
-    this->player = player;
+    this->mPlayer = player;
 }
 
 sf::View PlayerCamera::getView() {
-    return view;
+    return mView;
 }
 
 void PlayerCamera::resetCenter() {
-    view.setCenter(0.f, 0.f);
+    mView.setCenter(0.f, 0.f);
 }
 
 void PlayerCamera::resetCenterToPlayer() {
-    if (!player) {
+    if (!mPlayer) {
         return;
     }
-    view.setCenter(player->getWorldPosition());
+    mView.setCenter(mPlayer->getWorldPosition());
 }
 
 static float calcCameraMoveDelta(float relativePlayerCoordinate, float halfNoMoveSize) {
@@ -42,18 +42,18 @@ static float calcCameraMoveDelta(float relativePlayerCoordinate, float halfNoMov
 }
 
 void PlayerCamera::update(sf::Time dt) {
-    if (!player) {
+    if (!mPlayer) {
         return;
     }
 
-    sf::Vector2f viewCenter = view.getCenter();
+    sf::Vector2f viewCenter = mView.getCenter();
     // player position relatively to the viewCenter
     sf::Vector2f RelativePlayerPos;
 
-    RelativePlayerPos = player->getWorldPosition() - viewCenter;
+    RelativePlayerPos = mPlayer->getWorldPosition() - viewCenter;
 
     viewCenter.x += calcCameraMoveDelta(RelativePlayerPos.x, noMoveAreaSize.x / 2.f);
     viewCenter.y += calcCameraMoveDelta(RelativePlayerPos.y, noMoveAreaSize.y / 2.f);
 
-    view.setCenter(viewCenter);
+    mView.setCenter(viewCenter);
 }

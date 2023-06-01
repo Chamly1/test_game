@@ -9,7 +9,7 @@ namespace GUI {
 
 class Label : public Component {
 private:
-    sf::Text text;
+    sf::Text mText;
 
     void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 

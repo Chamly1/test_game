@@ -12,11 +12,11 @@ namespace GUI {
  */
 class ButtonList : public Component {
 private:
-    Container buttons;
-    const sf::Font& font;
-    const sf::Texture& selectorTexture;
-    unsigned int characterSize;
-    int buttonsCount;
+    Container mButtons;
+    const sf::Font& mFont;
+    const sf::Texture& mSelectorTexture;
+    unsigned int mCharacterSize;
+    int mButtonsCount;
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 

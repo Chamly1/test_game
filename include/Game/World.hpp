@@ -17,13 +17,13 @@ private:
         LayerCount
     };
 
-    sf::RenderWindow& window;
-    PlayerCamera playerCamera;
-    TextureHolder textures;
+    sf::RenderWindow& mWindow;
+    PlayerCamera mPlayerCamera;
+    TextureHolder mTextures;
 
-    SceneNode sceneGraph;
-    std::array<SceneNode*, LayerCount> sceneLayers;
-    CommandQueue commandQueue;
+    SceneNode mSceneGraph;
+    std::array<SceneNode*, LayerCount> mSceneLayers;
+    CommandQueue mCommandQueue;
 
     void loadTextures();
     void buildScene();

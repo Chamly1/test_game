@@ -11,8 +11,8 @@
  */
 class PlayerCamera {
 private:
-    sf::View view;
-    SceneNode *player;
+    sf::View mView;
+    SceneNode *mPlayer;
 
 public:
     explicit PlayerCamera(const sf::View& view);

@@ -7,8 +7,8 @@
 
 class GameScene : public Scene {
 private:
-    World world;
-    Player player;
+    World mWorld;
+    Player mPlayer;
 
     void bindPlayerActions();
 

@@ -2,24 +2,24 @@
 #include "GameEngine/Scenes/SceneList.hpp"
 
 void Scene::requestListPushBack(unsigned int sceneId) {
-    sceneList->pushBack(sceneId);
+    mSceneList->pushBack(sceneId);
 }
 
 void Scene::requestListPopBack() {
-    sceneList->popBack();
+    mSceneList->popBack();
 }
 
 void Scene::requestListClear() {
-    sceneList->clear();
+    mSceneList->clear();
 }
 
 SceneContext Scene::getSceneContext() const {
-    return ctx;
+    return mCtx;
 }
 
 Scene::Scene(SceneContext ctx, SceneList& sceneList)
-: ctx(ctx)
-, sceneList(&sceneList) {
+: mCtx(ctx)
+, mSceneList(&sceneList) {
 
 }
 

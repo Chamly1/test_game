@@ -9,7 +9,7 @@
 std::unordered_map<UnitType, UnitData> unitData = initUnitData();
 
 void Unit::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const {
-    target.draw(animationManager, states);
+    target.draw(mAnimationManager, states);
 }
 
 void Unit::updateCurrent(sf::Time dt) {
@@ -23,25 +23,25 @@ void Unit::updateCurrent(sf::Time dt) {
     }
 
     DirectionType newDirectionType;
-    newDirectionType = moveVelocityToAnimationDirection(velocity, animationManager.getCurrentDirectionType());
+    newDirectionType = moveVelocityToAnimationDirection(velocity, mAnimationManager.getCurrentDirectionType());
     Entity::updateCurrent(dt);
 
-    if (animationManager.getCurrentAnimationType() != newAnimationType ||
-        animationManager.getCurrentDirectionType() != newDirectionType) {
-        animationManager.setAnimation(newAnimationType, newDirectionType);
+    if (mAnimationManager.getCurrentAnimationType() != newAnimationType ||
+        mAnimationManager.getCurrentDirectionType() != newDirectionType) {
+        mAnimationManager.setAnimation(newAnimationType, newDirectionType);
 //        setOriginToCenter(animation);
     }
 
-    animationManager.update(dt);
+    mAnimationManager.update(dt);
 }
 
 Unit::Unit(UnitType unitType, const TextureHolder& textures)
 : Entity(unitData[unitType].baseSpeed)
-, unitType(unitType)
-, animationManager(textures, unitData[unitType]) {
+, mUnitType(unitType)
+, mAnimationManager(textures, unitData[unitType]) {
     setCollisionBoxSize(unitData[unitType].collisionBoxSize);
     setCollisionBoxOrigin(unitData[unitType].collisionBoxOrigin);
-//    animationManager.setAnimation(AnimationType::Idle, DirectionType::BottomRight);
+//    mAnimationManager.setAnimation(AnimationType::Idle, DirectionType::BottomRight);
 //    setOriginToCenter(animation);
 }
 

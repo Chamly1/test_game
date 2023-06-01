@@ -10,8 +10,8 @@ namespace GUI {
 
 class Container : public Component {
 private:
-    std::vector<std::shared_ptr<Component>> children;
-    int selectedChild;
+    std::vector<std::shared_ptr<Component>> mChildren;
+    int mSelectedChild;
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 

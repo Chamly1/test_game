@@ -8,7 +8,7 @@
 
 class MenuScene : public Scene {
 private:
-    GUI::Container guiContainer;
+    GUI::Container mGuiContainer;
 
     std::shared_ptr<GUI::Label> createTitle(const sf::Font& font);
     std::shared_ptr<GUI::ButtonList> createButtons(const sf::Font& font, const sf::Texture& selectorTexture);

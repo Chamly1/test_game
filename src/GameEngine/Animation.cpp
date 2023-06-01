@@ -5,53 +5,53 @@
 
 void Animation::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     states.transform *= getTransform();
-    target.draw(sprite, states);
+    target.draw(mSprite, states);
 }
 
 Animation::Animation()
-: sprite()
-, firstFrame()
-, numFrames(0)
-, currentFrame(0)
-, frameDuration(sf::Time::Zero)
-, elapsedTime(sf::Time::Zero)
-, repeat(false) {
+: mSprite()
+, mFirstFrame()
+, mNumFrames(0)
+, mCurrentFrame(0)
+, mFrameDuration(sf::Time::Zero)
+, mElapsedTime(sf::Time::Zero)
+, mRepeat(false) {
 
 }
 
 Animation::Animation(const sf::Texture& texture, sf::IntRect firstFrame, int numFrames, sf::Time frameDuration, bool repeat)
-: sprite(texture)
-, firstFrame(firstFrame)
-, numFrames(numFrames)
-, currentFrame(0)
-, frameDuration(frameDuration)
-, elapsedTime(sf::Time::Zero)
-, repeat(repeat) {
+: mSprite(texture)
+, mFirstFrame(firstFrame)
+, mNumFrames(numFrames)
+, mCurrentFrame(0)
+, mFrameDuration(frameDuration)
+, mElapsedTime(sf::Time::Zero)
+, mRepeat(repeat) {
 
 }
 
 void Animation::init(const sf::Texture& texture, sf::IntRect firstFrame, int numFrames, sf::Time frameDuration, bool repeat) {
-    this->sprite.setTexture(texture);
-    this->firstFrame = firstFrame;
-    this->numFrames = numFrames;
-    this->currentFrame = 0;
-    this->frameDuration = frameDuration;
-    this->elapsedTime = sf::Time::Zero;
-    this->repeat = repeat;
+    this->mSprite.setTexture(texture);
+    this->mFirstFrame = firstFrame;
+    this->mNumFrames = numFrames;
+    this->mCurrentFrame = 0;
+    this->mFrameDuration = frameDuration;
+    this->mElapsedTime = sf::Time::Zero;
+    this->mRepeat = repeat;
 }
 
 void Animation::update(sf::Time dt) {
-    elapsedTime += dt;
+    mElapsedTime += dt;
 
     sf::IntRect textureRect;
-    if (currentFrame == 0) {
-        textureRect = firstFrame;
+    if (mCurrentFrame == 0) {
+        textureRect = mFirstFrame;
     } else {
-        textureRect = sprite.getTextureRect();
+        textureRect = mSprite.getTextureRect();
     }
 
-    sf::Vector2i textureBounds(sprite.getTexture()->getSize());
-    while (elapsedTime >= frameDuration && (currentFrame <= numFrames || repeat)) {
+    sf::Vector2i textureBounds(mSprite.getTexture()->getSize());
+    while (mElapsedTime >= mFrameDuration && (mCurrentFrame <= mNumFrames || mRepeat)) {
         textureRect.left += textureRect.width;
 
         // If we reach the end of the texture, move to the next line
@@ -60,24 +60,24 @@ void Animation::update(sf::Time dt) {
 //            textureRect.top += textureRect.height;
 //        }
 
-        elapsedTime -= frameDuration;
-        if (repeat) {
-            currentFrame = (currentFrame + 1) % numFrames;
-            if (currentFrame == 0) {
-                textureRect = firstFrame;
+        mElapsedTime -= mFrameDuration;
+        if (mRepeat) {
+            mCurrentFrame = (mCurrentFrame + 1) % mNumFrames;
+            if (mCurrentFrame == 0) {
+                textureRect = mFirstFrame;
             }
         } else {
-            currentFrame++;
+            mCurrentFrame++;
         }
     }
 
-    sprite.setTextureRect(textureRect);
+    mSprite.setTextureRect(textureRect);
 }
 
 bool Animation::isFinished() const {
-    return currentFrame >= numFrames;
+    return mCurrentFrame >= mNumFrames;
 }
 
 sf::FloatRect Animation::getLocalBounds() const {
-    return sf::FloatRect(getOrigin(), sf::Vector2f(firstFrame.width, firstFrame.height));
+    return sf::FloatRect(getOrigin(), sf::Vector2f(mFirstFrame.width, mFirstFrame.height));
 }

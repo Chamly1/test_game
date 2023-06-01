@@ -7,26 +7,26 @@ namespace GUI {
 
 void ButtonList::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     states.transform *= getTransform();
-    target.draw(buttons, states);
+    target.draw(mButtons, states);
 }
 
 ButtonList::ButtonList(unsigned int characterSize, const sf::Font& font, const sf::Texture& selectorTexture)
-: buttons()
-, font(font)
-, selectorTexture(selectorTexture)
-, characterSize(characterSize)
-, buttonsCount(0) {
+: mButtons()
+, mFont(font)
+, mSelectorTexture(selectorTexture)
+, mCharacterSize(characterSize)
+, mButtonsCount(0) {
 
 }
 
 void ButtonList::addButton(const std::string& text, std::function<void()> callback) {
-    std::shared_ptr<GUI::Button> button = std::make_shared<GUI::Button>(text, font, selectorTexture);
-    button->move(0.f, buttonsCount * (characterSize / 2));
-    button->setCharacterSize(characterSize);
+    std::shared_ptr<GUI::Button> button = std::make_shared<GUI::Button>(text, mFont, mSelectorTexture);
+    button->move(0.f, mButtonsCount * (mCharacterSize / 2));
+    button->setCharacterSize(mCharacterSize);
     button->setCallback(callback);
 
-    buttons.pushBack(button);
-    buttonsCount++;
+    mButtons.pushBack(button);
+    mButtonsCount++;
 }
 
 bool ButtonList::isSelectable() const {
@@ -34,7 +34,7 @@ bool ButtonList::isSelectable() const {
 }
 
 void ButtonList::handleEvent(const sf::Event& event) {
-    buttons.handleEvent(event);
+    mButtons.handleEvent(event);
 }
 
 }

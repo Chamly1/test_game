@@ -8,7 +8,7 @@
 
 class TextureHolder {
 private:
-    std::map<unsigned int, std::unique_ptr<sf::Texture>> textureMap;
+    std::map<unsigned int, std::unique_ptr<sf::Texture>> mTextureMap;
 
 public:
     void load(unsigned int id, const std::string& filePath, const sf::IntRect& area = sf::IntRect());

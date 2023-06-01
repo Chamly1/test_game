@@ -14,7 +14,7 @@ void SceneNode::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     drawNodePosition(target, states);
 #endif
 
-    for (const std::unique_ptr<SceneNode>& child : children) {
+    for (const std::unique_ptr<SceneNode>& child : mChildren) {
         child->draw(target, states);
     }
 }
@@ -28,7 +28,7 @@ void SceneNode::updateCurrent(sf::Time dt) {
 }
 
 void SceneNode::updateChildren(sf::Time dt) {
-    for (const std::unique_ptr<SceneNode>& child : children) {
+    for (const std::unique_ptr<SceneNode>& child : mChildren) {
         child->update(dt);
     }
 }
@@ -55,28 +55,28 @@ void SceneNode::drawNodePosition(sf::RenderTarget& target, sf::RenderStates stat
 }
 
 SceneNode::SceneNode()
-: children()
-, parent(nullptr)
-, sceneNodeCategory(0)
-, collisionBoxSize()
-, collisionBoxOrigin() {
+: mChildren()
+, mParent(nullptr)
+, mSceneNodeCategory(0)
+, mCollisionBoxSize()
+, mCollisionBoxOrigin() {
 
 }
 
 void SceneNode::attachChild(std::unique_ptr<SceneNode> child) {
-    child->parent = this;
-    children.push_back(std::move(child));
+    child->mParent = this;
+    mChildren.push_back(std::move(child));
 }
 
 std::unique_ptr<SceneNode> SceneNode::detachChild(const SceneNode& node) {
-    auto found = std::find_if(children.begin(), children.end(),
+    auto found = std::find_if(mChildren.begin(), mChildren.end(),
                               [&] (std::unique_ptr<SceneNode>& p) -> bool {return p.get() == &node;});
 
-    assert(found != children.end());
+    assert(found != mChildren.end());
 
     std::unique_ptr<SceneNode> res = std::move(*found);
-    res->parent = nullptr;
-    children.erase(found);
+    res->mParent = nullptr;
+    mChildren.erase(found);
     return res;
 }
 
@@ -87,7 +87,7 @@ void SceneNode::update(sf::Time dt) {
 
 sf::Transform SceneNode::getWorldTransform() const {
     sf::Transform transform = sf::Transform::Identity;
-    for (const SceneNode* node = this; node != nullptr; node = node->parent) {
+    for (const SceneNode* node = this; node != nullptr; node = node->mParent) {
         transform = node->getTransform() * transform;
     }
     return transform;
@@ -98,33 +98,33 @@ sf::Vector2f SceneNode::getWorldPosition() const {
 }
 
 unsigned int SceneNode::getSceneNodeCategory() const {
-    return sceneNodeCategory;
+    return mSceneNodeCategory;
 }
 
 void SceneNode::addSceneNodeCategory(unsigned int sceneNodeCategory) {
-    this->sceneNodeCategory |= sceneNodeCategory;
+    this->mSceneNodeCategory |= sceneNodeCategory;
 }
 
 void SceneNode::onCommand(const Command& command, sf::Time dt) {
-    if (command.sceneNodeCategory & sceneNodeCategory) {
+    if (command.sceneNodeCategory & mSceneNodeCategory) {
         command.action(*this, dt);
     }
 
-    for (const std::unique_ptr<SceneNode>& child : children) {
+    for (const std::unique_ptr<SceneNode>& child : mChildren) {
         child->onCommand(command, dt);
     }
 }
 
 void SceneNode::setCollisionBoxSize(sf::Vector2f collisionBoxSize) {
-    this->collisionBoxSize = collisionBoxSize;
+    this->mCollisionBoxSize = collisionBoxSize;
 }
 
 void SceneNode::setCollisionBoxOrigin(sf::Vector2f collisionBoxOrigin) {
-    this->collisionBoxOrigin = collisionBoxOrigin;
+    this->mCollisionBoxOrigin = collisionBoxOrigin;
 }
 
 sf::FloatRect SceneNode::getCollisionBoxRect() const {
-    return sf::FloatRect(getPosition() - collisionBoxOrigin, collisionBoxSize);
+    return sf::FloatRect(getPosition() - mCollisionBoxOrigin, mCollisionBoxSize);
 }
 
 bool SceneNode::isCollidable() const {
@@ -149,7 +149,7 @@ void SceneNode::checkNodeCollisions(SceneNode& nodeToCheck, std::set<std::pair<S
         collisionPairs.insert(std::minmax(this, &nodeToCheck));
     }
 
-    for (std::unique_ptr<SceneNode>& child : children) {
+    for (std::unique_ptr<SceneNode>& child : mChildren) {
         child->checkNodeCollisions(nodeToCheck, collisionPairs);
     }
 }
@@ -157,7 +157,7 @@ void SceneNode::checkNodeCollisions(SceneNode& nodeToCheck, std::set<std::pair<S
 void SceneNode::checkNodeAndChildrenCollisions(SceneNode& nodeToCheck, std::set<std::pair<SceneNode*, SceneNode*>>& collisionPairs) {
     checkNodeCollisions(nodeToCheck, collisionPairs);
 
-    for (std::unique_ptr<SceneNode>& child : nodeToCheck.children) {
+    for (std::unique_ptr<SceneNode>& child : nodeToCheck.mChildren) {
         checkNodeAndChildrenCollisions(*child, collisionPairs);
     }
 }

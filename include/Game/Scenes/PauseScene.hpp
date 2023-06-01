@@ -11,8 +11,8 @@
 
 class PauseScene : public Scene {
 private:
-    GUI::Container guiContainer;
-    sf::RectangleShape backgroundShape;
+    GUI::Container mGuiContainer;
+    sf::RectangleShape mBackgroundShape;
 
     std::shared_ptr<GUI::Label> createTitle(const sf::Font& font);
     std::shared_ptr<GUI::ButtonList> createButtons(const sf::Font& font, const sf::Texture& selectorTexture);

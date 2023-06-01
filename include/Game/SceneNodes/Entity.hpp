@@ -12,7 +12,7 @@ enum class Direction {
  */
 class EntityMover {
 private:
-    Direction direction;
+    Direction mDirection;
 
 public:
     EntityMover(Direction direction);

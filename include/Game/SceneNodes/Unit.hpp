@@ -7,8 +7,8 @@
 
 class Unit : public Entity {
 private:
-    UnitType unitType;
-    AnimationManager animationManager;
+    UnitType mUnitType;
+    AnimationManager mAnimationManager;
 
     virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
     virtual void updateCurrent(sf::Time dt);

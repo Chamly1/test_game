@@ -12,9 +12,9 @@ namespace GUI {
 
 class Button : public Component {
 private:
-    std::function<void()> callback;
-    sf::Text text;
-    sf::Sprite selector;
+    std::function<void()> mCallback;
+    sf::Text mText;
+    sf::Sprite mSelector;
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     void correctSelector();
