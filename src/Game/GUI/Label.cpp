@@ -1,5 +1,5 @@
-#include "Game/GUI/Label.h"
-#include "Game/Utils/Utils.h"
+#include "Game/GUI/Label.hpp"
+#include "Game/Utils/Utils.hpp"
 
 #include "SFML/Graphics/RenderTarget.hpp"
 

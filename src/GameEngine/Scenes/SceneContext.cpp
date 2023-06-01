@@ -1,4 +1,4 @@
-#include "GameEngine/Scenes/SceneContext.h"
+#include "GameEngine/Scenes/SceneContext.hpp"
 
 SceneContext::SceneContext(sf::RenderWindow& window, TextureHolder& textures, FontHolder& fonts)
 : window(&window)

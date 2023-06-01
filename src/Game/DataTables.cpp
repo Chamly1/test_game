@@ -1,5 +1,5 @@
-#include "Game/DataTables.h"
-#include "Game/ResourceHolders/TextureIdentifier.h"
+#include "Game/DataTables.hpp"
+#include "Game/ResourceHolders/TextureIdentifier.hpp"
 
 std::unordered_map<UnitType, UnitData> initUnitData() {
     std::unordered_map<UnitType, UnitData> data;

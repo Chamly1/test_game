@@ -1,5 +1,5 @@
-#include "GameEngine/Player.h"
-#include "GameEngine/SceneNodes/SceneNode.h"
+#include "GameEngine/Player.hpp"
+#include "GameEngine/SceneNodes/SceneNode.hpp"
 
 Player::Player()
 : keyBinding()

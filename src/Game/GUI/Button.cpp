@@ -1,5 +1,5 @@
-#include "Game/GUI/Button.h"
-#include "Game/Utils/Utils.h"
+#include "Game/GUI/Button.hpp"
+#include "Game/Utils/Utils.hpp"
 
 #include "SFML/Graphics/RenderTarget.hpp"
 

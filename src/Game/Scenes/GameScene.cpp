@@ -1,8 +1,8 @@
-#include "Game/Scenes/GameScene.h"
-#include "Game/SceneNodes/SceneNodeCategory.h"
-#include "Game/SceneNodes/Entity.h"
-#include "Game/PlayerActionIdentifiers.h"
-#include "Game/Scenes/SceneIdentifiers.h"
+#include "Game/Scenes/GameScene.hpp"
+#include "Game/SceneNodes/SceneNodeCategory.hpp"
+#include "Game/SceneNodes/Entity.hpp"
+#include "Game/PlayerActionIdentifiers.hpp"
+#include "Game/Scenes/SceneIdentifiers.hpp"
 
 void GameScene::bindPlayerActions() {
     Command command;

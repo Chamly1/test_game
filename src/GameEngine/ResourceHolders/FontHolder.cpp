@@ -1,4 +1,4 @@
-#include "GameEngine/ResourceHolders/FontHolder.h"
+#include "GameEngine/ResourceHolders/FontHolder.hpp"
 
 #include <stdexcept>
 #include <cassert>

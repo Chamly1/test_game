@@ -1,4 +1,4 @@
-#include "GameEngine/Utils/DebugLog.h"
+#include "GameEngine/Utils/DebugLog.hpp"
 
 #include "iostream"
 #include "sstream"

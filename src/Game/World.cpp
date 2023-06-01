@@ -1,10 +1,10 @@
-#include "Game/World.h"
-#include "Game/SceneNodes/SceneNodeCategory.h"
-#include "GameEngine/SceneNodes/SpriteNode.h"
-#include "Game/SceneNodes/Unit.h"
-#include "GameEngine/SceneNodes/CollidableNode.h"
-#include "Game/ResourceHolders/TextureIdentifier.h"
-#include "Game/Utils/MapGenerateUtils.h"
+#include "Game/World.hpp"
+#include "Game/SceneNodes/SceneNodeCategory.hpp"
+#include "GameEngine/SceneNodes/SpriteNode.hpp"
+#include "Game/SceneNodes/Unit.hpp"
+#include "GameEngine/SceneNodes/CollidableNode.hpp"
+#include "Game/ResourceHolders/TextureIdentifier.hpp"
+#include "Game/Utils/MapGenerateUtils.hpp"
 
 const int TILE_SIZE = 8;
 const int UNIT_SIZE = 32;

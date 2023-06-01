@@ -1,4 +1,4 @@
-#include "GameEngine/GUI/Container.h"
+#include "GameEngine/GUI/Container.hpp"
 
 #include "SFML/Graphics/RenderTarget.hpp"
 

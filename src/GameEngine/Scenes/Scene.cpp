@@ -1,5 +1,5 @@
-#include "GameEngine/Scenes/Scene.h"
-#include "GameEngine/Scenes/SceneList.h"
+#include "GameEngine/Scenes/Scene.hpp"
+#include "GameEngine/Scenes/SceneList.hpp"
 
 void Scene::requestListPushBack(unsigned int sceneId) {
     sceneList->pushBack(sceneId);

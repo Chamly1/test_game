@@ -1,4 +1,4 @@
-#include "GameEngine/Commands/CommandQueue.h"
+#include "GameEngine/Commands/CommandQueue.hpp"
 
 void CommandQueue::push(const Command& command) {
     queue.push(command);

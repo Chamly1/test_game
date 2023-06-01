@@ -1,5 +1,5 @@
-#include "Game/AnimationManager.h"
-#include "Game/Utils/Utils.h"
+#include "Game/AnimationManager.hpp"
+#include "Game/Utils/Utils.hpp"
 
 #include "SFML/Graphics/RenderTarget.hpp"
 

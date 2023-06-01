@@ -1,4 +1,4 @@
-#include "GameEngine/GUI/Component.h"
+#include "GameEngine/GUI/Component.hpp"
 
 namespace GUI {
 

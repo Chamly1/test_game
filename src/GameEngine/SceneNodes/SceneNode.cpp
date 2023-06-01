@@ -1,4 +1,4 @@
-#include "GameEngine/SceneNodes/SceneNode.h"
+#include "GameEngine/SceneNodes/SceneNode.hpp"
 
 #include "SFML/Graphics/RectangleShape.hpp"
 #include "SFML/Graphics/RenderTarget.hpp"

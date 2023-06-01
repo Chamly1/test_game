@@ -1,4 +1,4 @@
-#include "GameEngine/Scenes/SceneList.h"
+#include "GameEngine/Scenes/SceneList.hpp"
 
 #include <cassert>
 
