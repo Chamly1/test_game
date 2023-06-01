@@ -54,6 +54,29 @@ void SceneNode::drawNodePosition(sf::RenderTarget& target, sf::RenderStates stat
     target.draw(shape);
 }
 
+void SceneNode::checkNodeCollisions(SceneNode& nodeToCheck, std::set<std::pair<SceneNode*, SceneNode*>>& collisionPairs) {
+    if (!nodeToCheck.isCollidable()) {
+        return;
+    }
+
+    if (this != &nodeToCheck && isCollidable() && isIntersect(nodeToCheck)) {
+        // std::minmax() to avoid duplication
+        collisionPairs.insert(std::minmax(this, &nodeToCheck));
+    }
+
+    for (std::unique_ptr<SceneNode>& child : mChildren) {
+        child->checkNodeCollisions(nodeToCheck, collisionPairs);
+    }
+}
+
+void SceneNode::checkNodeAndChildrenCollisions(SceneNode& nodeToCheck, std::set<std::pair<SceneNode*, SceneNode*>>& collisionPairs) {
+    checkNodeCollisions(nodeToCheck, collisionPairs);
+
+    for (std::unique_ptr<SceneNode>& child : nodeToCheck.mChildren) {
+        checkNodeAndChildrenCollisions(*child, collisionPairs);
+    }
+}
+
 SceneNode::SceneNode()
 : mChildren()
 , mParent(nullptr)
@@ -137,29 +160,6 @@ bool SceneNode::isIntersect(SceneNode& intersectWith) const {
 
 void SceneNode::onCollision(SceneNode& collisionWith) {
 
-}
-
-void SceneNode::checkNodeCollisions(SceneNode& nodeToCheck, std::set<std::pair<SceneNode*, SceneNode*>>& collisionPairs) {
-    if (!nodeToCheck.isCollidable()) {
-        return;
-    }
-
-    if (this != &nodeToCheck && isCollidable() && isIntersect(nodeToCheck)) {
-        // std::minmax() to avoid duplication
-        collisionPairs.insert(std::minmax(this, &nodeToCheck));
-    }
-
-    for (std::unique_ptr<SceneNode>& child : mChildren) {
-        child->checkNodeCollisions(nodeToCheck, collisionPairs);
-    }
-}
-
-void SceneNode::checkNodeAndChildrenCollisions(SceneNode& nodeToCheck, std::set<std::pair<SceneNode*, SceneNode*>>& collisionPairs) {
-    checkNodeCollisions(nodeToCheck, collisionPairs);
-
-    for (std::unique_ptr<SceneNode>& child : nodeToCheck.mChildren) {
-        checkNodeAndChildrenCollisions(*child, collisionPairs);
-    }
 }
 
 void SceneNode::checkAllCollisions(std::set<std::pair<SceneNode*, SceneNode*>>& collisionPairs) {
