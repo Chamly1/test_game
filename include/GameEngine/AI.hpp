@@ -9,6 +9,7 @@ class AI {
 private:
 
 public:
+    virtual bool checkCompatibilities(SceneNode& sceneNode) = 0;
     virtual void update(sf::Time dt, SceneNode& sceneNode) = 0;
 };
 
