@@ -91,7 +91,7 @@ public:
     virtual void onCollision(SceneNode& collisionWith);
 
     /**
-     * Check collisions of each SceneNode with each in tree. Store detected collision to collisionPairs.
+     * Check collisions of each SceneNode with each in the tree. Stores detected collisions to collisionPairs.
      *
      * @param collisionPairs container where detected collision pairs are stored.
      */
