@@ -5,6 +5,7 @@
 #include "GameEngine/SceneNodes/CollidableNode.hpp"
 #include "Game/ResourceHolders/TextureIdentifier.hpp"
 #include "Game/Utils/MapGenerateUtils.hpp"
+#include "Game/SceneNodes/NPCs/ZombieNPC.hpp"
 
 const int TILE_SIZE = 8;
 const int UNIT_SIZE = 32;
@@ -79,7 +80,7 @@ void World::buildScene() {
     player->setPosition(100.f, 100.f);
     mSceneLayers[Layer::Units]->attachChild(std::move(player));
 
-    std::unique_ptr<Unit> enemy(new Unit(UnitType::Zombie, mTextures));
+    std::unique_ptr<ZombieNPC> enemy(new ZombieNPC(mTextures));
     enemy->addSceneNodeCategory(SceneNodeCategory::EnemyUnit);
     enemy->setPosition(200.f, 100.f);
     mSceneLayers[Layer::Units]->attachChild(std::move(enemy));
