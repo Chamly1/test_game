@@ -165,3 +165,28 @@ void SceneNode::onCollision(SceneNode& collisionWith) {
 void SceneNode::checkAllCollisions(std::set<std::pair<SceneNode*, SceneNode*>>& collisionPairs) {
     checkNodeAndChildrenCollisions(*this, collisionPairs);
 }
+
+const SceneNode* SceneNode::getRootPtr() const {
+    if (mParent == nullptr) {
+        return this;
+    } else {
+        return mParent->getRootPtr();
+    }
+}
+
+const SceneNode* SceneNode::getFirstNodePtrOfCategory(unsigned int sceneNodeCategory) const {
+    const SceneNode* resPtr = nullptr;
+
+    if (mSceneNodeCategory & sceneNodeCategory) {
+        return this;
+    } else {
+        for (const std::unique_ptr<SceneNode>& child : mChildren) {
+            resPtr = child->getFirstNodePtrOfCategory(sceneNodeCategory);
+            if (resPtr != nullptr) {
+                break;
+            }
+        }
+    }
+
+    return resPtr;
+}

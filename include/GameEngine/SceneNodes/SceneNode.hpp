@@ -96,6 +96,9 @@ public:
      * @param collisionPairs container where detected collision pairs are stored.
      */
     void checkAllCollisions(std::set<std::pair<SceneNode*, SceneNode*>>& collisionPairs);
+
+    const SceneNode* getRootPtr() const;
+    const SceneNode* getFirstNodePtrOfCategory(unsigned int sceneNodeCategory) const;
 };
 
 #endif //TEST_GAME_SCENENODE_HPP

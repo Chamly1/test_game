@@ -10,10 +10,9 @@ private:
     UnitType mUnitType;
     AnimationManager mAnimationManager;
 
-    virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
-
 protected:
     virtual void updateCurrent(sf::Time dt);
+    virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
 
 public:
     explicit Unit(UnitType unitType, const TextureHolder& textures);

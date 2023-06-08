@@ -3,8 +3,14 @@
 
 #include "GameEngine/AI.hpp"
 
+#include "SFML/Graphics/VertexArray.hpp"
+
 class ZombieAI : public AI {
 private:
+    const SceneNode* mPlayerNodePtr;
+
+protected:
+    void drawVisionRay(sf::RenderTarget& target, const SceneNode* zombieSceneNode) const;
 
 public:
     virtual bool checkCompatibilities(SceneNode& sceneNode);
