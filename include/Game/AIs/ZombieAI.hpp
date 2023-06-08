@@ -8,7 +8,7 @@ private:
 
 public:
     virtual bool checkCompatibilities(SceneNode& sceneNode);
-    virtual void update(sf::Time dt, SceneNode& sceneNode);
+    virtual void update(sf::Time dt, SceneNode* sceneNode);
 
 };
 

@@ -11,6 +11,8 @@ private:
     AnimationManager mAnimationManager;
 
     virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
+
+protected:
     virtual void updateCurrent(sf::Time dt);
 
 public:

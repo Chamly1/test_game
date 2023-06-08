@@ -9,7 +9,7 @@ bool ZombieAI::checkCompatibilities(SceneNode& sceneNode) {
     return isCompatible;
 }
 
-void ZombieAI::update(sf::Time dt, SceneNode& sceneNode) {
-    Entity& entity = static_cast<Entity&>(sceneNode);
-    entity.accelerateTo(Direction::Right);
+void ZombieAI::update(sf::Time dt, SceneNode* sceneNode) {
+    Entity* entity = static_cast<Entity*>(sceneNode);
+    entity->accelerateTo(Direction::Right);
 }
