@@ -7,7 +7,7 @@
 
 class ZombieAI : public AI {
 private:
-    const SceneNode* mPlayerNodePtr;
+    sf::Vector2f mPlayerPosition;
 
 protected:
     void drawVisionRay(sf::RenderTarget& target, const SceneNode* zombieSceneNode) const;

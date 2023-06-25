@@ -1,4 +1,5 @@
 #include "Game/SceneNodes/Entity.hpp"
+#include "Game/Utils/Utils.hpp"
 
 #include <cmath>
 
@@ -49,5 +50,13 @@ void Entity::accelerateTo(Direction direction) {
 
     if (velocity.x != 0 && velocity.y != 0) {
         velocity /= std::sqrt(2.f);
+    }
+}
+
+void Entity::accelerateTo(const sf::Vector2f& direction) {
+    if (direction.x == 0.f && direction.y == 0.f) {
+        velocity = sf::Vector2f(0.f, 0.f);
+    } else {
+        velocity = normalizeVector(direction) * baseSpeed;
     }
 }

@@ -53,3 +53,11 @@ DirectionType moveVelocityToAnimationDirection(const sf::Vector2f& velocity, Dir
 
     return newDirection;
 }
+
+float vectorMagnitude(const sf::Vector2f& vector) {
+    return sqrtf(vector.x * vector.x + vector.y * vector.y);
+}
+
+sf::Vector2f normalizeVector(const sf::Vector2f& vector) {
+    return vector / vectorMagnitude(vector);
+}

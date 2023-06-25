@@ -7,7 +7,7 @@
 void ZombieAI::drawVisionRay(sf::RenderTarget& target, const SceneNode* zombieSceneNode) const {
     sf::VertexArray visionRay(sf::PrimitiveType::Lines, 2);
     visionRay[0].position = zombieSceneNode->getPosition();
-    visionRay[1].position = mPlayerNodePtr->getPosition();
+    visionRay[1].position = mPlayerPosition;
 
     visionRay[0].color = sf::Color(255, 255, 255);
     visionRay[1].color = sf::Color(255, 255, 255);
@@ -24,9 +24,9 @@ bool ZombieAI::checkCompatibilities(SceneNode& sceneNode) {
 }
 
 void ZombieAI::update(sf::Time dt, SceneNode* sceneNode) {
-    Entity* entity = dynamic_cast<Entity*>(sceneNode);
-    entity->accelerateTo(Direction::Right);
-
     const SceneNode* sceneRoot = sceneNode->getRootPtr();
-    mPlayerNodePtr = sceneRoot->getFirstNodeOfCategoryPtr(SceneNodeCategory::Player);
+    mPlayerPosition = sceneRoot->getFirstNodeOfCategoryPtr(SceneNodeCategory::Player)->getPosition();
+
+    Entity* entity = dynamic_cast<Entity*>(sceneNode);
+    entity->accelerateTo(mPlayerPosition - entity->getPosition());
 }

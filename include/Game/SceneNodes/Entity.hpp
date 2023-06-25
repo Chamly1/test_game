@@ -33,6 +33,7 @@ protected:
 public:
     Entity(float baseSpeed);
     void accelerateTo(Direction direction);
+    void accelerateTo(const sf::Vector2f& direction);
 
 };
 
