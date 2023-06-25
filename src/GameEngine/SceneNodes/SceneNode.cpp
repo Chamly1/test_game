@@ -174,14 +174,14 @@ const SceneNode* SceneNode::getRootPtr() const {
     }
 }
 
-const SceneNode* SceneNode::getFirstNodePtrOfCategory(unsigned int sceneNodeCategory) const {
+const SceneNode* SceneNode::getFirstNodeOfCategoryPtr(unsigned int sceneNodeCategory) const {
     const SceneNode* resPtr = nullptr;
 
     if (mSceneNodeCategory & sceneNodeCategory) {
         return this;
     } else {
         for (const std::unique_ptr<SceneNode>& child : mChildren) {
-            resPtr = child->getFirstNodePtrOfCategory(sceneNodeCategory);
+            resPtr = child->getFirstNodeOfCategoryPtr(sceneNodeCategory);
             if (resPtr != nullptr) {
                 break;
             }

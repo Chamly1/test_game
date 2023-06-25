@@ -98,7 +98,7 @@ public:
     void checkAllCollisions(std::set<std::pair<SceneNode*, SceneNode*>>& collisionPairs);
 
     const SceneNode* getRootPtr() const;
-    const SceneNode* getFirstNodePtrOfCategory(unsigned int sceneNodeCategory) const;
+    const SceneNode* getFirstNodeOfCategoryPtr(unsigned int sceneNodeCategory) const;
 };
 
 #endif //TEST_GAME_SCENENODE_HPP

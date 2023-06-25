@@ -28,5 +28,5 @@ void ZombieAI::update(sf::Time dt, SceneNode* sceneNode) {
     entity->accelerateTo(Direction::Right);
 
     const SceneNode* sceneRoot = sceneNode->getRootPtr();
-    mPlayerNodePtr = sceneRoot->getFirstNodePtrOfCategory(SceneNodeCategory::Player);
+    mPlayerNodePtr = sceneRoot->getFirstNodeOfCategoryPtr(SceneNodeCategory::Player);
 }
