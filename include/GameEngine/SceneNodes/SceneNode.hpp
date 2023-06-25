@@ -17,37 +17,12 @@ private:
     SceneNode* mParent;
 
     unsigned int mSceneNodeCategory;
-    sf::Vector2f mCollisionBoxSize;
-    sf::Vector2f mCollisionBoxOrigin;
 
     void draw(sf::RenderTarget& target, sf::RenderStates states) const final;
     virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
     virtual void updateCurrent(sf::Time dt);
     void updateChildren(sf::Time dt);
-    void drawCollisionRec(sf::RenderTarget& target, sf::RenderStates states) const;
     void drawNodePosition(sf::RenderTarget& target, sf::RenderStates states) const;
-
-    /**
-     * Check collisions between:
-     *  - this node and nodeToCheck
-     *  - children(and all tree) of this node and nodeToCheck.
-     * Store detected collision to collisionPairs.
-     *
-     * @param nodeToCheck SceneNode with which collision check.
-     * @param collisionPairs container where detected collision pairs are stored.
-     */
-    void checkNodeCollisions(SceneNode& nodeToCheck, std::set<std::pair<SceneNode*, SceneNode*>>& collisionPairs);
-
-    /**
-     * Check collisions between:
-     *  - this node and nodeToCheck
-     *  - each child(and all tree) of this node and each child(and all tree) of nodeToCheck.
-     * Store detected collision to collisionPairs.
-     *
-     * @param nodeToCheck SceneNode with which collision check.
-     * @param collisionPairs container where detected collision pairs are stored.
-     */
-    void checkNodeAndChildrenCollisions(SceneNode& nodeToCheck, std::set<std::pair<SceneNode*, SceneNode*>>& collisionPairs);
 
 public:
     SceneNode();
@@ -82,23 +57,11 @@ public:
      */
     void onCommand(const Command& command, sf::Time dt);
 
-    void setCollisionBoxSize(sf::Vector2f collisionBoxSize);
-    void setCollisionBoxOrigin(sf::Vector2f collisionBoxOrigin);
-    sf::FloatRect getCollisionBoxRect() const;
-
-    virtual bool isCollidable() const;
-    bool isIntersect(SceneNode& intersectWith) const;
-    virtual void onCollision(SceneNode& collisionWith);
-
-    /**
-     * Check collisions of each SceneNode with each in the tree. Stores detected collisions to collisionPairs.
-     *
-     * @param collisionPairs container where detected collision pairs are stored.
-     */
-    void checkAllCollisions(std::set<std::pair<SceneNode*, SceneNode*>>& collisionPairs);
-
     const SceneNode* getRootPtr() const;
     const SceneNode* getFirstNodeOfCategoryPtr(unsigned int sceneNodeCategory) const;
+
+    friend void checkNodeCollisions(SceneNode& thisNode, SceneNode& nodeToCheck, std::set<std::pair<SceneNode*, SceneNode*>>& collisionPairs);
+    friend void checkNodeAndChildrenCollisions(SceneNode& thisNode, SceneNode& nodeToCheck, std::set<std::pair<SceneNode*, SceneNode*>>& collisionPairs);
 };
 
 #endif //TEST_GAME_SCENENODE_HPP

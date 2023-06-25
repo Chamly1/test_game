@@ -24,7 +24,7 @@ bool ZombieAI::checkCompatibilities(SceneNode& sceneNode) {
 }
 
 void ZombieAI::update(sf::Time dt, SceneNode* sceneNode) {
-    Entity* entity = static_cast<Entity*>(sceneNode);
+    Entity* entity = dynamic_cast<Entity*>(sceneNode);
     entity->accelerateTo(Direction::Right);
 
     const SceneNode* sceneRoot = sceneNode->getRootPtr();

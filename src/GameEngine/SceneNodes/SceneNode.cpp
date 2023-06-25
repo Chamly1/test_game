@@ -10,7 +10,6 @@ void SceneNode::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 
     drawCurrent(target, states);
 #ifndef NDEBUG
-    drawCollisionRec(target, states);
     drawNodePosition(target, states);
 #endif
 
@@ -33,18 +32,6 @@ void SceneNode::updateChildren(sf::Time dt) {
     }
 }
 
-void SceneNode::drawCollisionRec(sf::RenderTarget& target, sf::RenderStates states) const {
-    sf::RectangleShape shape;
-    sf::FloatRect collisionBoxRect = getCollisionBoxRect();
-    shape.setPosition(sf::Vector2f(collisionBoxRect.left, collisionBoxRect.top));
-    shape.setSize(sf::Vector2f(collisionBoxRect.width, collisionBoxRect.height));
-    shape.setFillColor(sf::Color(0, 255, 0, 50));
-    shape.setOutlineColor(sf::Color(0, 255, 0, 150));
-    shape.setOutlineThickness(1.f);
-
-    target.draw(shape);
-}
-
 void SceneNode::drawNodePosition(sf::RenderTarget& target, sf::RenderStates states) const {
     sf::RectangleShape shape;
     shape.setPosition(getPosition());
@@ -54,35 +41,10 @@ void SceneNode::drawNodePosition(sf::RenderTarget& target, sf::RenderStates stat
     target.draw(shape);
 }
 
-void SceneNode::checkNodeCollisions(SceneNode& nodeToCheck, std::set<std::pair<SceneNode*, SceneNode*>>& collisionPairs) {
-    if (!nodeToCheck.isCollidable()) {
-        return;
-    }
-
-    if (this != &nodeToCheck && isCollidable() && isIntersect(nodeToCheck)) {
-        // std::minmax() to avoid duplication
-        collisionPairs.insert(std::minmax(this, &nodeToCheck));
-    }
-
-    for (std::unique_ptr<SceneNode>& child : mChildren) {
-        child->checkNodeCollisions(nodeToCheck, collisionPairs);
-    }
-}
-
-void SceneNode::checkNodeAndChildrenCollisions(SceneNode& nodeToCheck, std::set<std::pair<SceneNode*, SceneNode*>>& collisionPairs) {
-    checkNodeCollisions(nodeToCheck, collisionPairs);
-
-    for (std::unique_ptr<SceneNode>& child : nodeToCheck.mChildren) {
-        checkNodeAndChildrenCollisions(*child, collisionPairs);
-    }
-}
-
 SceneNode::SceneNode()
 : mChildren()
 , mParent(nullptr)
-, mSceneNodeCategory(0)
-, mCollisionBoxSize()
-, mCollisionBoxOrigin() {
+, mSceneNodeCategory(0) {
 
 }
 
@@ -136,34 +98,6 @@ void SceneNode::onCommand(const Command& command, sf::Time dt) {
     for (const std::unique_ptr<SceneNode>& child : mChildren) {
         child->onCommand(command, dt);
     }
-}
-
-void SceneNode::setCollisionBoxSize(sf::Vector2f collisionBoxSize) {
-    this->mCollisionBoxSize = collisionBoxSize;
-}
-
-void SceneNode::setCollisionBoxOrigin(sf::Vector2f collisionBoxOrigin) {
-    this->mCollisionBoxOrigin = collisionBoxOrigin;
-}
-
-sf::FloatRect SceneNode::getCollisionBoxRect() const {
-    return sf::FloatRect(getPosition() - mCollisionBoxOrigin, mCollisionBoxSize);
-}
-
-bool SceneNode::isCollidable() const {
-    return false;
-}
-
-bool SceneNode::isIntersect(SceneNode& intersectWith) const {
-    return getCollisionBoxRect().intersects(intersectWith.getCollisionBoxRect());
-}
-
-void SceneNode::onCollision(SceneNode& collisionWith) {
-
-}
-
-void SceneNode::checkAllCollisions(std::set<std::pair<SceneNode*, SceneNode*>>& collisionPairs) {
-    checkNodeAndChildrenCollisions(*this, collisionPairs);
 }
 
 const SceneNode* SceneNode::getRootPtr() const {

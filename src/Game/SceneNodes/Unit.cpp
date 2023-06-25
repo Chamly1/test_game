@@ -10,6 +10,7 @@ std::unordered_map<UnitType, UnitData> unitData = initUnitData();
 
 void Unit::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(mAnimationManager, states);
+    CollidableNode::drawCurrent(target, states);
 }
 
 void Unit::updateCurrent(sf::Time dt) {
@@ -37,9 +38,9 @@ void Unit::updateCurrent(sf::Time dt) {
 
 Unit::Unit(UnitType unitType, const TextureHolder& textures)
 : Entity(unitData[unitType].baseSpeed)
+, CollidableNode(unitData[unitType].collisionBoxSize)
 , mUnitType(unitType)
 , mAnimationManager(textures, unitData[unitType]) {
-    setCollisionBoxSize(unitData[unitType].collisionBoxSize);
     setCollisionBoxOrigin(unitData[unitType].collisionBoxOrigin);
 //    mAnimationManager.setAnimation(AnimationType::Idle, DirectionType::BottomRight);
 //    setOriginToCenter(animation);
@@ -49,7 +50,7 @@ bool Unit::isCollidable() const {
     return true;
 }
 
-void Unit::onCollision(SceneNode& collisionWith) {
+void Unit::onCollision(CollidableNode& collisionWith) {
     if (collisionWith.getSceneNodeCategory() & SceneNodeCategory::ImpassableZone) {
         sf::FloatRect intersection;
         sf::FloatRect collisionBox = getCollisionBoxRect();

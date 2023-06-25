@@ -1,11 +1,12 @@
 #ifndef TEST_GAME_UNIT_HPP
 #define TEST_GAME_UNIT_HPP
 
-#include "Entity.hpp"
+#include "Game/SceneNodes/Entity.hpp"
 #include "GameEngine/ResourceHolders/TextureHolder.hpp"
 #include "Game/AnimationManager.hpp"
+#include "GameEngine/SceneNodes/CollidableNode.hpp"
 
-class Unit : public Entity {
+class Unit : public Entity, public CollidableNode {
 private:
     UnitType mUnitType;
     AnimationManager mAnimationManager;
@@ -17,7 +18,7 @@ protected:
 public:
     explicit Unit(UnitType unitType, const TextureHolder& textures);
     virtual bool isCollidable() const;
-    virtual void onCollision(SceneNode& collisionWith);
+    virtual void onCollision(CollidableNode& collisionWith);
 };
 
 #endif //TEST_GAME_UNIT_HPP

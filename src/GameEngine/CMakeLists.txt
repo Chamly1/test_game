@@ -5,4 +5,5 @@ add_library(game_engine_objlib OBJECT
         Commands/CommandQueue.cpp
         ResourceHolders/FontHolder.cpp ResourceHolders/TextureHolder.cpp
         GUI/Component.cpp GUI/Container.cpp
-        Utils/DebugLog.cpp)
+        Utils/DebugLog.cpp
+        Utils/SceneNodeUtils.cpp)

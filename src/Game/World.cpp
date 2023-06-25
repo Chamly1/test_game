@@ -6,6 +6,7 @@
 #include "Game/ResourceHolders/TextureIdentifier.hpp"
 #include "Game/Utils/MapGenerateUtils.hpp"
 #include "Game/SceneNodes/NPCs/ZombieNPC.hpp"
+#include "GameEngine/Utils/SceneNodeUtils.hpp"
 
 const int TILE_SIZE = 8;
 const int UNIT_SIZE = 32;
@@ -111,10 +112,14 @@ void World::update(sf::Time dt) {
     mSceneGraph.update(dt);
 
     std::set<std::pair<SceneNode*, SceneNode*>> collisionPairs;
-    mSceneGraph.checkAllCollisions(collisionPairs);
+    checkAllCollisions(mSceneGraph, collisionPairs);
+    CollidableNode* firstCollidableNode = nullptr;
+    CollidableNode* secondCollidableNode = nullptr;
     for (std::pair<SceneNode*, SceneNode*> pair : collisionPairs) {
-        pair.first->onCollision(*pair.second);
-        pair.second->onCollision(*pair.first);
+        firstCollidableNode = dynamic_cast<CollidableNode*>(pair.first);
+        secondCollidableNode = dynamic_cast<CollidableNode*>(pair.second);
+        firstCollidableNode->onCollision(*secondCollidableNode);
+        secondCollidableNode->onCollision(*firstCollidableNode);
     }
 
     mPlayerCamera.update(dt);

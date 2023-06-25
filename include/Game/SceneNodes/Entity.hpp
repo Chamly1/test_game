@@ -19,7 +19,7 @@ public:
     void operator() (SceneNode& node, sf::Time dt) const;
 };
 
-class Entity : public SceneNode {
+class Entity : virtual public SceneNode {
 private:
     sf::Vector2f velocity;
     float baseSpeed;

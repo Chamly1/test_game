@@ -7,7 +7,7 @@ EntityMover::EntityMover(Direction direction)
 
 }
 void EntityMover::operator() (SceneNode& node, sf::Time dt) const {
-    Entity& entity = static_cast<Entity&>(node);
+    Entity& entity = dynamic_cast<Entity&>(node);
     entity.accelerateTo(mDirection);
 }
 
