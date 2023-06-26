@@ -4,7 +4,7 @@
 #include "SFML/Graphics/RenderTarget.hpp"
 
 static const float SHAPE_OUTLINE_THICKNESS = 1.f;
-static const sf::Color SHAPE_OUTLINE_COLOR = sf::Color(255, 255, 255);
+static const sf::Color SHAPE_OUTLINE_COLOR = sf::Color(255, 255, 255, 175);
 static const sf::Color SHAPE_ACTIVE_COLOR = sf::Color(255, 0, 0, 50);
 static const sf::Color SHAPE_INACTIVE_COLOR = sf::Color(0, 255, 0, 50);
 
