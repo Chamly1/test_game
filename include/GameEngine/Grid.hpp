@@ -13,7 +13,7 @@ private:
 
 public:
 #ifndef NDEBUG
-    void draw(sf::RenderTarget& target, sf::RenderStates states);
+void draw(sf::RenderTarget& target, sf::RenderStates states = sf::RenderStates::Default);
 #endif
 
     Grid(const sf::Vector2f& start, const sf::Vector2f& end, float cellSize);
