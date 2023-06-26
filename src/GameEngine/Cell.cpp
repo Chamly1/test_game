@@ -11,7 +11,6 @@ static const sf::Color SHAPE_INACTIVE_COLOR = sf::Color(0, 255, 0, 50);
 void Cell::draw(sf::RenderTarget& target, sf::RenderStates states) {
     mCellShape.setFillColor(mState ? SHAPE_ACTIVE_COLOR : SHAPE_INACTIVE_COLOR);
 
-    states.transform *= getTransform();
     target.draw(mCellShape, states);
 }
 #endif

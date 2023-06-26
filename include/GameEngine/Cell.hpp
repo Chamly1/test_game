@@ -1,13 +1,13 @@
 #ifndef TEST_GAME_CELL_HPP
 #define TEST_GAME_CELL_HPP
 
-#include "SFML/Graphics/Transformable.hpp"
+#include "SFML/Graphics/Rect.hpp"
 
 #ifndef NDEBUG
 #include "SFML/Graphics/RectangleShape.hpp"
 #endif
 
-class Cell : public sf::Transformable {
+class Cell {
 private:
     sf::FloatRect mCellRect;
     bool mState;

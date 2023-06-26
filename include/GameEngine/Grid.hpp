@@ -3,9 +3,7 @@
 
 #include "GameEngine/Cell.hpp"
 
-#include "SFML/Graphics/Transformable.hpp"
-
-class Grid : public sf::Transformable {
+class Grid {
 private:
     Cell** mCellsMatrix;
     int mWidth;
