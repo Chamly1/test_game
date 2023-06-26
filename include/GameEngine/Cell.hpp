@@ -3,10 +3,20 @@
 
 #include "SFML/Graphics/Transformable.hpp"
 
+#ifndef NDEBUG
+#include "SFML/Graphics/RectangleShape.hpp"
+#endif
+
 class Cell : public sf::Transformable {
 private:
     sf::FloatRect mCellRect;
     bool mState;
+
+#ifndef NDEBUG
+    sf::RectangleShape mCellShape;
+
+    void draw(sf::RenderTarget& target, sf::RenderStates states);
+#endif
 
 public:
     Cell(sf::FloatRect cellRect, bool state);
