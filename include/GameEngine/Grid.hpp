@@ -1,12 +1,13 @@
 #ifndef TEST_GAME_GRID_HPP
 #define TEST_GAME_GRID_HPP
 
-#include "SFML/Graphics/Drawable.hpp"
+#include "GameEngine/Cell.hpp"
+
 #include "SFML/Graphics/Transformable.hpp"
 
-class Grid : public sf::Drawable, public sf::Transformable {
+class Grid : public sf::Transformable {
 private:
-    bool** mGridMatrix;
+    Cell** mCellsMatrix;
     int mWidth;
     int mHeight;
 

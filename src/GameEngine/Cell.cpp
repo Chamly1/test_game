@@ -16,9 +16,13 @@ void Cell::draw(sf::RenderTarget& target, sf::RenderStates states) {
 }
 #endif
 
-Cell::Cell(sf::FloatRect cellRect, bool state)
-: mCellRect(cellRect)
-, mState(state) {
+Cell::Cell(sf::FloatRect cellRect, bool state) {
+    init(cellRect, state);
+}
+
+void Cell::init(sf::FloatRect cellRect, bool state) {
+    mCellRect = cellRect;
+    mState = state;
 
 #ifndef NDEBUG
     mCellShape = sf::RectangleShape(sf::Vector2f(cellRect.width, cellRect.height));

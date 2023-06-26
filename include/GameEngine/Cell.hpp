@@ -21,6 +21,7 @@ private:
 public:
     Cell(sf::FloatRect cellRect, bool state);
     Cell();
+    void init(sf::FloatRect cellRect, bool state);
     bool getState() const;
     void setState(bool state);
 

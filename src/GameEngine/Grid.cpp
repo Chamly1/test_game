@@ -10,19 +10,28 @@ int getCellsNum(float start, float end, float cellSize) {
 }
 
 Grid::Grid(const sf::Vector2f& start, const sf::Vector2f& end, float cellSize)
-: mWidth(getCellsNum(start.x, end.x, cellSize))
+: mCellsMatrix(nullptr)
+, mWidth(getCellsNum(start.x, end.x, cellSize))
 , mHeight(getCellsNum(start.y, end.y, cellSize)) {
 
-    mGridMatrix = new bool*[mHeight];
+    mCellsMatrix = new Cell*[mHeight];
     for (int i = 0; i <= mHeight; ++i) {
-        mGridMatrix[i] = new bool[mWidth]{};
+        mCellsMatrix[i] = new Cell[mWidth];
     }
 
+    sf::FloatRect tmpFloatRect(0.f, 0.f, cellSize, cellSize);
+    for (int i = 0; i <= mHeight; ++i) {
+        for (int j = 0; j <= mWidth; ++j) {
+            tmpFloatRect.left = cellSize * mWidth;
+            tmpFloatRect.top = cellSize * mHeight;
+            mCellsMatrix[i][j].init(tmpFloatRect, false);
+        }
+    }
 }
 
 Grid::~Grid() {
     for (int i = 0; i <= mHeight; ++i) {
-        delete[] mGridMatrix[i];
+        delete[] mCellsMatrix[i];
     }
-    delete[] mGridMatrix;
+    delete[] mCellsMatrix;
 }
