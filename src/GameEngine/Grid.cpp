@@ -32,8 +32,8 @@ Grid::Grid(const sf::Vector2f& start, const sf::Vector2f& end, float cellSize)
     sf::FloatRect tmpFloatRect(0.f, 0.f, cellSize, cellSize);
     for (int i = 0; i < mHeight; ++i) {
         for (int j = 0; j < mWidth; ++j) {
-            tmpFloatRect.left = cellSize * mWidth;
-            tmpFloatRect.top = cellSize * mHeight;
+            tmpFloatRect.top = cellSize * static_cast<float>(i);
+            tmpFloatRect.left = cellSize * static_cast<float>(j);
             mCellsMatrix[i][j].init(tmpFloatRect, false);
         }
     }
