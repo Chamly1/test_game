@@ -45,3 +45,11 @@ Grid::~Grid() {
     }
     delete[] mCellsMatrix;
 }
+
+void Grid::activateCells(sf::FloatRect intersectsWith) {
+    for (int i = 0; i < mHeight; ++i) {
+        for (int j = 0; j < mWidth; ++j) {
+            mCellsMatrix[i][j].activateIfIntersect(intersectsWith);
+        }
+    }
+}

@@ -17,6 +17,13 @@ void draw(sf::RenderTarget& target, sf::RenderStates states = sf::RenderStates::
     Grid(const sf::Vector2f& start, const sf::Vector2f& end, float cellSize);
     ~Grid();
 
+    /**
+     * Activate cells witch intersects with rectangle.
+     *
+     * @param intersectsWith rectangle for intersection.
+     */
+    void activateCells(sf::FloatRect intersectsWith);
+
 };
 
 #endif //TEST_GAME_GRID_HPP

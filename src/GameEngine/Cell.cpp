@@ -42,3 +42,9 @@ bool Cell::getState() const {
 void Cell::setState(bool state) {
     mState = state;
 }
+
+void Cell::activateIfIntersect(sf::FloatRect intersectsWith) {
+    if (mCellRect.intersects(intersectsWith)) {
+        mState = true;
+    }
+}

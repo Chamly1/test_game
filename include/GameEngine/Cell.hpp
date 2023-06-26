@@ -26,6 +26,7 @@ public:
     void init(sf::FloatRect cellRect, bool state);
     bool getState() const;
     void setState(bool state);
+    void activateIfIntersect(sf::FloatRect intersectsWith);
 
 };
 
