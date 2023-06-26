@@ -20,6 +20,7 @@ private:
 
 public:
     Cell(sf::FloatRect cellRect, bool state);
+    Cell();
     bool getState() const;
     void setState(bool state);
 

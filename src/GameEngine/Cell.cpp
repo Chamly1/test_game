@@ -28,6 +28,10 @@ Cell::Cell(sf::FloatRect cellRect, bool state)
 #endif
 }
 
+Cell::Cell() : Cell(sf::FloatRect(), false) {
+
+}
+
 bool Cell::getState() const {
     return mState;
 }
