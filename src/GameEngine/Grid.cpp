@@ -10,6 +10,15 @@ void Grid::draw(sf::RenderTarget& target, sf::RenderStates states) {
 }
 #endif
 
+/**
+ * Return number of cells required to cover the segment's length.
+ *
+ * @param start segment's start.
+ * @param end segment's end.
+ * @param cellSize cell's size
+ *
+ * @return number of cells.
+ */
 int getCellsNum(float start, float end, float cellSize) {
     float delta = end - start;
     int cellsNum = static_cast<int>(delta / cellSize);
