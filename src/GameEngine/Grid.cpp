@@ -1,5 +1,15 @@
 #include "GameEngine/Grid.hpp"
 
+#ifndef NDEBUG
+void Grid::draw(sf::RenderTarget& target, sf::RenderStates states) {
+    for (int i = 0; i <= mHeight; ++i) {
+        for (int j = 0; j <= mWidth; ++j) {
+            mCellsMatrix[i][j].draw(target, states);
+        }
+    }
+}
+#endif
+
 int getCellsNum(float start, float end, float cellSize) {
     float delta = end - start;
     int cellsNum = static_cast<int>(delta / cellSize);

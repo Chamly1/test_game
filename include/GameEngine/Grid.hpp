@@ -12,6 +12,10 @@ private:
     int mHeight;
 
 public:
+#ifndef NDEBUG
+    void draw(sf::RenderTarget& target, sf::RenderStates states);
+#endif
+
     Grid(const sf::Vector2f& start, const sf::Vector2f& end, float cellSize);
     ~Grid();
 

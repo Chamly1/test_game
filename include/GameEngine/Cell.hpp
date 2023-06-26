@@ -14,11 +14,13 @@ private:
 
 #ifndef NDEBUG
     sf::RectangleShape mCellShape;
-
-    void draw(sf::RenderTarget& target, sf::RenderStates states);
 #endif
 
 public:
+#ifndef NDEBUG
+    void draw(sf::RenderTarget& target, sf::RenderStates states);
+#endif
+
     Cell(sf::FloatRect cellRect, bool state);
     Cell();
     void init(sf::FloatRect cellRect, bool state);
