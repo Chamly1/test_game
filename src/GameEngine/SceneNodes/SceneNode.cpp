@@ -124,3 +124,14 @@ const SceneNode* SceneNode::getFirstNodeOfCategoryPtr(unsigned int sceneNodeCate
 
     return resPtr;
 }
+
+void SceneNode::getAllNodeOfCategoryPtrs(unsigned int sceneNodeCategory, std::vector<const SceneNode*>& res) const {
+
+    if (mSceneNodeCategory & sceneNodeCategory) {
+        res.push_back(this);
+    }
+
+    for (const std::unique_ptr<SceneNode>& child : mChildren) {
+        child->getAllNodeOfCategoryPtrs(sceneNodeCategory, res);
+    }
+}

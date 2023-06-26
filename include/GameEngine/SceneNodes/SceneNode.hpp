@@ -59,6 +59,7 @@ public:
 
     const SceneNode* getRootPtr() const;
     const SceneNode* getFirstNodeOfCategoryPtr(unsigned int sceneNodeCategory) const;
+    void getAllNodeOfCategoryPtrs(unsigned int sceneNodeCategory, std::vector<const SceneNode*>& res) const;
 
     friend void checkNodeCollisions(SceneNode& thisNode, SceneNode& nodeToCheck, std::set<std::pair<SceneNode*, SceneNode*>>& collisionPairs);
     friend void checkNodeAndChildrenCollisions(SceneNode& thisNode, SceneNode& nodeToCheck, std::set<std::pair<SceneNode*, SceneNode*>>& collisionPairs);
