@@ -28,10 +28,10 @@ int getCellsNum(float start, float end, float cellSize) {
     return cellsNum;
 }
 
-Grid::Grid(const sf::Vector2f& start, const sf::Vector2f& end, float cellSize)
+Grid::Grid(const sf::Vector2f& position, const sf::Vector2f& size, float cellSize)
 : mCellsMatrix(nullptr)
-, mWidth(getCellsNum(start.x, end.x, cellSize))
-, mHeight(getCellsNum(start.y, end.y, cellSize)) {
+, mWidth(getCellsNum(position.x, position.x + size.x, cellSize))
+, mHeight(getCellsNum(position.y, position.y + size.y, cellSize)) {
 
     mCellsMatrix = new Cell*[mHeight];
     for (int i = 0; i < mHeight; ++i) {
@@ -41,8 +41,8 @@ Grid::Grid(const sf::Vector2f& start, const sf::Vector2f& end, float cellSize)
     sf::FloatRect tmpFloatRect(0.f, 0.f, cellSize, cellSize);
     for (int i = 0; i < mHeight; ++i) {
         for (int j = 0; j < mWidth; ++j) {
-            tmpFloatRect.top = cellSize * static_cast<float>(i) + start.y;
-            tmpFloatRect.left = cellSize * static_cast<float>(j) + start.x;
+            tmpFloatRect.top = cellSize * static_cast<float>(i) + position.y;
+            tmpFloatRect.left = cellSize * static_cast<float>(j) + position.x;
             mCellsMatrix[i][j].init(tmpFloatRect, false);
         }
     }

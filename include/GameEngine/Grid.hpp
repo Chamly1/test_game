@@ -14,7 +14,7 @@ public:
 void draw(sf::RenderTarget& target, sf::RenderStates states = sf::RenderStates::Default);
 #endif
 
-    Grid(const sf::Vector2f& start, const sf::Vector2f& end, float cellSize);
+    Grid(const sf::Vector2f& position, const sf::Vector2f& size, float cellSize);
     ~Grid();
 
     /**
