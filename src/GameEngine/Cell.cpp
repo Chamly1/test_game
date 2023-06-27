@@ -26,7 +26,8 @@ void Cell::draw(sf::RenderTarget& target, sf::RenderStates states) {
     if (mContainObstacle) {
         mCellShape.setFillColor(SHAPE_CONTAIN_OBSTACLE_COLOR);
     } else {
-        mCellShape.setFillColor(SHAPE_DOES_NOT_CONTAIN_OBSTACLE_COLOR + sf::Color(0, 0, 0, mHeatmapFactor * 5));
+        int alpha = mHeatmapFactor * 5;
+        mCellShape.setFillColor(SHAPE_DOES_NOT_CONTAIN_OBSTACLE_COLOR + sf::Color(0, 0, 0, alpha > 255 ? 255 : alpha));
     }
 
     mHeatmapFactorText.setString(std::to_string(mHeatmapFactor));
