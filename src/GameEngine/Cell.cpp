@@ -22,6 +22,7 @@ Cell::Cell(sf::FloatRect cellRect, bool state) {
 void Cell::init(sf::FloatRect cellRect, bool state) {
     mCellRect = cellRect;
     mState = state;
+    mHeatmapFactor = -1;
 
 #ifndef NDEBUG
     mCellShape = sf::RectangleShape(sf::Vector2f(cellRect.width, cellRect.height));
@@ -47,4 +48,12 @@ void Cell::activateIfIntersect(sf::FloatRect intersectsWith) {
     if (mCellRect.intersects(intersectsWith)) {
         mState = true;
     }
+}
+
+void Cell::setHeatmapFactor(int heatmapFactor) {
+    mHeatmapFactor = heatmapFactor;
+}
+
+int Cell::getHeatmapFactor() const {
+    return mHeatmapFactor;
 }

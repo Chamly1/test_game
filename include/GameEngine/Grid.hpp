@@ -3,11 +3,17 @@
 
 #include "GameEngine/Cell.hpp"
 
+#include <queue>
+
 class Grid {
 private:
+    sf::Vector2f mPosition;
+    float mCellSize;
     Cell** mCellsMatrix;
     int mWidth;
     int mHeight;
+
+    void updateHeatmapFactor(int x, int y, int newHeatmapFactor, std::queue<sf::Vector2i>& lastUpdatedCells);
 
 public:
 #ifndef NDEBUG
@@ -23,6 +29,7 @@ void draw(sf::RenderTarget& target, sf::RenderStates states = sf::RenderStates::
      * @param intersectsWith rectangle for intersection.
      */
     void activateCells(sf::FloatRect intersectsWith);
+    void updateHeatmap(const sf::Vector2f& goal);
 
 };
 

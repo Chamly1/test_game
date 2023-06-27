@@ -1,5 +1,8 @@
 #include "GameEngine/Grid.hpp"
 
+#include <cassert>
+#include <queue>
+
 #ifndef NDEBUG
 void Grid::draw(sf::RenderTarget& target, sf::RenderStates states) {
     for (int i = 0; i < mHeight; ++i) {
@@ -29,9 +32,13 @@ int getCellsNum(float start, float end, float cellSize) {
 }
 
 Grid::Grid(const sf::Vector2f& position, const sf::Vector2f& size, float cellSize)
-: mCellsMatrix(nullptr)
+: mPosition(position)
+, mCellSize(cellSize)
+, mCellsMatrix(nullptr)
 , mWidth(getCellsNum(position.x, position.x + size.x, cellSize))
 , mHeight(getCellsNum(position.y, position.y + size.y, cellSize)) {
+
+    assert(size.x > 0.f && size.y > 0.f);
 
     mCellsMatrix = new Cell*[mHeight];
     for (int i = 0; i < mHeight; ++i) {
@@ -60,5 +67,53 @@ void Grid::activateCells(sf::FloatRect intersectsWith) {
         for (int j = 0; j < mWidth; ++j) {
             mCellsMatrix[i][j].activateIfIntersect(intersectsWith);
         }
+    }
+}
+
+void Grid::updateHeatmapFactor(int x, int y, int newHeatmapFactor, std::queue<sf::Vector2i>& lastUpdatedCells) {
+    if (x >= 0 && y >= 0 &&
+        x < mWidth && y < mHeight) {
+
+        if (mCellsMatrix[y][x].getHeatmapFactor() == -1 &&
+            mCellsMatrix[y][x].getState() == false) {
+            mCellsMatrix[y][x].setHeatmapFactor(newHeatmapFactor);
+            lastUpdatedCells.push(sf::Vector2i(x, y));
+        }
+
+    }
+}
+
+void Grid::updateHeatmap(const sf::Vector2f& goal) {
+
+    assert(goal.x > 0.f && goal.y > 0.f);
+    assert(goal.x < mWidth * mCellSize && goal.y < mHeight * mCellSize);
+
+    // reset heatmap factors
+    for (int i = 0; i < mHeight; ++i) {
+        for (int j = 0; j < mWidth; ++j) {
+            mCellsMatrix[i][j].setHeatmapFactor(-1);
+        }
+    }
+
+    int goalCellX = getCellsNum(mPosition.x, goal.x, mCellSize) - 1;
+    int goalCellY = getCellsNum(mPosition.y, goal.y, mCellSize) - 1;
+
+    std::queue<sf::Vector2i> lastUpdatedCells;
+    lastUpdatedCells.push(sf::Vector2i(goalCellX, goalCellY));
+    mCellsMatrix[goalCellY][goalCellX].setHeatmapFactor(0);
+
+    int tmpHeatmapFactor;
+    int tmpX, tmpY;
+    while (!lastUpdatedCells.empty()) {
+        tmpX = lastUpdatedCells.front().x;
+        tmpY = lastUpdatedCells.front().y;
+        tmpHeatmapFactor = mCellsMatrix[tmpY][tmpX].getHeatmapFactor() + 1;
+
+        updateHeatmapFactor(tmpX + 1, tmpY, tmpHeatmapFactor, lastUpdatedCells);
+        updateHeatmapFactor(tmpX - 1, tmpY, tmpHeatmapFactor, lastUpdatedCells);
+        updateHeatmapFactor(tmpX, tmpY + 1, tmpHeatmapFactor, lastUpdatedCells);
+        updateHeatmapFactor(tmpX, tmpY - 1, tmpHeatmapFactor, lastUpdatedCells);
+
+        lastUpdatedCells.pop();
     }
 }

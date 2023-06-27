@@ -11,6 +11,7 @@ class Cell {
 private:
     sf::FloatRect mCellRect;
     bool mState;
+    int mHeatmapFactor;
 
 #ifndef NDEBUG
     sf::RectangleShape mCellShape;
@@ -27,6 +28,8 @@ public:
     bool getState() const;
     void setState(bool state);
     void activateIfIntersect(sf::FloatRect intersectsWith);
+    void setHeatmapFactor(int heatmapFactor);
+    int getHeatmapFactor() const;
 
 };
 
