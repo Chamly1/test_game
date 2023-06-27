@@ -117,3 +117,56 @@ void Grid::updateHeatmap(const sf::Vector2f& goal) {
         lastUpdatedCells.pop();
     }
 }
+
+int Grid::getHeatmapFactor(int x, int y) {
+    if (x >= 0 && y >= 0 &&
+        x < mWidth && y < mHeight) {
+        return mCellsMatrix[y][x].getHeatmapFactor();
+    } else {
+        return -1;
+    };
+}
+
+/**
+ * For situations when the neighbor cell whether non-traversable or not exist.
+ *
+ * @param heatmapFactor factor of the neighbor cell.
+ * @param defaultHeatmapFactor factor of the current cell.
+ *
+ * @return correct heatmap factor.
+ */
+int correctHeatmapFactor(int heatmapFactor, int defaultHeatmapFactor) {
+    if (heatmapFactor == -1) {
+        return defaultHeatmapFactor;
+    } else {
+        return heatmapFactor;
+    }
+}
+
+void Grid::updateVectorField() {
+    int currentHeatmapFactor;
+    int topHeatmapFactor;
+    int bottomHeatmapFactor;
+    int leftHeatmapFactor;
+    int rightHeatmapFactor;
+
+    sf::Vector2f tmpFieldVector;
+    for (int i = 0; i < mHeight; ++i) {
+        for (int j = 0; j < mWidth; ++j) {
+            if (mCellsMatrix[i][j].doesContainObstacle()) {
+                continue;
+            }
+
+            currentHeatmapFactor = mCellsMatrix[i][j].getHeatmapFactor();
+
+            topHeatmapFactor = correctHeatmapFactor(getHeatmapFactor(j, i - 1), currentHeatmapFactor);
+            bottomHeatmapFactor = correctHeatmapFactor(getHeatmapFactor(j, i + 1), currentHeatmapFactor);
+            leftHeatmapFactor = correctHeatmapFactor(getHeatmapFactor(j - 1, i), currentHeatmapFactor);
+            rightHeatmapFactor = correctHeatmapFactor(getHeatmapFactor(j + 1, i), currentHeatmapFactor);
+
+            tmpFieldVector.x = static_cast<float>(leftHeatmapFactor - rightHeatmapFactor);
+            tmpFieldVector.y = static_cast<float>(topHeatmapFactor - bottomHeatmapFactor);
+            mCellsMatrix[i][j].setFieldVector(tmpFieldVector);
+        }
+    }
+}

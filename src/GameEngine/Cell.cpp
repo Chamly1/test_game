@@ -1,4 +1,5 @@
 #include "GameEngine/Cell.hpp"
+#include "Game/Utils/Utils.hpp"
 
 #ifndef NDEBUG
 #include "SFML/Graphics/RenderTarget.hpp"
@@ -18,6 +19,8 @@ static const unsigned int CHARACTER_SIZE = 10;
 static const sf::Color TEXT_FILL_COLOR = sf::Color(255, 255, 255);
 static const sf::Vector2f HEATMAP_FACTOR_TEXT_SHIFT = sf::Vector2f(5.f, 5.f);
 
+static const sf::Color FIELD_VECTOR_COLOR = sf::Color(255, 255, 255);
+
 void Cell::draw(sf::RenderTarget& target, sf::RenderStates states) {
 //    mCellShape.setFillColor(mState ? SHAPE_ACTIVE_COLOR : SHAPE_INACTIVE_COLOR);
     if (mContainObstacle) {
@@ -28,8 +31,11 @@ void Cell::draw(sf::RenderTarget& target, sf::RenderStates states) {
 
     mHeatmapFactorText.setString(std::to_string(mHeatmapFactor));
 
+    mFieldVectorShape[1].position = mFieldVectorShape[0].position + (mFieldVector * 20.f);
+
     target.draw(mCellShape, states);
     target.draw(mHeatmapFactorText, states);
+    target.draw(mFieldVectorShape, states);
 }
 #endif
 
@@ -45,6 +51,7 @@ void Cell::init(sf::FloatRect cellRect, bool containObstacle) {
     mCellRect = cellRect;
     mContainObstacle = containObstacle;
     mHeatmapFactor = -1;
+    mFieldVector = sf::Vector2f(0.f, 0.f);
 
 #ifndef NDEBUG
     mCellShape = sf::RectangleShape(sf::Vector2f(cellRect.width, cellRect.height));
@@ -63,6 +70,12 @@ void Cell::init(sf::FloatRect cellRect, bool containObstacle) {
     mHeatmapFactorText.setCharacterSize(CHARACTER_SIZE);
     mHeatmapFactorText.setFillColor(TEXT_FILL_COLOR);
     mHeatmapFactorText.setPosition(mCellShape.getPosition() + HEATMAP_FACTOR_TEXT_SHIFT);
+
+    mFieldVectorShape = sf::VertexArray(sf::PrimitiveType::Lines, 2);
+    mFieldVectorShape[0].color = FIELD_VECTOR_COLOR;
+    // set to cell's center
+    mFieldVectorShape[0].position = sf::Vector2f(cellRect.left, cellRect.top) + sf::Vector2f(cellRect.width / 2.f, cellRect.height / 2.f);
+    mFieldVectorShape[1].color = FIELD_VECTOR_COLOR;
 
 #endif
 }
@@ -87,4 +100,12 @@ void Cell::setHeatmapFactor(int heatmapFactor) {
 
 int Cell::getHeatmapFactor() const {
     return mHeatmapFactor;
+}
+
+void Cell::setFieldVector(sf::Vector2f fieldVector) {
+    mFieldVector = normalizeVector(fieldVector);
+}
+
+sf::Vector2f Cell::getFieldVector() const {
+    return mFieldVector;
 }

@@ -13,10 +13,12 @@ private:
     sf::FloatRect mCellRect;
     bool mContainObstacle;
     int mHeatmapFactor;
+    sf::Vector2f mFieldVector;
 
 #ifndef NDEBUG
     sf::RectangleShape mCellShape;
     sf::Text mHeatmapFactorText;
+    sf::VertexArray mFieldVectorShape;
 #endif
 
 public:
@@ -32,6 +34,8 @@ public:
     void setContainObstacleFlag(sf::FloatRect obstacle);
     void setHeatmapFactor(int heatmapFactor);
     int getHeatmapFactor() const;
+    void setFieldVector(sf::Vector2f fieldVector);
+    sf::Vector2f getFieldVector() const;
 
 };
 
