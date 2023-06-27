@@ -127,28 +127,31 @@ int Grid::getHeatmapFactor(int x, int y) {
     };
 }
 
-/**
- * For situations when the neighbor cell whether non-traversable or not exist.
- *
- * @param heatmapFactor factor of the neighbor cell.
- * @param defaultHeatmapFactor factor of the current cell.
- *
- * @return correct heatmap factor.
- */
-int correctHeatmapFactor(int heatmapFactor, int defaultHeatmapFactor) {
-    if (heatmapFactor == -1) {
-        return defaultHeatmapFactor;
-    } else {
-        return heatmapFactor;
+void Grid::getMinHeatmapFactorNeighbor(int x, int y, int& neighborX, int& neighborY) {
+    int minHeatmapFactor = getHeatmapFactor(x, y);
+    neighborX = x;
+    neighborY = y;
+
+    int currentHeatmapFactor;
+
+    for (int i = x - 1; i <= x + 1; ++i) {
+        for (int j = y - 1; j <= y + 1; ++j) {
+            currentHeatmapFactor = getHeatmapFactor(i, j);
+            if (currentHeatmapFactor == -1) {
+                continue;
+            }
+
+            if (currentHeatmapFactor <= minHeatmapFactor) {
+                minHeatmapFactor = currentHeatmapFactor;
+                neighborX = i;
+                neighborY = j;
+            }
+        }
     }
 }
 
 void Grid::updateVectorField() {
-    int currentHeatmapFactor;
-    int topHeatmapFactor;
-    int bottomHeatmapFactor;
-    int leftHeatmapFactor;
-    int rightHeatmapFactor;
+    int neighborX, neighborY;
 
     sf::Vector2f tmpFieldVector;
     for (int i = 0; i < mHeight; ++i) {
@@ -157,15 +160,10 @@ void Grid::updateVectorField() {
                 continue;
             }
 
-            currentHeatmapFactor = mCellsMatrix[i][j].getHeatmapFactor();
+            getMinHeatmapFactorNeighbor(j, i, neighborX, neighborY);
 
-            topHeatmapFactor = correctHeatmapFactor(getHeatmapFactor(j, i - 1), currentHeatmapFactor);
-            bottomHeatmapFactor = correctHeatmapFactor(getHeatmapFactor(j, i + 1), currentHeatmapFactor);
-            leftHeatmapFactor = correctHeatmapFactor(getHeatmapFactor(j - 1, i), currentHeatmapFactor);
-            rightHeatmapFactor = correctHeatmapFactor(getHeatmapFactor(j + 1, i), currentHeatmapFactor);
-
-            tmpFieldVector.x = static_cast<float>(leftHeatmapFactor - rightHeatmapFactor);
-            tmpFieldVector.y = static_cast<float>(topHeatmapFactor - bottomHeatmapFactor);
+            tmpFieldVector.x = static_cast<float>(neighborX - j);
+            tmpFieldVector.y = static_cast<float>(neighborY - i);
             mCellsMatrix[i][j].setFieldVector(tmpFieldVector);
         }
     }

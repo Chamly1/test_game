@@ -22,6 +22,7 @@ private:
      * @return
      */
     int getHeatmapFactor(int x, int y);
+    void getMinHeatmapFactorNeighbor(int x, int y, int& neighborX, int& neighborY);
 
 public:
 #ifndef NDEBUG
