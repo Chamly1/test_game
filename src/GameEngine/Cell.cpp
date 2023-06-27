@@ -20,6 +20,10 @@ void Cell::draw(sf::RenderTarget& target, sf::RenderStates states) {
 }
 #endif
 
+Cell::Cell() : Cell(sf::FloatRect(), false) {
+
+}
+
 Cell::Cell(sf::FloatRect cellRect, bool state) {
     init(cellRect, state);
 }
@@ -35,10 +39,6 @@ void Cell::init(sf::FloatRect cellRect, bool containObstacle) {
     mCellShape.setOutlineThickness(SHAPE_OUTLINE_THICKNESS);
     mCellShape.setOutlineColor(SHAPE_OUTLINE_COLOR);
 #endif
-}
-
-Cell::Cell() : Cell(sf::FloatRect(), false) {
-
 }
 
 bool Cell::doesContainObstacle() const {

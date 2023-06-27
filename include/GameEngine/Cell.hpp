@@ -22,8 +22,8 @@ public:
     void draw(sf::RenderTarget& target, sf::RenderStates states);
 #endif
 
-    Cell(sf::FloatRect cellRect, bool state);
     Cell();
+    Cell(sf::FloatRect cellRect, bool state);
     void init(sf::FloatRect cellRect, bool containObstacle);
     bool doesContainObstacle() const;
     void setContainObstacleFlag(bool containObstacleFlag);
