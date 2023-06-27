@@ -10,7 +10,7 @@
 class Cell {
 private:
     sf::FloatRect mCellRect;
-    bool mState;
+    bool mContainObstacle;
     int mHeatmapFactor;
 
 #ifndef NDEBUG
@@ -24,10 +24,10 @@ public:
 
     Cell(sf::FloatRect cellRect, bool state);
     Cell();
-    void init(sf::FloatRect cellRect, bool state);
-    bool getState() const;
-    void setState(bool state);
-    void activateIfIntersect(sf::FloatRect intersectsWith);
+    void init(sf::FloatRect cellRect, bool containObstacle);
+    bool doesContainObstacle() const;
+    void setContainObstacleFlag(bool containObstacleFlag);
+    void setContainObstacleFlag(sf::FloatRect obstacle);
     void setHeatmapFactor(int heatmapFactor);
     int getHeatmapFactor() const;
 

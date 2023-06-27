@@ -28,7 +28,7 @@ void draw(sf::RenderTarget& target, sf::RenderStates states = sf::RenderStates::
      *
      * @param intersectsWith rectangle for intersection.
      */
-    void activateCells(sf::FloatRect intersectsWith);
+    void setContainObstacleFlags(sf::FloatRect intersectsWith);
     void updateHeatmap(const sf::Vector2f& goal);
 
 };

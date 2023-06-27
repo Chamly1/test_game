@@ -62,10 +62,10 @@ Grid::~Grid() {
     delete[] mCellsMatrix;
 }
 
-void Grid::activateCells(sf::FloatRect intersectsWith) {
+void Grid::setContainObstacleFlags(sf::FloatRect intersectsWith) {
     for (int i = 0; i < mHeight; ++i) {
         for (int j = 0; j < mWidth; ++j) {
-            mCellsMatrix[i][j].activateIfIntersect(intersectsWith);
+            mCellsMatrix[i][j].setContainObstacleFlag(intersectsWith);
         }
     }
 }
@@ -75,7 +75,7 @@ void Grid::updateHeatmapFactor(int x, int y, int newHeatmapFactor, std::queue<sf
         x < mWidth && y < mHeight) {
 
         if (mCellsMatrix[y][x].getHeatmapFactor() == -1 &&
-            mCellsMatrix[y][x].getState() == false) {
+            mCellsMatrix[y][x].doesContainObstacle() == false) {
             mCellsMatrix[y][x].setHeatmapFactor(newHeatmapFactor);
             lastUpdatedCells.push(sf::Vector2i(x, y));
         }
