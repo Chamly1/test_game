@@ -59,5 +59,10 @@ float vectorMagnitude(const sf::Vector2f& vector) {
 }
 
 sf::Vector2f normalizeVector(const sf::Vector2f& vector) {
-    return vector / vectorMagnitude(vector);
+    float magnitude = vectorMagnitude(vector);
+    if (magnitude == 0.f) {
+        return vector;
+    } else {
+        return vector / magnitude;
+    }
 }
