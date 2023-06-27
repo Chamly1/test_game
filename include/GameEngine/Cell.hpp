@@ -5,6 +5,7 @@
 
 #ifndef NDEBUG
 #include "SFML/Graphics/RectangleShape.hpp"
+#include "SFML/Graphics/Text.hpp"
 #endif
 
 class Cell {
@@ -15,6 +16,7 @@ private:
 
 #ifndef NDEBUG
     sf::RectangleShape mCellShape;
+    sf::Text mHeatmapFactorText;
 #endif
 
 public:
