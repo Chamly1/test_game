@@ -9,7 +9,12 @@ static const sf::Color SHAPE_ACTIVE_COLOR = sf::Color(255, 0, 0, 50);
 static const sf::Color SHAPE_INACTIVE_COLOR = sf::Color(0, 255, 0, 50);
 
 void Cell::draw(sf::RenderTarget& target, sf::RenderStates states) {
-    mCellShape.setFillColor(mState ? SHAPE_ACTIVE_COLOR : SHAPE_INACTIVE_COLOR);
+//    mCellShape.setFillColor(mState ? SHAPE_ACTIVE_COLOR : SHAPE_INACTIVE_COLOR);
+    if (mState) {
+        mCellShape.setFillColor(SHAPE_ACTIVE_COLOR);
+    } else {
+        mCellShape.setFillColor(SHAPE_INACTIVE_COLOR + sf::Color(0, 0, 0, mHeatmapFactor * 5));
+    }
 
     target.draw(mCellShape, states);
 }
