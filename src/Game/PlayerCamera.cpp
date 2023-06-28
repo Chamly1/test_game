@@ -9,7 +9,7 @@ PlayerCamera::PlayerCamera(const sf::View& view)
 
 }
 
-void PlayerCamera::setPlayer(SceneNode *player) {
+void PlayerCamera::setPlayer(const SceneNode *player) {
     this->mPlayer = player;
 }
 

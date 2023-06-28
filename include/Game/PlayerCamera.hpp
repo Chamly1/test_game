@@ -12,11 +12,11 @@
 class PlayerCamera {
 private:
     sf::View mView;
-    SceneNode *mPlayer;
+    const SceneNode *mPlayer;
 
 public:
     explicit PlayerCamera(const sf::View& view);
-    void setPlayer(SceneNode *player);
+    void setPlayer(const SceneNode *player);
     sf::View getView();
     /**
      * Set view center to (0, 0) coordinates.
