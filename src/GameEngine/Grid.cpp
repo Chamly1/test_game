@@ -83,10 +83,14 @@ void Grid::updateHeatmapFactor(int x, int y, int newHeatmapFactor, std::queue<sf
     }
 }
 
+bool Grid::isPointLiesOnGrid(const sf::Vector2f& point) const {
+    return point.x > 0.f && point.y > 0.f &&
+           point.x < mWidth * mCellSize && point.y < mHeight * mCellSize;
+}
+
 void Grid::updateHeatmap(const sf::Vector2f& goal) {
 
-    assert(goal.x > 0.f && goal.y > 0.f);
-    assert(goal.x < mWidth * mCellSize && goal.y < mHeight * mCellSize);
+    assert(isPointLiesOnGrid(goal));
 
     // reset heatmap factors
     for (int i = 0; i < mHeight; ++i) {
@@ -161,10 +165,29 @@ void Grid::updateVectorField() {
             }
 
             getMinHeatmapFactorNeighbor(j, i, neighborX, neighborY);
+            mCellsMatrix[i][j].setNextCellCenter(mCellsMatrix[neighborY][neighborX].getCellCenter());
 
             tmpFieldVector.x = static_cast<float>(neighborX - j);
             tmpFieldVector.y = static_cast<float>(neighborY - i);
             mCellsMatrix[i][j].setFieldVector(tmpFieldVector);
         }
     }
+}
+
+sf::Vector2f Grid::getFieldVectorInPoint(const sf::Vector2f& point) const {
+    assert(isPointLiesOnGrid(point));
+
+    int pointCellX = getCellsNum(mPosition.x, point.x, mCellSize) - 1;
+    int pointCellY = getCellsNum(mPosition.y, point.y, mCellSize) - 1;
+
+    return mCellsMatrix[pointCellY][pointCellX].getFieldVector();
+}
+
+sf::Vector2f Grid::getNextCellCenterInPoint(const sf::Vector2f& point) const {
+    assert(isPointLiesOnGrid(point));
+
+    int pointCellX = getCellsNum(mPosition.x, point.x, mCellSize) - 1;
+    int pointCellY = getCellsNum(mPosition.y, point.y, mCellSize) - 1;
+
+    return mCellsMatrix[pointCellY][pointCellX].getNextCellCenter();
 }

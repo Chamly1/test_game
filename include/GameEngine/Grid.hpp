@@ -23,6 +23,7 @@ private:
      */
     int getHeatmapFactor(int x, int y);
     void getMinHeatmapFactorNeighbor(int x, int y, int& neighborX, int& neighborY);
+    bool isPointLiesOnGrid(const sf::Vector2f& point) const;
 
 public:
 #ifndef NDEBUG
@@ -40,6 +41,8 @@ void draw(sf::RenderTarget& target, sf::RenderStates states = sf::RenderStates::
     void setContainObstacleFlags(sf::FloatRect intersectsWith);
     void updateHeatmap(const sf::Vector2f& goal);
     void updateVectorField();
+    sf::Vector2f getFieldVectorInPoint(const sf::Vector2f& point) const;
+    sf::Vector2f getNextCellCenterInPoint(const sf::Vector2f& point) const;
 
 };
 

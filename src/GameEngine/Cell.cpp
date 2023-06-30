@@ -53,6 +53,7 @@ void Cell::init(sf::FloatRect cellRect, bool containObstacle) {
     mContainObstacle = containObstacle;
     mHeatmapFactor = -1;
     mFieldVector = sf::Vector2f(0.f, 0.f);
+    mNextCellCenter = sf::Vector2f(0.f, 0.f);
 
 #ifndef NDEBUG
     mCellShape = sf::RectangleShape(sf::Vector2f(cellRect.width, cellRect.height));
@@ -75,7 +76,7 @@ void Cell::init(sf::FloatRect cellRect, bool containObstacle) {
     mFieldVectorShape = sf::VertexArray(sf::PrimitiveType::Lines, 2);
     mFieldVectorShape[0].color = FIELD_VECTOR_COLOR;
     // set to cell's center
-    mFieldVectorShape[0].position = sf::Vector2f(cellRect.left, cellRect.top) + sf::Vector2f(cellRect.width / 2.f, cellRect.height / 2.f);
+    mFieldVectorShape[0].position = getCellCenter();
     mFieldVectorShape[1].color = FIELD_VECTOR_COLOR;
 
 #endif
@@ -109,4 +110,16 @@ void Cell::setFieldVector(sf::Vector2f fieldVector) {
 
 sf::Vector2f Cell::getFieldVector() const {
     return mFieldVector;
+}
+
+sf::Vector2f Cell::getCellCenter() const {
+    return sf::Vector2f(mCellRect.left, mCellRect.top) + sf::Vector2f(mCellRect.width / 2.f, mCellRect.height / 2.f);
+}
+
+void Cell::setNextCellCenter(sf::Vector2f nextCellCenter) {
+    mNextCellCenter = nextCellCenter;
+}
+
+sf::Vector2f Cell::getNextCellCenter() {
+    return mNextCellCenter;
 }

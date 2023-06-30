@@ -14,6 +14,7 @@ private:
     bool mContainObstacle;
     int mHeatmapFactor;
     sf::Vector2f mFieldVector;
+    sf::Vector2f mNextCellCenter;
 
 #ifndef NDEBUG
     sf::RectangleShape mCellShape;
@@ -36,6 +37,9 @@ public:
     int getHeatmapFactor() const;
     void setFieldVector(sf::Vector2f fieldVector);
     sf::Vector2f getFieldVector() const;
+    sf::Vector2f getCellCenter() const;
+    void setNextCellCenter(sf::Vector2f nextCellCenter);
+    sf::Vector2f getNextCellCenter();
 
 };
 
