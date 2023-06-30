@@ -5,7 +5,7 @@
 #include "GameEngine/ResourceHolders/TextureHolder.hpp"
 #include "GameEngine/Commands/CommandQueue.hpp"
 #include "PlayerCamera.hpp"
-#include "GameEngine/Grid.hpp"
+#include "GameEngine/VectorFieldGrid.hpp"
 
 #include "SFML/Graphics/RenderWindow.hpp"
 
@@ -26,7 +26,7 @@ private:
     std::array<SceneNode*, LayerCount> mSceneLayers;
     CommandQueue mCommandQueue;
 
-    std::shared_ptr<Grid> mGrid;
+    std::shared_ptr<VectorFieldGrid> mGrid;
 
     void loadTextures();
     void buildScene();

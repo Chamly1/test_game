@@ -1,10 +1,10 @@
-#include "GameEngine/Grid.hpp"
+#include "GameEngine/VectorFieldGrid.hpp"
 
 #include <cassert>
 #include <queue>
 
 #ifndef NDEBUG
-void Grid::draw(sf::RenderTarget& target, sf::RenderStates states) {
+void VectorFieldGrid::draw(sf::RenderTarget& target, sf::RenderStates states) {
     for (int i = 0; i < mHeight; ++i) {
         for (int j = 0; j < mWidth; ++j) {
             mCellsMatrix[i][j].draw(target, states);
@@ -31,7 +31,7 @@ int getCellsNum(float start, float end, float cellSize) {
     return cellsNum;
 }
 
-Grid::Grid(const sf::Vector2f& position, const sf::Vector2f& size, float cellSize)
+VectorFieldGrid::VectorFieldGrid(const sf::Vector2f& position, const sf::Vector2f& size, float cellSize)
 : mPosition(position)
 , mCellSize(cellSize)
 , mCellsMatrix(nullptr)
@@ -55,14 +55,14 @@ Grid::Grid(const sf::Vector2f& position, const sf::Vector2f& size, float cellSiz
     }
 }
 
-Grid::~Grid() {
+VectorFieldGrid::~VectorFieldGrid() {
     for (int i = 0; i < mHeight; ++i) {
         delete[] mCellsMatrix[i];
     }
     delete[] mCellsMatrix;
 }
 
-void Grid::setContainObstacleFlags(sf::FloatRect intersectsWith) {
+void VectorFieldGrid::setContainObstacleFlags(sf::FloatRect intersectsWith) {
     for (int i = 0; i < mHeight; ++i) {
         for (int j = 0; j < mWidth; ++j) {
             mCellsMatrix[i][j].setContainObstacleFlag(intersectsWith);
@@ -70,7 +70,7 @@ void Grid::setContainObstacleFlags(sf::FloatRect intersectsWith) {
     }
 }
 
-void Grid::updateHeatmapFactor(int x, int y, int newHeatmapFactor, std::queue<sf::Vector2i>& lastUpdatedCells) {
+void VectorFieldGrid::updateHeatmapFactor(int x, int y, int newHeatmapFactor, std::queue<sf::Vector2i>& lastUpdatedCells) {
     if (x >= 0 && y >= 0 &&
         x < mWidth && y < mHeight) {
 
@@ -83,12 +83,12 @@ void Grid::updateHeatmapFactor(int x, int y, int newHeatmapFactor, std::queue<sf
     }
 }
 
-bool Grid::isPointLiesOnGrid(const sf::Vector2f& point) const {
+bool VectorFieldGrid::isPointLiesOnGrid(const sf::Vector2f& point) const {
     return point.x > 0.f && point.y > 0.f &&
            point.x < mWidth * mCellSize && point.y < mHeight * mCellSize;
 }
 
-void Grid::updateHeatmap(const sf::Vector2f& goal) {
+void VectorFieldGrid::updateHeatmap(const sf::Vector2f& goal) {
 
     assert(isPointLiesOnGrid(goal));
 
@@ -122,7 +122,7 @@ void Grid::updateHeatmap(const sf::Vector2f& goal) {
     }
 }
 
-int Grid::getHeatmapFactor(int x, int y) {
+int VectorFieldGrid::getHeatmapFactor(int x, int y) {
     if (x >= 0 && y >= 0 &&
         x < mWidth && y < mHeight) {
         return mCellsMatrix[y][x].getHeatmapFactor();
@@ -131,7 +131,7 @@ int Grid::getHeatmapFactor(int x, int y) {
     };
 }
 
-void Grid::getMinHeatmapFactorNeighbor(int x, int y, int& neighborX, int& neighborY) {
+void VectorFieldGrid::getMinHeatmapFactorNeighbor(int x, int y, int& neighborX, int& neighborY) {
     int minHeatmapFactor = getHeatmapFactor(x, y);
     neighborX = x;
     neighborY = y;
@@ -154,7 +154,7 @@ void Grid::getMinHeatmapFactorNeighbor(int x, int y, int& neighborX, int& neighb
     }
 }
 
-void Grid::updateVectorField() {
+void VectorFieldGrid::updateVectorField() {
     int neighborX, neighborY;
 
     sf::Vector2f tmpFieldVector;
@@ -174,7 +174,7 @@ void Grid::updateVectorField() {
     }
 }
 
-sf::Vector2f Grid::getFieldVectorInPoint(const sf::Vector2f& point) const {
+sf::Vector2f VectorFieldGrid::getFieldVectorInPoint(const sf::Vector2f& point) const {
     assert(isPointLiesOnGrid(point));
 
     int pointCellX = getCellsNum(mPosition.x, point.x, mCellSize) - 1;
@@ -183,7 +183,7 @@ sf::Vector2f Grid::getFieldVectorInPoint(const sf::Vector2f& point) const {
     return mCellsMatrix[pointCellY][pointCellX].getFieldVector();
 }
 
-sf::Vector2f Grid::getNextCellCenterInPoint(const sf::Vector2f& point) const {
+sf::Vector2f VectorFieldGrid::getNextCellCenterInPoint(const sf::Vector2f& point) const {
     assert(isPointLiesOnGrid(point));
 
     int pointCellX = getCellsNum(mPosition.x, point.x, mCellSize) - 1;

@@ -1,5 +1,5 @@
 add_library(game_engine_objlib OBJECT
-        Application.cpp Player.cpp Animation.cpp Grid.cpp Cell.cpp
+        Application.cpp Player.cpp Animation.cpp VectorFieldGrid.cpp Cell.cpp
         SceneNodes/SceneNode.cpp SceneNodes/SpriteNode.cpp SceneNodes/CollidableNode.cpp
         Scenes/Scene.cpp Scenes/SceneList.cpp Scenes/SceneContext.cpp
         Commands/CommandQueue.cpp

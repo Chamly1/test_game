@@ -9,7 +9,7 @@ void ZombieNPC::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) c
     Unit::drawCurrent(target, states);
 }
 
-ZombieNPC::ZombieNPC(std::shared_ptr<const Grid> grid, const TextureHolder& textures)
+ZombieNPC::ZombieNPC(std::shared_ptr<const VectorFieldGrid> grid, const TextureHolder& textures)
 : Unit(UnitType::Zombie, textures)
 , ZombieAI(grid) {
 

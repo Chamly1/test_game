@@ -3,7 +3,7 @@
 
 #include "SFML/Graphics/RenderTarget.hpp"
 
-ZombieAI::ZombieAI(std::shared_ptr<const Grid> grid)
+ZombieAI::ZombieAI(std::shared_ptr<const VectorFieldGrid> grid)
 : mGrid(grid) {
 
 }

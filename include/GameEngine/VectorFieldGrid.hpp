@@ -1,11 +1,11 @@
-#ifndef TEST_GAME_GRID_HPP
-#define TEST_GAME_GRID_HPP
+#ifndef TEST_GAME_VECTORFIELDGRID_HPP
+#define TEST_GAME_VECTORFIELDGRID_HPP
 
 #include "GameEngine/Cell.hpp"
 
 #include <queue>
 
-class Grid {
+class VectorFieldGrid {
 private:
     sf::Vector2f mPosition;
     float mCellSize;
@@ -30,8 +30,8 @@ public:
 void draw(sf::RenderTarget& target, sf::RenderStates states = sf::RenderStates::Default);
 #endif
 
-    Grid(const sf::Vector2f& position, const sf::Vector2f& size, float cellSize);
-    ~Grid();
+    VectorFieldGrid(const sf::Vector2f& position, const sf::Vector2f& size, float cellSize);
+    ~VectorFieldGrid();
 
     /**
      * Activate cells witch intersects with rectangle.
@@ -46,4 +46,4 @@ void draw(sf::RenderTarget& target, sf::RenderStates states = sf::RenderStates::
 
 };
 
-#endif //TEST_GAME_GRID_HPP
+#endif //TEST_GAME_VECTORFIELDGRID_HPP
