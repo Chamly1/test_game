@@ -1,4 +1,4 @@
-#include "GameEngine/Cell.hpp"
+#include "GameEngine/VectorFieldCell.hpp"
 #include "Game/Utils/Utils.hpp"
 
 #ifndef NDEBUG
@@ -21,7 +21,7 @@ static const sf::Vector2f HEATMAP_FACTOR_TEXT_SHIFT = sf::Vector2f(5.f, 5.f);
 
 static const sf::Color FIELD_VECTOR_COLOR = sf::Color(255, 255, 255);
 
-void Cell::draw(sf::RenderTarget& target, sf::RenderStates states) {
+void VectorFieldCell::draw(sf::RenderTarget& target, sf::RenderStates states) {
 //    mCellShape.setFillColor(mState ? SHAPE_ACTIVE_COLOR : SHAPE_INACTIVE_COLOR);
     if (mContainObstacle) {
         mCellShape.setFillColor(SHAPE_CONTAIN_OBSTACLE_COLOR);
@@ -40,15 +40,15 @@ void Cell::draw(sf::RenderTarget& target, sf::RenderStates states) {
 }
 #endif
 
-Cell::Cell() : Cell(sf::FloatRect(), false) {
+VectorFieldCell::VectorFieldCell() : VectorFieldCell(sf::FloatRect(), false) {
 
 }
 
-Cell::Cell(sf::FloatRect cellRect, bool state) {
+VectorFieldCell::VectorFieldCell(sf::FloatRect cellRect, bool state) {
     init(cellRect, state);
 }
 
-void Cell::init(sf::FloatRect cellRect, bool containObstacle) {
+void VectorFieldCell::init(sf::FloatRect cellRect, bool containObstacle) {
     mCellRect = cellRect;
     mContainObstacle = containObstacle;
     mHeatmapFactor = -1;
@@ -82,44 +82,44 @@ void Cell::init(sf::FloatRect cellRect, bool containObstacle) {
 #endif
 }
 
-bool Cell::doesContainObstacle() const {
+bool VectorFieldCell::doesContainObstacle() const {
     return mContainObstacle;
 }
 
-void Cell::setContainObstacleFlag(bool containObstacleFlag) {
+void VectorFieldCell::setContainObstacleFlag(bool containObstacleFlag) {
     mContainObstacle = containObstacleFlag;
 }
 
-void Cell::setContainObstacleFlag(sf::FloatRect obstacle) {
+void VectorFieldCell::setContainObstacleFlag(sf::FloatRect obstacle) {
     if (mCellRect.intersects(obstacle)) {
         mContainObstacle = true;
     }
 }
 
-void Cell::setHeatmapFactor(int heatmapFactor) {
+void VectorFieldCell::setHeatmapFactor(int heatmapFactor) {
     mHeatmapFactor = heatmapFactor;
 }
 
-int Cell::getHeatmapFactor() const {
+int VectorFieldCell::getHeatmapFactor() const {
     return mHeatmapFactor;
 }
 
-void Cell::setFieldVector(sf::Vector2f fieldVector) {
+void VectorFieldCell::setFieldVector(sf::Vector2f fieldVector) {
     mFieldVector = normalizeVector(fieldVector);
 }
 
-sf::Vector2f Cell::getFieldVector() const {
+sf::Vector2f VectorFieldCell::getFieldVector() const {
     return mFieldVector;
 }
 
-sf::Vector2f Cell::getCellCenter() const {
+sf::Vector2f VectorFieldCell::getCellCenter() const {
     return sf::Vector2f(mCellRect.left, mCellRect.top) + sf::Vector2f(mCellRect.width / 2.f, mCellRect.height / 2.f);
 }
 
-void Cell::setNextCellCenter(sf::Vector2f nextCellCenter) {
+void VectorFieldCell::setNextCellCenter(sf::Vector2f nextCellCenter) {
     mNextCellCenter = nextCellCenter;
 }
 
-sf::Vector2f Cell::getNextCellCenter() {
+sf::Vector2f VectorFieldCell::getNextCellCenter() {
     return mNextCellCenter;
 }

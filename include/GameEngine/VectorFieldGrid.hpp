@@ -1,7 +1,7 @@
 #ifndef TEST_GAME_VECTORFIELDGRID_HPP
 #define TEST_GAME_VECTORFIELDGRID_HPP
 
-#include "GameEngine/Cell.hpp"
+#include "GameEngine/VectorFieldCell.hpp"
 
 #include <queue>
 
@@ -9,7 +9,7 @@ class VectorFieldGrid {
 private:
     sf::Vector2f mPosition;
     float mCellSize;
-    Cell** mCellsMatrix;
+    VectorFieldCell** mCellsMatrix;
     int mWidth;
     int mHeight;
 

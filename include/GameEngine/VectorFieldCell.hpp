@@ -1,5 +1,5 @@
-#ifndef TEST_GAME_CELL_HPP
-#define TEST_GAME_CELL_HPP
+#ifndef TEST_GAME_VECTORFIELDCELL_HPP
+#define TEST_GAME_VECTORFIELDCELL_HPP
 
 #include "SFML/Graphics/Rect.hpp"
 
@@ -8,7 +8,7 @@
 #include "SFML/Graphics/Text.hpp"
 #endif
 
-class Cell {
+class VectorFieldCell {
 private:
     sf::FloatRect mCellRect;
     bool mContainObstacle;
@@ -27,8 +27,8 @@ public:
     void draw(sf::RenderTarget& target, sf::RenderStates states);
 #endif
 
-    Cell();
-    Cell(sf::FloatRect cellRect, bool state);
+    VectorFieldCell();
+    VectorFieldCell(sf::FloatRect cellRect, bool state);
     void init(sf::FloatRect cellRect, bool containObstacle);
     bool doesContainObstacle() const;
     void setContainObstacleFlag(bool containObstacleFlag);
@@ -43,4 +43,4 @@ public:
 
 };
 
-#endif //TEST_GAME_CELL_HPP
+#endif //TEST_GAME_VECTORFIELDCELL_HPP

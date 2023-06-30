@@ -40,9 +40,9 @@ VectorFieldGrid::VectorFieldGrid(const sf::Vector2f& position, const sf::Vector2
 
     assert(size.x > 0.f && size.y > 0.f);
 
-    mCellsMatrix = new Cell*[mHeight];
+    mCellsMatrix = new VectorFieldCell*[mHeight];
     for (int i = 0; i < mHeight; ++i) {
-        mCellsMatrix[i] = new Cell[mWidth];
+        mCellsMatrix[i] = new VectorFieldCell[mWidth];
     }
 
     sf::FloatRect tmpFloatRect(0.f, 0.f, cellSize, cellSize);
