@@ -15,6 +15,11 @@ void ZombieAI::drawVisionRay(sf::RenderTarget& target, const SceneNode* zombieSc
     target.draw(visionRay);
 }
 
+ZombieAI::ZombieAI(std::shared_ptr<const Grid> grid)
+: mGrid(grid) {
+
+}
+
 bool ZombieAI::checkCompatibilities(SceneNode& sceneNode) {
     bool isCompatible = true;
 
@@ -28,5 +33,6 @@ void ZombieAI::update(sf::Time dt, SceneNode* sceneNode) {
     mPlayerPosition = sceneRoot->getFirstNodeOfCategoryPtr(SceneNodeCategory::Player)->getPosition();
 
     Entity* entity = dynamic_cast<Entity*>(sceneNode);
-    entity->accelerateTo(mPlayerPosition - entity->getPosition());
+//    entity->accelerateTo(mGrid.getFieldVectorInPoint(entity->getPosition()));
+    entity->accelerateTo(mGrid->getNextCellCenterInPoint(entity->getPosition()) - entity->getPosition());
 }

@@ -10,7 +10,7 @@ private:
     virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
 
 public:
-    ZombieNPC(const TextureHolder& textures);
+    ZombieNPC(std::shared_ptr<const Grid> grid, const TextureHolder& textures);
 
 };
 
