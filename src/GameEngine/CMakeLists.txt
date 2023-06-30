@@ -6,4 +6,5 @@ add_library(game_engine_objlib OBJECT
         ResourceHolders/FontHolder.cpp ResourceHolders/TextureHolder.cpp
         GUI/Component.cpp GUI/Container.cpp
         Utils/DebugLog.cpp
-        Utils/SceneNodeUtils.cpp)
+        Utils/SceneNodeUtils.cpp
+        Utils/PerformanceStatisticManager.cpp)
