@@ -81,7 +81,7 @@ void World::buildScene() {
     player->setPosition(100.f, 100.f);
     mSceneLayers[Layer::Units]->attachChild(std::move(player));
 
-    std::unique_ptr<ZombieNPC> enemy(new ZombieNPC(mTextures));
+    std::unique_ptr<ZombieNPC> enemy(new ZombieNPC(mGrid, mTextures));
     enemy->addSceneNodeCategory(SceneNodeCategory::EnemyUnit);
     enemy->setPosition(200.f, 100.f);
     mSceneLayers[Layer::Units]->attachChild(std::move(enemy));
@@ -92,12 +92,19 @@ void World::buildScene() {
     mSceneLayers[ImpassableZones]->attachChild(generateImpassableZonesMap(mTextures.get(TextureIdentifier::MapImpassableZonesNotEmptyRoom),
                                                                           sf::Color(255, 0, 0),
                                                                           mapScaleFactor));
+
+    std::vector<const SceneNode*> impassableNodes;
+    mSceneLayers[ImpassableZones]->getAllNodeOfCategoryPtrs(SceneNodeCategory::ImpassableZone, impassableNodes);
+    for (const SceneNode* impassableNode : impassableNodes) {
+        mGrid->setContainObstacleFlags(dynamic_cast<const CollidableNode*>(impassableNode)->getCollisionBoxRect());
+    }
 }
 
 World::World(sf::RenderWindow& window)
 : mWindow(window)
 , mPlayerCamera(window.getDefaultView())
-, mSceneGraph() {
+, mSceneGraph()
+, mGrid(new Grid(sf::Vector2f(0.f, 0.f), sf::Vector2f(1360.f, 1120.f), 40.f)) {
     loadTextures();
     buildScene();
 
@@ -122,12 +129,19 @@ void World::update(sf::Time dt) {
         secondCollidableNode->onCollision(*firstCollidableNode);
     }
 
+    mGrid->updateHeatmap(mSceneGraph.getFirstNodeOfCategoryPtr(SceneNodeCategory::Player)->getPosition());
+    mGrid->updateVectorField();
+
     mPlayerCamera.update(dt);
 }
 
 void World::draw() {
     mWindow.setView(mPlayerCamera.getView());
     mWindow.draw(mSceneGraph);
+
+#ifndef NDEBUG
+    mGrid->draw(mWindow);
+#endif
 }
 
 CommandQueue& World::getCommandQueue() {
