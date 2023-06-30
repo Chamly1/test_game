@@ -5,6 +5,7 @@
 #include "GameEngine/ResourceHolders/TextureHolder.hpp"
 #include "GameEngine/ResourceHolders/FontHolder.hpp"
 #include "GameEngine/Scenes/SceneList.hpp"
+#include "GameEngine/Utils/PerformanceStatisticManager.hpp"
 
 #include "SFML/Graphics/RenderWindow.hpp"
 
@@ -17,6 +18,8 @@ private:
     FontHolder mFonts;
 
     SceneList mSceneList;
+
+    PerformanceStatisticManager mStatisticManager;
 
     void processEvents();
     void update(sf::Time dt);
