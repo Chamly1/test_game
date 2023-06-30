@@ -44,8 +44,8 @@ VectorFieldCell::VectorFieldCell() : VectorFieldCell(sf::FloatRect(), false) {
 
 }
 
-VectorFieldCell::VectorFieldCell(sf::FloatRect cellRect, bool state) {
-    init(cellRect, state);
+VectorFieldCell::VectorFieldCell(sf::FloatRect cellRect, bool containObstacle) {
+    init(cellRect, containObstacle);
 }
 
 void VectorFieldCell::init(sf::FloatRect cellRect, bool containObstacle) {

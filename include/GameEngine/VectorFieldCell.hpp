@@ -8,6 +8,9 @@
 #include "SFML/Graphics/Text.hpp"
 #endif
 
+/**
+ * Class which represent one single cell in a grid of goal-based vector field (pathfinding algorithm).
+ */
 class VectorFieldCell {
 private:
     sf::FloatRect mCellRect;
@@ -28,10 +31,15 @@ public:
 #endif
 
     VectorFieldCell();
-    VectorFieldCell(sf::FloatRect cellRect, bool state);
+    VectorFieldCell(sf::FloatRect cellRect, bool containObstacle);
     void init(sf::FloatRect cellRect, bool containObstacle);
     bool doesContainObstacle() const;
     void setContainObstacleFlag(bool containObstacleFlag);
+    /**
+     * Set flag to true if obstacle intersect cell.
+     *
+     * @param obstacle obstacle to check intersection.
+     */
     void setContainObstacleFlag(sf::FloatRect obstacle);
     void setHeatmapFactor(int heatmapFactor);
     int getHeatmapFactor() const;
