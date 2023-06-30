@@ -47,7 +47,7 @@ public:
     sf::Vector2f getFieldVector() const;
     sf::Vector2f getCellCenter() const;
     void setNextCellCenter(const sf::Vector2f& nextCellCenter);
-    sf::Vector2f getNextCellCenter();
+    sf::Vector2f getNextCellCenter() const;
 
 };
 

@@ -120,6 +120,6 @@ void VectorFieldCell::setNextCellCenter(const sf::Vector2f& nextCellCenter) {
     mNextCellCenter = nextCellCenter;
 }
 
-sf::Vector2f VectorFieldCell::getNextCellCenter() {
+sf::Vector2f VectorFieldCell::getNextCellCenter() const {
     return mNextCellCenter;
 }
