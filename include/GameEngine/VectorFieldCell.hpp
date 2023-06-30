@@ -31,8 +31,8 @@ public:
 #endif
 
     VectorFieldCell();
-    VectorFieldCell(sf::FloatRect cellRect, bool containObstacle);
-    void init(sf::FloatRect cellRect, bool containObstacle);
+    VectorFieldCell(const sf::FloatRect& cellRect, bool containObstacle);
+    void init(const sf::FloatRect& cellRect, bool containObstacle);
     bool doesContainObstacle() const;
     void setContainObstacleFlag(bool containObstacleFlag);
     /**
@@ -40,13 +40,13 @@ public:
      *
      * @param obstacle obstacle to check intersection.
      */
-    void setContainObstacleFlag(sf::FloatRect obstacle);
+    void setContainObstacleFlag(const sf::FloatRect& obstacle);
     void setHeatmapFactor(int heatmapFactor);
     int getHeatmapFactor() const;
-    void setFieldVector(sf::Vector2f fieldVector);
+    void setFieldVector(const sf::Vector2f& fieldVector);
     sf::Vector2f getFieldVector() const;
     sf::Vector2f getCellCenter() const;
-    void setNextCellCenter(sf::Vector2f nextCellCenter);
+    void setNextCellCenter(const sf::Vector2f& nextCellCenter);
     sf::Vector2f getNextCellCenter();
 
 };

@@ -44,11 +44,11 @@ VectorFieldCell::VectorFieldCell() : VectorFieldCell(sf::FloatRect(), false) {
 
 }
 
-VectorFieldCell::VectorFieldCell(sf::FloatRect cellRect, bool containObstacle) {
+VectorFieldCell::VectorFieldCell(const sf::FloatRect& cellRect, bool containObstacle) {
     init(cellRect, containObstacle);
 }
 
-void VectorFieldCell::init(sf::FloatRect cellRect, bool containObstacle) {
+void VectorFieldCell::init(const sf::FloatRect& cellRect, bool containObstacle) {
     mCellRect = cellRect;
     mContainObstacle = containObstacle;
     mHeatmapFactor = -1;
@@ -90,7 +90,7 @@ void VectorFieldCell::setContainObstacleFlag(bool containObstacleFlag) {
     mContainObstacle = containObstacleFlag;
 }
 
-void VectorFieldCell::setContainObstacleFlag(sf::FloatRect obstacle) {
+void VectorFieldCell::setContainObstacleFlag(const sf::FloatRect& obstacle) {
     if (mCellRect.intersects(obstacle)) {
         mContainObstacle = true;
     }
@@ -104,7 +104,7 @@ int VectorFieldCell::getHeatmapFactor() const {
     return mHeatmapFactor;
 }
 
-void VectorFieldCell::setFieldVector(sf::Vector2f fieldVector) {
+void VectorFieldCell::setFieldVector(const sf::Vector2f& fieldVector) {
     mFieldVector = normalizeVector(fieldVector);
 }
 
@@ -116,7 +116,7 @@ sf::Vector2f VectorFieldCell::getCellCenter() const {
     return sf::Vector2f(mCellRect.left, mCellRect.top) + sf::Vector2f(mCellRect.width / 2.f, mCellRect.height / 2.f);
 }
 
-void VectorFieldCell::setNextCellCenter(sf::Vector2f nextCellCenter) {
+void VectorFieldCell::setNextCellCenter(const sf::Vector2f& nextCellCenter) {
     mNextCellCenter = nextCellCenter;
 }
 
