@@ -7,9 +7,6 @@ void ZombieNPC::updateCurrent(sf::Time dt) {
 
 void ZombieNPC::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const {
     Unit::drawCurrent(target, states);
-#ifndef NDEBUG
-    ZombieAI::drawVisionRay(target, this);
-#endif
 }
 
 ZombieNPC::ZombieNPC(std::shared_ptr<const Grid> grid, const TextureHolder& textures)

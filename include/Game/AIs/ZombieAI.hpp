@@ -8,11 +8,7 @@
 
 class ZombieAI : public AI {
 private:
-    sf::Vector2f mPlayerPosition;
     std::shared_ptr<const Grid> mGrid;
-
-protected:
-    void drawVisionRay(sf::RenderTarget& target, const SceneNode* zombieSceneNode) const;
 
 public:
     ZombieAI(std::shared_ptr<const Grid> grid);
