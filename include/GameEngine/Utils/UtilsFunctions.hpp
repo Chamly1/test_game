@@ -1,5 +1,5 @@
-#ifndef TEST_GAME_UTILS_HPP
-#define TEST_GAME_UTILS_HPP
+#ifndef TEST_GAME_UTILSFUNCTIONS_HPP
+#define TEST_GAME_UTILSFUNCTIONS_HPP
 
 #include "SFML/Graphics/Rect.hpp"
 
@@ -31,4 +31,4 @@ bool isRayIntersectSegment(const sf::Vector2f& rayOrigin, const sf::Vector2f& ra
 sf::Vector2f getRectPosition(const sf::FloatRect& rect);
 sf::Vector2f getRectSize(const sf::FloatRect& rect);
 
-#endif //TEST_GAME_UTILS_HPP
+#endif //TEST_GAME_UTILSFUNCTIONS_HPP

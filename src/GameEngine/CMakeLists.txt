@@ -8,4 +8,4 @@ add_library(game_engine_objlib OBJECT
         Utils/DebugLog.cpp
         Utils/SceneNodeUtils.cpp
         Utils/PerformanceStatisticManager.cpp
-        Utils/Utils.cpp)
+        Utils/UtilsFunctions.cpp)

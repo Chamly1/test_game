@@ -1,4 +1,4 @@
-#include "GameEngine/Utils/Utils.hpp"
+#include "GameEngine/Utils/UtilsFunctions.hpp"
 
 bool isTwoSegmentsIntersect(const sf::Vector2f& a, const sf::Vector2f& b, const sf::Vector2f& c, const sf::Vector2f& d, sf::Vector2f& intersectAt) {
     sf::Vector2f r = b - a;
