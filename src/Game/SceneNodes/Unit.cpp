@@ -3,6 +3,7 @@
 #include "Game/Utils/Utils.hpp"
 #include "Game/DataTables.hpp"
 #include "GameEngine/Utils/DebugLog.hpp"
+#include "GameEngine/Utils/UtilsFunctions.hpp"
 
 #include "SFML/Graphics/RenderTarget.hpp"
 
@@ -52,51 +53,33 @@ bool Unit::isCollidable() const {
 
 void Unit::onCollision(CollidableNode& collisionWith) {
     if (collisionWith.getSceneNodeCategory() & SceneNodeCategory::ImpassableZone) {
-        sf::FloatRect intersection;
         sf::FloatRect collisionBox = getCollisionBoxRect();
-        collisionBox.intersects(collisionWith.getCollisionBoxRect(), intersection);
+        sf::FloatRect collisionWithBox = collisionWith.getCollisionBoxRect();
 
-        sf::Vector2f moveOffset;
+        sf::Vector2f collisionBoxCenter = sf::Vector2f(collisionBox.left + collisionBox.width / 2.f, collisionBox.top + collisionBox.height / 2.f);
+        // rectangle of the closest points without collision (center if collisionBox must lies on this rectangle side)
+        sf::FloatRect extendedCollisionWithBox = sf::FloatRect(collisionWithBox.left - collisionBox.width / 2.f,
+                                                               collisionWithBox.top - collisionBox.height / 2.f,
+                                                               collisionWithBox.width + collisionBox.width,
+                                                               collisionWithBox.height + collisionBox.height);
 
-        if (collisionBox.top == intersection.top &&
-            collisionBox.left == intersection.left) {
-            if (intersection.width > intersection.height) {
-                moveOffset.x = 0.f;
-                moveOffset.y = intersection.height;
-            } else {
-                moveOffset.x = intersection.width;
-                moveOffset.y = 0.f;
-            }
+        if (extendedCollisionWithBox.contains(collisionBoxCenter)) {
+            sf::Vector2f rectPos = getRectPosition(extendedCollisionWithBox);
+            sf::Vector2f rectSize = getRectSize(extendedCollisionWithBox);
 
-        } else if (collisionBox.top == intersection.top) {
-            if (intersection.width > intersection.height) {
-                moveOffset.x = 0.f;
-                moveOffset.y = intersection.height;
-            } else {
-                moveOffset.x = 0.f - intersection.width;
-                moveOffset.y = 0.f;
-            }
+            sf::Vector2f a = rectPos;
+            sf::Vector2f b = rectPos; b.x += rectSize.x;
+            sf::Vector2f c = rectPos + rectSize;
+            sf::Vector2f d = rectPos; d.y += rectSize.y;
 
-        } else if (collisionBox.left == intersection.left) {
-            if (intersection.width > intersection.height) {
-                moveOffset.x = 0.f;
-                moveOffset.y = 0.f - intersection.height;
-            } else {
-                moveOffset.x = intersection.width;
-                moveOffset.y = 0.f;
-            }
+            sf::Vector2f reverseMoveDirection = getPreviousVelocity() * -1.f;
+            sf::Vector2f intersectAt;
+            if (isRayIntersectSegment(collisionBoxCenter, reverseMoveDirection, a, b, intersectAt)) {}
+            else if (isRayIntersectSegment(collisionBoxCenter, reverseMoveDirection, b, c, intersectAt)) {}
+            else if (isRayIntersectSegment(collisionBoxCenter, reverseMoveDirection, c, d, intersectAt)) {}
+            else if (isRayIntersectSegment(collisionBoxCenter, reverseMoveDirection, d, a, intersectAt)) {}
 
-        } else {
-            // to fix leap on the top left edge
-            if (intersection.width > intersection.height) {
-                moveOffset.x = 0.f;
-                moveOffset.y = 0.f - intersection.height;
-            } else {
-                moveOffset.x = 0.f - intersection.width;
-                moveOffset.y = 0.f;
-            }
+            move(intersectAt - collisionBoxCenter);
         }
-
-        move( moveOffset);
     }
 }
