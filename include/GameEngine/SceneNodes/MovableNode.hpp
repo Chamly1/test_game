@@ -22,7 +22,6 @@ public:
 class MovableNode : virtual public SceneNode {
 private:
     sf::Vector2f velocity;
-    sf::Vector2f mPreviousVelocity;
     float baseSpeed;
 
     void resetVelocity();
@@ -30,7 +29,6 @@ private:
 protected:
     virtual void updateCurrent(sf::Time dt);
     sf::Vector2f getVelocity();
-    sf::Vector2f getPreviousVelocity();
 
 public:
     MovableNode(float baseSpeed);

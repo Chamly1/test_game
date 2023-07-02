@@ -13,8 +13,6 @@ void EntityMover::operator() (SceneNode& node, sf::Time dt) const {
 }
 
 void MovableNode::resetVelocity() {
-    mPreviousVelocity = velocity;
-
     velocity.x = 0.f;
     velocity.y = 0.f;
 }
@@ -28,13 +26,8 @@ sf::Vector2f MovableNode::getVelocity() {
     return velocity;
 }
 
-sf::Vector2f MovableNode::getPreviousVelocity() {
-    return mPreviousVelocity;
-}
-
 MovableNode::MovableNode(float baseSpeed)
 : velocity()
-, mPreviousVelocity()
 , baseSpeed(baseSpeed) {
 
 }
