@@ -28,4 +28,7 @@ bool isTwoSegmentsIntersect(const sf::Vector2f& a, const sf::Vector2f& b, const 
  */
 bool isRayIntersectSegment(const sf::Vector2f& rayOrigin, const sf::Vector2f& rayDirection, const sf::Vector2f& a, const sf::Vector2f& b, sf::Vector2f& intersectAt);
 
+sf::Vector2f getRectPosition(const sf::FloatRect& rect);
+sf::Vector2f getRectSize(const sf::FloatRect& rect);
+
 #endif //TEST_GAME_UTILS_HPP

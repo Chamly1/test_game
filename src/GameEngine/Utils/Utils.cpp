@@ -39,3 +39,11 @@ bool isRayIntersectSegment(const sf::Vector2f& rayOrigin, const sf::Vector2f& ra
 
     return isIntersect;
 }
+
+sf::Vector2f getRectPosition(const sf::FloatRect& rect) {
+    return sf::Vector2f(rect.left, rect.top);
+}
+
+sf::Vector2f getRectSize(const sf::FloatRect& rect) {
+    return sf::Vector2f(rect.width, rect.height);
+}
