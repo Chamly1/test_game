@@ -7,4 +7,5 @@ add_library(game_engine_objlib OBJECT
         GUI/Component.cpp GUI/Container.cpp
         Utils/DebugLog.cpp
         Utils/SceneNodeUtils.cpp
-        Utils/PerformanceStatisticManager.cpp)
+        Utils/PerformanceStatisticManager.cpp
+        Utils/Utils.cpp)
