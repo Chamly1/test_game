@@ -1,4 +1,4 @@
-#include "Game/SceneNodes/Entity.hpp"
+#include "Game/SceneNodes/MovableNode.hpp"
 #include "GameEngine/Utils/UtilsFunctions.hpp"
 
 #include <cmath>
@@ -8,38 +8,38 @@ EntityMover::EntityMover(Direction direction)
 
 }
 void EntityMover::operator() (SceneNode& node, sf::Time dt) const {
-    Entity& entity = dynamic_cast<Entity&>(node);
+    MovableNode& entity = dynamic_cast<MovableNode&>(node);
     entity.accelerateTo(mDirection);
 }
 
-void Entity::resetVelocity() {
+void MovableNode::resetVelocity() {
     mPreviousVelocity = velocity;
 
     velocity.x = 0.f;
     velocity.y = 0.f;
 }
 
-void Entity::updateCurrent(sf::Time dt) {
+void MovableNode::updateCurrent(sf::Time dt) {
     move(velocity * dt.asSeconds());
     resetVelocity();
 }
 
-sf::Vector2f Entity::getVelocity() {
+sf::Vector2f MovableNode::getVelocity() {
     return velocity;
 }
 
-sf::Vector2f Entity::getPreviousVelocity() {
+sf::Vector2f MovableNode::getPreviousVelocity() {
     return mPreviousVelocity;
 }
 
-Entity::Entity(float baseSpeed)
+MovableNode::MovableNode(float baseSpeed)
 : velocity()
 , mPreviousVelocity()
 , baseSpeed(baseSpeed) {
 
 }
 
-void Entity::accelerateTo(Direction direction) {
+void MovableNode::accelerateTo(Direction direction) {
     switch (direction) {
         case Direction::Up:
             velocity.y = -baseSpeed;
@@ -60,7 +60,7 @@ void Entity::accelerateTo(Direction direction) {
     }
 }
 
-void Entity::accelerateTo(const sf::Vector2f& direction) {
+void MovableNode::accelerateTo(const sf::Vector2f& direction) {
     if (direction.x == 0.f && direction.y == 0.f) {
         velocity = sf::Vector2f(0.f, 0.f);
     } else {

@@ -1,5 +1,5 @@
-#ifndef TEST_GAME_ENTITY_HPP
-#define TEST_GAME_ENTITY_HPP
+#ifndef TEST_GAME_MOVABLENODE_HPP
+#define TEST_GAME_MOVABLENODE_HPP
 
 #include "GameEngine/SceneNodes/SceneNode.hpp"
 
@@ -19,7 +19,7 @@ public:
     void operator() (SceneNode& node, sf::Time dt) const;
 };
 
-class Entity : virtual public SceneNode {
+class MovableNode : virtual public SceneNode {
 private:
     sf::Vector2f velocity;
     sf::Vector2f mPreviousVelocity;
@@ -33,10 +33,10 @@ protected:
     sf::Vector2f getPreviousVelocity();
 
 public:
-    Entity(float baseSpeed);
+    MovableNode(float baseSpeed);
     void accelerateTo(Direction direction);
     void accelerateTo(const sf::Vector2f& direction);
 
 };
 
-#endif //TEST_GAME_ENTITY_HPP
+#endif //TEST_GAME_MOVABLENODE_HPP

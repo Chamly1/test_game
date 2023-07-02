@@ -17,7 +17,7 @@ void Unit::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const 
 }
 
 void Unit::updateCurrent(sf::Time dt) {
-    sf::Vector2f velocity = Entity::getVelocity();
+    sf::Vector2f velocity = MovableNode::getVelocity();
 
     AnimationType newAnimationType;
     if (velocity.x != 0 || velocity.y != 0) {
@@ -28,7 +28,7 @@ void Unit::updateCurrent(sf::Time dt) {
 
     DirectionType newDirectionType;
     newDirectionType = moveVelocityToAnimationDirection(velocity, mAnimationManager.getCurrentDirectionType());
-    Entity::updateCurrent(dt);
+    MovableNode::updateCurrent(dt);
 
     if (mAnimationManager.getCurrentAnimationType() != newAnimationType ||
         mAnimationManager.getCurrentDirectionType() != newDirectionType) {
@@ -40,7 +40,7 @@ void Unit::updateCurrent(sf::Time dt) {
 }
 
 Unit::Unit(UnitType unitType, const TextureHolder& textures)
-: Entity(unitData[unitType].baseSpeed)
+: MovableNode(unitData[unitType].baseSpeed)
 , CollidableNode(unitData[unitType].collisionBoxSize)
 , mUnitType(unitType)
 , mAnimationManager(textures, unitData[unitType]) {

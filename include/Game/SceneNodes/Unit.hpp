@@ -1,12 +1,12 @@
 #ifndef TEST_GAME_UNIT_HPP
 #define TEST_GAME_UNIT_HPP
 
-#include "Game/SceneNodes/Entity.hpp"
+#include "Game/SceneNodes/MovableNode.hpp"
 #include "GameEngine/ResourceHolders/TextureHolder.hpp"
 #include "Game/AnimationManager.hpp"
 #include "GameEngine/SceneNodes/CollidableNode.hpp"
 
-class Unit : public Entity, public CollidableNode {
+class Unit : public MovableNode, public CollidableNode {
 private:
     UnitType mUnitType;
     AnimationManager mAnimationManager;

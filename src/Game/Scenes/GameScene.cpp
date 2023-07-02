@@ -1,6 +1,6 @@
 #include "Game/Scenes/GameScene.hpp"
 #include "Game/SceneNodes/SceneNodeCategory.hpp"
-#include "Game/SceneNodes/Entity.hpp"
+#include "Game/SceneNodes/MovableNode.hpp"
 #include "Game/PlayerActionIdentifiers.hpp"
 #include "Game/Scenes/SceneIdentifiers.hpp"
 
