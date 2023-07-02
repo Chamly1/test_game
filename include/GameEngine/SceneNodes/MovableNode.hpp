@@ -1,7 +1,7 @@
 #ifndef TEST_GAME_MOVABLENODE_HPP
 #define TEST_GAME_MOVABLENODE_HPP
 
-#include "GameEngine/SceneNodes/SceneNode.hpp"
+#include "SceneNode.hpp"
 
 enum class Direction {
     Up, Down, Left, Right

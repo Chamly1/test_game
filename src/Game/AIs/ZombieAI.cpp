@@ -1,5 +1,5 @@
 #include "Game/AIs/ZombieAI.hpp"
-#include "Game/SceneNodes/MovableNode.hpp"
+#include "GameEngine/SceneNodes/MovableNode.hpp"
 
 #include "SFML/Graphics/RenderTarget.hpp"
 

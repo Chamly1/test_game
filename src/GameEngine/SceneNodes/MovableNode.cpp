@@ -1,4 +1,4 @@
-#include "Game/SceneNodes/MovableNode.hpp"
+#include "GameEngine/SceneNodes/MovableNode.hpp"
 #include "GameEngine/Utils/UtilsFunctions.hpp"
 
 #include <cmath>

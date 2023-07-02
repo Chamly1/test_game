@@ -1,7 +1,7 @@
 #ifndef TEST_GAME_UNIT_HPP
 #define TEST_GAME_UNIT_HPP
 
-#include "Game/SceneNodes/MovableNode.hpp"
+#include "GameEngine/SceneNodes/MovableNode.hpp"
 #include "GameEngine/ResourceHolders/TextureHolder.hpp"
 #include "Game/AnimationManager.hpp"
 #include "GameEngine/SceneNodes/CollidableNode.hpp"
