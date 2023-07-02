@@ -1,5 +1,5 @@
 #include "GameEngine/VectorFieldCell.hpp"
-#include "Game/Utils/Utils.hpp"
+#include "GameEngine/Utils/UtilsFunctions.hpp"
 
 #ifndef NDEBUG
 #include "SFML/Graphics/RenderTarget.hpp"

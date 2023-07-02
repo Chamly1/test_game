@@ -1,5 +1,5 @@
 #include "Game/SceneNodes/Entity.hpp"
-#include "Game/Utils/Utils.hpp"
+#include "GameEngine/Utils/UtilsFunctions.hpp"
 
 #include <cmath>
 

@@ -1,5 +1,7 @@
 #include "GameEngine/Utils/UtilsFunctions.hpp"
 
+#include "cmath"
+
 bool isTwoSegmentsIntersect(const sf::Vector2f& a, const sf::Vector2f& b, const sf::Vector2f& c, const sf::Vector2f& d, sf::Vector2f& intersectAt) {
     sf::Vector2f r = b - a;
     sf::Vector2f s = d - c;
@@ -46,4 +48,17 @@ sf::Vector2f getRectPosition(const sf::FloatRect& rect) {
 
 sf::Vector2f getRectSize(const sf::FloatRect& rect) {
     return sf::Vector2f(rect.width, rect.height);
+}
+
+float vectorMagnitude(const sf::Vector2f& vector) {
+    return sqrtf(vector.x * vector.x + vector.y * vector.y);
+}
+
+sf::Vector2f normalizeVector(const sf::Vector2f& vector) {
+    float magnitude = vectorMagnitude(vector);
+    if (magnitude == 0.f) {
+        return vector;
+    } else {
+        return vector / magnitude;
+    }
 }

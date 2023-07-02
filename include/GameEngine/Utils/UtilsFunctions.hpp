@@ -31,4 +31,22 @@ bool isRayIntersectSegment(const sf::Vector2f& rayOrigin, const sf::Vector2f& ra
 sf::Vector2f getRectPosition(const sf::FloatRect& rect);
 sf::Vector2f getRectSize(const sf::FloatRect& rect);
 
+/**
+ * Calculate vector's magnitude.
+ *
+ * @param vector vector to calculate magnitude.
+ *
+ * @return vector's magnitude.
+ */
+float vectorMagnitude(const sf::Vector2f& vector);
+
+/**
+ * Normalize a vector.
+ *
+ * @param vector vector to be normalized.
+ *
+ * @return normalized vector.
+ */
+sf::Vector2f normalizeVector(const sf::Vector2f& vector);
+
 #endif //TEST_GAME_UTILSFUNCTIONS_HPP
