@@ -89,6 +89,7 @@ void Unit::onCollision(CollidableNode& collisionWith) {
 
             sf::Vector2f moveVector = intersectAt - collisionBoxCenter;
 
+            // leave only axis which move out from collided object
             moveVector.x *= fabsf(intersectNormal.x);
             moveVector.y *= fabsf(intersectNormal.y);
 
