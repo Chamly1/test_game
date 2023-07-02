@@ -49,4 +49,44 @@ float vectorMagnitude(const sf::Vector2f& vector);
  */
 sf::Vector2f normalizeVector(const sf::Vector2f& vector);
 
+/**
+ * Convert the segment to the vector.
+ *
+ * @param a start point of the segment.
+ * @param b end point of the segment.
+ *
+ * @return result vector;
+ */
+sf::Vector2f segmentToVector(const sf::Vector2f& a, const sf::Vector2f& b);
+
+/**
+ * Calculate clockwise unit normal vector to the segments a-b.
+ *
+ * @param a start point of the segment.
+ * @param b end point of the segment.
+ *
+ * @return unit normal vector.
+ */
+sf::Vector2f unitNormalVector(const sf::Vector2f& a, const sf::Vector2f& b);
+
+/**
+ * Calculate the dot product of two vectors.
+ *
+ * @param vector1 first vector.
+ * @param vector2 second vector.
+ *
+ * @return dot product.
+ */
+float dotProduct(const sf::Vector2f& vector1, const sf::Vector2f& vector2);
+
+/**
+ * Calculate reflection of vectorV across vectorN.
+ *
+ * @param vectorV vector being reflected.
+ * @param vectorN vector in the line across which the reflection is performed (MUST be normalized).
+ *
+ * @return reflection.
+ */
+sf::Vector2f reflectionVector(const sf::Vector2f& vectorV, const sf::Vector2f& vectorN);
+
 #endif //TEST_GAME_UTILSFUNCTIONS_HPP

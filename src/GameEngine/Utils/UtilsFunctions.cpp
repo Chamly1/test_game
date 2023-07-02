@@ -62,3 +62,25 @@ sf::Vector2f normalizeVector(const sf::Vector2f& vector) {
         return vector / magnitude;
     }
 }
+
+sf::Vector2f segmentToVector(const sf::Vector2f& a, const sf::Vector2f& b) {
+    return b - a;
+}
+
+sf::Vector2f unitNormalVector(const sf::Vector2f& a, const sf::Vector2f& b) {
+    sf::Vector2f vector = segmentToVector(a, b);
+    sf::Vector2f normalVector(vector.y, -vector.x);
+
+    // counterclockwise
+    //sf::Vector2f normalVector(-vector.y, vector.x);
+
+    return normalizeVector(normalVector);
+}
+
+float dotProduct(const sf::Vector2f& vector1, const sf::Vector2f& vector2) {
+    return vector1.x * vector2.x + vector1.y * vector2.y;
+}
+
+sf::Vector2f reflectionVector(const sf::Vector2f& vectorV, const sf::Vector2f& vectorN) {
+    return vectorV - vectorN * 2.f * dotProduct(vectorV, vectorN);
+}

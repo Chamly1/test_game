@@ -7,6 +7,8 @@
 
 #include "SFML/Graphics/RenderTarget.hpp"
 
+#include <cmath>
+
 std::unordered_map<UnitType, UnitData> unitData = initUnitData();
 
 void Unit::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const {
@@ -74,12 +76,23 @@ void Unit::onCollision(CollidableNode& collisionWith) {
 
             sf::Vector2f reverseMoveDirection = getPreviousVelocity() * -1.f;
             sf::Vector2f intersectAt;
-            if (isRayIntersectSegment(collisionBoxCenter, reverseMoveDirection, a, b, intersectAt)) {}
-            else if (isRayIntersectSegment(collisionBoxCenter, reverseMoveDirection, b, c, intersectAt)) {}
-            else if (isRayIntersectSegment(collisionBoxCenter, reverseMoveDirection, c, d, intersectAt)) {}
-            else if (isRayIntersectSegment(collisionBoxCenter, reverseMoveDirection, d, a, intersectAt)) {}
+            sf::Vector2f intersectNormal;
+            if (isRayIntersectSegment(collisionBoxCenter, reverseMoveDirection, a, b, intersectAt)) {
+                intersectNormal = unitNormalVector(a, b);
+            } else if (isRayIntersectSegment(collisionBoxCenter, reverseMoveDirection, b, c, intersectAt)) {
+                intersectNormal = unitNormalVector(b, c);
+            } else if (isRayIntersectSegment(collisionBoxCenter, reverseMoveDirection, c, d, intersectAt)) {
+                intersectNormal = unitNormalVector(c, d);
+            } else if (isRayIntersectSegment(collisionBoxCenter, reverseMoveDirection, d, a, intersectAt)) {
+                intersectNormal = unitNormalVector(d, a);
+            }
 
-            move(intersectAt - collisionBoxCenter);
+            sf::Vector2f moveVector = intersectAt - collisionBoxCenter;
+
+            moveVector.x *= fabsf(intersectNormal.x);
+            moveVector.y *= fabsf(intersectNormal.y);
+
+            move(moveVector);
         }
     }
 }
