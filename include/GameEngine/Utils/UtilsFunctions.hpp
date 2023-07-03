@@ -28,6 +28,19 @@ bool isTwoSegmentsIntersect(const sf::Vector2f& a, const sf::Vector2f& b, const 
  */
 bool isRayIntersectSegment(const sf::Vector2f& rayOrigin, const sf::Vector2f& rayDirection, const sf::Vector2f& a, const sf::Vector2f& b, sf::Vector2f& intersectAt);
 
+/**
+ * Calculate whether is an intersection between a-b segment and the rectangle. In case of intersection, calculate its
+ * point and return nearest.
+ *
+ * @param a start point of the segment.
+ * @param b end point of the segment.
+ * @param rect rectangle.
+ * @param firstIntersectionAt in case of intersection, write its point here.
+ *
+ * @return true if intersection occur.
+ */
+bool isSegmentIntersectRectangle(const sf::Vector2f& a, const sf::Vector2f& b, const sf::FloatRect& rect, sf::Vector2f& firstIntersectionAt);
+
 sf::Vector2f getRectPosition(const sf::FloatRect& rect);
 sf::Vector2f getRectSize(const sf::FloatRect& rect);
 
@@ -39,6 +52,16 @@ sf::Vector2f getRectSize(const sf::FloatRect& rect);
  * @return vector's magnitude.
  */
 float vectorMagnitude(const sf::Vector2f& vector);
+
+/**
+ * Calculate length of the segment.
+ *
+ * @param a start point of the segment.
+ * @param b end point of the segment.
+ *
+ * @return segment's length.
+ */
+float segmentLength(const sf::Vector2f& a, const sf::Vector2f& b);
 
 /**
  * Normalize a vector.

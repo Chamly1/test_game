@@ -42,6 +42,36 @@ bool isRayIntersectSegment(const sf::Vector2f& rayOrigin, const sf::Vector2f& ra
     return isIntersect;
 }
 
+bool isSegmentIntersectRectangle(const sf::Vector2f& a, const sf::Vector2f& b, const sf::FloatRect& rect, sf::Vector2f& firstIntersectionAt) {
+    sf::Vector2f rectPos = getRectPosition(rect);
+    sf::Vector2f rectSize = getRectSize(rect);
+
+    sf::Vector2f rectVertex1 = rectPos;
+    sf::Vector2f rectVertex2 = rectPos; rectVertex2.x += rectSize.x;
+    sf::Vector2f rectVertex3 = rectPos + rectSize;
+    sf::Vector2f rectVertex4 = rectPos; rectVertex4.y += rectSize.y;
+
+    sf::Vector2f intersectAt;
+    float currentDistance;
+    float shortestDistance = std::numeric_limits<float>::infinity();
+    bool isIntersect = false;
+    auto testDistance = [&] {
+        currentDistance = segmentLength(a, intersectAt);
+        if (currentDistance < shortestDistance) {
+            firstIntersectionAt = intersectAt;
+            shortestDistance = currentDistance;
+        }
+        isIntersect = true;
+    };
+
+    if (isTwoSegmentsIntersect(a, b, rectVertex1, rectVertex2, intersectAt)) testDistance();
+    if (isTwoSegmentsIntersect(a, b, rectVertex2, rectVertex3, intersectAt)) testDistance();
+    if (isTwoSegmentsIntersect(a, b, rectVertex3, rectVertex4, intersectAt)) testDistance();
+    if (isTwoSegmentsIntersect(a, b, rectVertex4, rectVertex1, intersectAt)) testDistance();
+
+    return isIntersect;
+}
+
 sf::Vector2f getRectPosition(const sf::FloatRect& rect) {
     return sf::Vector2f(rect.left, rect.top);
 }
@@ -52,6 +82,10 @@ sf::Vector2f getRectSize(const sf::FloatRect& rect) {
 
 float vectorMagnitude(const sf::Vector2f& vector) {
     return sqrtf(vector.x * vector.x + vector.y * vector.y);
+}
+
+float segmentLength(const sf::Vector2f& a, const sf::Vector2f& b) {
+    return vectorMagnitude(b - a);
 }
 
 sf::Vector2f normalizeVector(const sf::Vector2f& vector) {
