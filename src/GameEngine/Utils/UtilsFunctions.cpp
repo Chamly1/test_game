@@ -42,7 +42,7 @@ bool isRayIntersectSegment(const sf::Vector2f& rayOrigin, const sf::Vector2f& ra
     return isIntersect;
 }
 
-bool isSegmentIntersectRectangle(const sf::Vector2f& a, const sf::Vector2f& b, const sf::FloatRect& rect, sf::Vector2f& firstIntersectionAt) {
+bool isSegmentIntersectRectangle(const sf::Vector2f& a, const sf::Vector2f& b, const sf::FloatRect& rect, sf::Vector2f& firstIntersectionAt, sf::Vector2f& intersectionNormal) {
     sf::Vector2f rectPos = getRectPosition(rect);
     sf::Vector2f rectSize = getRectSize(rect);
 
@@ -55,19 +55,22 @@ bool isSegmentIntersectRectangle(const sf::Vector2f& a, const sf::Vector2f& b, c
     float currentDistance;
     float shortestDistance = std::numeric_limits<float>::infinity();
     bool isIntersect = false;
-    auto testDistance = [&] {
-        currentDistance = segmentLength(a, intersectAt);
-        if (currentDistance < shortestDistance) {
-            firstIntersectionAt = intersectAt;
-            shortestDistance = currentDistance;
+    auto testIntersection = [&] (sf::Vector2f vertex1, sf::Vector2f vertex2) {
+        if (isTwoSegmentsIntersect(a, b, vertex1, vertex2, intersectAt)) {
+            currentDistance = segmentLength(a, intersectAt);
+            if (currentDistance < shortestDistance) {
+                firstIntersectionAt = intersectAt;
+                shortestDistance = currentDistance;
+                intersectionNormal = unitNormalVector(vertex1, vertex2);
+            }
+            isIntersect = true;
         }
-        isIntersect = true;
     };
 
-    if (isTwoSegmentsIntersect(a, b, rectVertex1, rectVertex2, intersectAt)) testDistance();
-    if (isTwoSegmentsIntersect(a, b, rectVertex2, rectVertex3, intersectAt)) testDistance();
-    if (isTwoSegmentsIntersect(a, b, rectVertex3, rectVertex4, intersectAt)) testDistance();
-    if (isTwoSegmentsIntersect(a, b, rectVertex4, rectVertex1, intersectAt)) testDistance();
+    testIntersection(rectVertex1, rectVertex2);
+    testIntersection(rectVertex2, rectVertex3);
+    testIntersection(rectVertex3, rectVertex4);
+    testIntersection(rectVertex4, rectVertex1);
 
     return isIntersect;
 }

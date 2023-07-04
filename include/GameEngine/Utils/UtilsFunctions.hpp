@@ -30,16 +30,17 @@ bool isRayIntersectSegment(const sf::Vector2f& rayOrigin, const sf::Vector2f& ra
 
 /**
  * Calculate whether is an intersection between a-b segment and the rectangle. In case of intersection, calculate its
- * point and return nearest.
+ * point and return nearest, calculate normal to nearest collided side.
  *
  * @param a start point of the segment.
  * @param b end point of the segment.
  * @param rect rectangle.
  * @param firstIntersectionAt in case of intersection, write its point here.
+ * @param intersectionNormal normal to nearest collided side(normalized value).
  *
  * @return true if intersection occur.
  */
-bool isSegmentIntersectRectangle(const sf::Vector2f& a, const sf::Vector2f& b, const sf::FloatRect& rect, sf::Vector2f& firstIntersectionAt);
+bool isSegmentIntersectRectangle(const sf::Vector2f& a, const sf::Vector2f& b, const sf::FloatRect& rect, sf::Vector2f& firstIntersectionAt, sf::Vector2f& intersectionNormal);
 
 sf::Vector2f getRectPosition(const sf::FloatRect& rect);
 sf::Vector2f getRectSize(const sf::FloatRect& rect);
