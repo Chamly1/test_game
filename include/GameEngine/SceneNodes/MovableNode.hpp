@@ -24,9 +24,8 @@ private:
     sf::Vector2f velocity;
     float baseSpeed;
 
-    void resetVelocity();
-
 protected:
+    void resetVelocity();
     virtual void updateCurrent(sf::Time dt);
     sf::Vector2f getVelocity();
 
