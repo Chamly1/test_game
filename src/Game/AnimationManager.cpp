@@ -12,6 +12,9 @@ AnimationManager::AnimationManager(const TextureHolder& textures, UnitData& unit
 , mCurrentAnimationType()
 , mCurrentDirectionType()
 , mAnimations() {
+    mDefaultAnimationType = unitData.defaultAnimationType;
+    mDefaultDirectionType = unitData.defaultAnimationDirectionType;
+
     for (auto const& animationData : unitData.animationData) {
         for (auto const& firstFramePosition : unitData.firstFramePosition[animationData.first]) {
             mAnimations[animationData.first][firstFramePosition.first] =
@@ -23,8 +26,8 @@ AnimationManager::AnimationManager(const TextureHolder& textures, UnitData& unit
         }
     }
 
-    // set first animation
-    setAnimation(mAnimations.begin()->first, mAnimations.begin()->second.begin()->first);
+    // set default animation
+    setAnimation(mDefaultAnimationType, mDefaultDirectionType);
 }
 
 void AnimationManager::addAnimation(const TextureHolder& textures, UnitData& unitData, AnimationType animationType,
@@ -47,6 +50,10 @@ void AnimationManager::setAnimation(AnimationType animationType, DirectionType d
 
 void AnimationManager::update(sf::Time dt) {
     mCurrentAnimation->update(dt);
+
+    if (mCurrentAnimation->isFinished()) {
+        setAnimation(mDefaultAnimationType, mDefaultDirectionType);
+    }
 }
 
 AnimationType AnimationManager::getCurrentAnimationType() const {

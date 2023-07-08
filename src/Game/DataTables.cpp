@@ -13,6 +13,9 @@ std::unordered_map<UnitType, UnitData> initUnitData() {
     data[UnitType::Human].collisionBoxSize = sf::Vector2f(6.f * scaleFactor, 7.f * scaleFactor);
     data[UnitType::Human].collisionBoxOrigin = data[UnitType::Human].collisionBoxSize / 2.f;
 
+    data[UnitType::Human].defaultAnimationType = AnimationType::Idle;
+    data[UnitType::Human].defaultAnimationDirectionType = DirectionType::BottomRight;
+
     data[UnitType::Human].animationData[AnimationType::Idle].textureId = TextureIdentifier::HumanBaseIdleAnimation;
     data[UnitType::Human].animationData[AnimationType::Idle].frameSize = sf::Vector2i(32, 32);
     data[UnitType::Human].animationData[AnimationType::Idle].frameOrigin = sf::Vector2f(32.f, 32.f) / 2.f;
@@ -52,6 +55,9 @@ std::unordered_map<UnitType, UnitData> initUnitData() {
     data[UnitType::Zombie].animationsScaleFactor = sf::Vector2f(scaleFactor, scaleFactor);
     data[UnitType::Zombie].collisionBoxSize = sf::Vector2f(6.f * scaleFactor, 7.f * scaleFactor);
     data[UnitType::Zombie].collisionBoxOrigin = data[UnitType::Zombie].collisionBoxSize / 2.f;
+
+    data[UnitType::Zombie].defaultAnimationType = AnimationType::Idle;
+    data[UnitType::Zombie].defaultAnimationDirectionType = DirectionType::BottomRight;
 
     data[UnitType::Zombie].animationData[AnimationType::Idle].textureId = TextureIdentifier::ZombieIdleAnimation;
     data[UnitType::Zombie].animationData[AnimationType::Idle].frameSize = sf::Vector2i(32, 32);

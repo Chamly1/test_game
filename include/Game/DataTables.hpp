@@ -35,6 +35,9 @@ struct UnitData {
     sf::Vector2f collisionBoxSize;
     sf::Vector2f collisionBoxOrigin;
     sf::Vector2f animationsScaleFactor;
+
+    AnimationType defaultAnimationType;
+    DirectionType defaultAnimationDirectionType;
     std::unordered_map<AnimationType, AnimationData> animationData;
     std::unordered_map<AnimationType, std::unordered_map<DirectionType, sf::Vector2i>> firstFramePosition;
 };
