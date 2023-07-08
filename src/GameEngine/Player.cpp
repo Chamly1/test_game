@@ -16,7 +16,13 @@ void Player::addPlayerActionBinding(sf::Keyboard::Key key, unsigned int playerAc
 }
 
 void Player::handleEvent(const sf::Event& event, CommandQueue& commands) {
-
+    if (event.type == sf::Event::KeyPressed) {
+        for (auto pair : mKeyBinding) {
+            if (event.key.code == pair.first && !mIsRealtimePlayerAction[pair.second]) {
+                commands.push(mPlayerActionBinding[pair.second]);
+            }
+        }
+    }
 }
 
 void Player::handleRealtimeInput(CommandQueue& commands) {
