@@ -9,6 +9,7 @@ std::unordered_map<UnitType, UnitData> initUnitData() {
     //****************************** Human ******************************
 
     data[UnitType::Human].baseSpeed = 400.f;
+    data[UnitType::Human].attackDuration = sf::milliseconds(300);
     data[UnitType::Human].animationsScaleFactor = sf::Vector2f(scaleFactor, scaleFactor);
     data[UnitType::Human].collisionBoxSize = sf::Vector2f(6.f * scaleFactor, 7.f * scaleFactor);
     data[UnitType::Human].collisionBoxOrigin = data[UnitType::Human].collisionBoxSize / 2.f;
@@ -42,7 +43,7 @@ std::unordered_map<UnitType, UnitData> initUnitData() {
     data[UnitType::Human].animationData[AnimationType::Attack].frameSize = sf::Vector2i(32, 32);
     data[UnitType::Human].animationData[AnimationType::Attack].frameOrigin = sf::Vector2f(32.f, 32.f) / 2.f;
     data[UnitType::Human].animationData[AnimationType::Attack].numFrames = 4;
-    data[UnitType::Human].animationData[AnimationType::Attack].frameDuration = sf::milliseconds(150); // TODO
+    data[UnitType::Human].animationData[AnimationType::Attack].frameDuration = data[UnitType::Human].attackDuration / static_cast<float>(data[UnitType::Human].animationData[AnimationType::Attack].numFrames);
     data[UnitType::Human].animationData[AnimationType::Attack].repeat = false;
     data[UnitType::Human].firstFramePosition[AnimationType::Attack][DirectionType::BottomRight] = sf::Vector2i(0, 0);
     data[UnitType::Human].firstFramePosition[AnimationType::Attack][DirectionType::BottomLeft] = sf::Vector2i(0, 32);

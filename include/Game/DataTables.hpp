@@ -32,6 +32,7 @@ enum class AnimationType {
 
 struct UnitData {
     float baseSpeed;
+    sf::Time attackDuration;
     sf::Vector2f collisionBoxSize;
     sf::Vector2f collisionBoxOrigin;
     sf::Vector2f animationsScaleFactor;
