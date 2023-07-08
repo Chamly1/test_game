@@ -46,6 +46,9 @@ void AnimationManager::setAnimation(AnimationType animationType, DirectionType d
     mCurrentAnimation = mAnimations[animationType][directionType];
     mCurrentAnimationType = animationType;
     mCurrentDirectionType = directionType;
+    if (!mCurrentAnimation->isRepeating()) {
+        mCurrentAnimation->restart();
+    }
 }
 
 void AnimationManager::update(sf::Time dt) {

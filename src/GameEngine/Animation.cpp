@@ -78,6 +78,15 @@ bool Animation::isFinished() const {
     return mCurrentFrame >= mNumFrames;
 }
 
+void Animation::restart() {
+    mCurrentFrame = 0;
+    mElapsedTime = sf::Time::Zero;
+}
+
+bool Animation::isRepeating() const {
+    return mRepeat;
+}
+
 sf::FloatRect Animation::getLocalBounds() const {
     return sf::FloatRect(getOrigin(), sf::Vector2f(mFirstFrame.width, mFirstFrame.height));
 }

@@ -24,6 +24,8 @@ public:
     void init(const sf::Texture& texture, sf::IntRect firstFrame, int numFrames, sf::Time frameDuration, bool repeat);
     void update(sf::Time dt);
     bool isFinished() const;
+    void restart();
+    bool isRepeating() const;
     sf::FloatRect getLocalBounds() const;
 
 };
