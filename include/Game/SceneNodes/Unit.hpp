@@ -6,6 +6,22 @@
 #include "Game/AnimationManager.hpp"
 #include "GameEngine/SceneNodes/CollidableNode.hpp"
 
+enum class UnitAction {
+    Attack
+};
+
+/**
+ * Class to control the Unit through the Command class.
+ */
+class UnitController {
+private:
+    UnitAction mUnitAction;
+
+public:
+    UnitController(UnitAction unitAction);
+    void operator() (SceneNode& node, sf::Time dt) const;
+};
+
 class Unit : public MovableNode, public CollidableNode {
 private:
     UnitType mUnitType;

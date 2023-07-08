@@ -12,6 +12,18 @@
 std::unordered_map<UnitType, UnitData> unitData = initUnitData();
 static const int MAX_COLLISION_CHECKS = 4;
 
+UnitController::UnitController(UnitAction unitAction)
+: mUnitAction(unitAction) {
+
+}
+
+void UnitController::operator() (SceneNode& node, sf::Time dt) const {
+    Unit& unit = dynamic_cast<Unit&>(node);
+    if (mUnitAction == UnitAction::Attack) {
+        unit.attack();
+    }
+}
+
 void Unit::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(mAnimationManager, states);
     CollidableNode::drawCurrent(target, states);
