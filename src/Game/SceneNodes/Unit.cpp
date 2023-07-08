@@ -10,6 +10,7 @@
 #include <cmath>
 
 std::unordered_map<UnitType, UnitData> unitData = initUnitData();
+static const int MAX_COLLISION_CHECKS = 4;
 
 void Unit::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(mAnimationManager, states);
@@ -61,29 +62,43 @@ void Unit::updateCurrent(sf::Time dt) {
     sf::Vector2f movementEnd;
     sf::Vector2f collisionAt;
     sf::Vector2f collisionNormal;
-    for (const SceneNode* node : impassableNodes) {
-        collidableNode = dynamic_cast<const CollidableNode*>(node);
-        if (collidableNode != nullptr) {
-            collisionWithRect = collidableNode->getCollisionBoxRect();
 
-            // expand target rectangle by source dimensions
-            collisionWithRect.left -= collisionRect.width / 2.f;
-            collisionWithRect.top -= collisionRect.height / 2.f;
-            collisionWithRect.width += collisionRect.width;
-            collisionWithRect.height += collisionRect.height;
+    bool isCollisionAppear;
+    int collisionChecks = 0;
+    do {
 
-            movementEnd = collisionRectCenter + movementVector;
-            if (isSegmentIntersectRectangle(collisionRectCenter, movementEnd, collisionWithRect, collisionAt, collisionNormal)) {
+        isCollisionAppear = false;
+        ++collisionChecks;
+        if (collisionChecks >= MAX_COLLISION_CHECKS) {
+            movementVector = sf::Vector2f(0.f, 0.f);
+            break;
+        }
 
-                sf::Vector2f penetratedPart = movementEnd - collisionAt;
-                sf::Vector2f vectorToDiscardPenetration;
-                vectorToDiscardPenetration.x = fabsf(penetratedPart.x) * collisionNormal.x;
-                vectorToDiscardPenetration.y = fabsf(penetratedPart.y) * collisionNormal.y;
-                // discard portion that penetrate obstacle
-                movementVector += vectorToDiscardPenetration;
+        for (const SceneNode* node : impassableNodes) {
+            collidableNode = dynamic_cast<const CollidableNode*>(node);
+            if (collidableNode != nullptr) {
+                collisionWithRect = collidableNode->getCollisionBoxRect();
+
+                // expand target rectangle by source dimensions
+                collisionWithRect.left -= collisionRect.width / 2.f;
+                collisionWithRect.top -= collisionRect.height / 2.f;
+                collisionWithRect.width += collisionRect.width;
+                collisionWithRect.height += collisionRect.height;
+
+                movementEnd = collisionRectCenter + movementVector;
+                if (isSegmentIntersectRectangle(collisionRectCenter, movementEnd, collisionWithRect, collisionAt, collisionNormal)) {
+                    isCollisionAppear = true;
+                    sf::Vector2f penetratedPart = movementEnd - collisionAt;
+                    sf::Vector2f vectorToDiscardPenetration;
+                    // + 0.1f to fix situation when after move, node end at collision point(not in front of).
+                    vectorToDiscardPenetration.x = (fabsf(penetratedPart.x) + 0.1f) * collisionNormal.x;
+                    vectorToDiscardPenetration.y = (fabsf(penetratedPart.y) + 0.1f) * collisionNormal.y;
+                    // discard portion that penetrate obstacle
+                    movementVector += vectorToDiscardPenetration;
+                }
             }
         }
-    }
+    } while (isCollisionAppear);
     move(movementVector);
     resetVelocity();
     // move section end

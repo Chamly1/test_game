@@ -14,9 +14,7 @@ bool isTwoSegmentsIntersect(const sf::Vector2f& a, const sf::Vector2f& b, const 
     // t = (c - a) x s / r x s
     float t = ((c.x - a.x) * s.y - (c.y - a.y) * s.x) / rs;
 
-//    bool isIntersect = u >= 0 && u <= 1 && t >= 0 && t <= 1;
-    // HACK!!! to prevent stacking in the corner of obstacle's box collider
-    bool isIntersect = u > 0 && u < 1 && t >= 0 && t <= 1;
+    bool isIntersect = u >= 0 && u <= 1 && t >= 0 && t <= 1;
     if (isIntersect) {
         intersectAt = a + r * t;
     }
