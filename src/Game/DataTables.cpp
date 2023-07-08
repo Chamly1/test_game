@@ -6,6 +6,8 @@ std::unordered_map<UnitType, UnitData> initUnitData() {
 
     const float scaleFactor = 5.f;
 
+    //****************************** Human ******************************
+
     data[UnitType::Human].baseSpeed = 400.f;
     data[UnitType::Human].animationsScaleFactor = sf::Vector2f(scaleFactor, scaleFactor);
     data[UnitType::Human].collisionBoxSize = sf::Vector2f(6.f * scaleFactor, 7.f * scaleFactor);
@@ -32,6 +34,19 @@ std::unordered_map<UnitType, UnitData> initUnitData() {
     data[UnitType::Human].firstFramePosition[AnimationType::Walk][DirectionType::BottomLeft] = sf::Vector2i(0, 32);
     data[UnitType::Human].firstFramePosition[AnimationType::Walk][DirectionType::TopRight] = sf::Vector2i(0, 64);
     data[UnitType::Human].firstFramePosition[AnimationType::Walk][DirectionType::TopLeft] = sf::Vector2i(0, 96);
+
+    data[UnitType::Human].animationData[AnimationType::Attack].textureId = TextureIdentifier::HumanBaseAttackAnimation;
+    data[UnitType::Human].animationData[AnimationType::Attack].frameSize = sf::Vector2i(32, 32);
+    data[UnitType::Human].animationData[AnimationType::Attack].frameOrigin = sf::Vector2f(32.f, 32.f) / 2.f;
+    data[UnitType::Human].animationData[AnimationType::Attack].numFrames = 4;
+    data[UnitType::Human].animationData[AnimationType::Attack].frameDuration = sf::milliseconds(150); // TODO
+    data[UnitType::Human].animationData[AnimationType::Attack].repeat = false;
+    data[UnitType::Human].firstFramePosition[AnimationType::Attack][DirectionType::BottomRight] = sf::Vector2i(0, 0);
+    data[UnitType::Human].firstFramePosition[AnimationType::Attack][DirectionType::BottomLeft] = sf::Vector2i(0, 32);
+    data[UnitType::Human].firstFramePosition[AnimationType::Attack][DirectionType::TopRight] = sf::Vector2i(0, 64);
+    data[UnitType::Human].firstFramePosition[AnimationType::Attack][DirectionType::TopLeft] = sf::Vector2i(0, 96);
+
+    //****************************** Zombie ******************************
 
     data[UnitType::Zombie].baseSpeed = 200.f;
     data[UnitType::Zombie].animationsScaleFactor = sf::Vector2f(scaleFactor, scaleFactor);

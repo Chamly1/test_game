@@ -26,7 +26,8 @@ enum class DirectionType {
 
 enum class AnimationType {
     Idle,
-    Walk
+    Walk,
+    Attack
 };
 
 struct UnitData {

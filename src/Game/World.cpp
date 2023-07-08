@@ -46,6 +46,8 @@ void World::loadTextures() {
                    "resources/textures/Minifantasy_Dungeon_Assets/Animations/Human/Minifantasy_CreaturesHumanBaseIdle.png");
     mTextures.load(TextureIdentifier::HumanBaseWalkAnimation,
                    "resources/textures/Minifantasy_Dungeon_Assets/Animations/Human/Minifantasy_CreaturesHumanBaseWalk.png");
+    mTextures.load(TextureIdentifier::HumanBaseAttackAnimation,
+                   "resources/textures/Minifantasy_Dungeon_Assets/Animations/Human/Minifantasy_CreaturesHumanBaseAttack.png");
 
     mTextures.load(TextureIdentifier::ZombieIdleAnimation,
                    "resources/textures/Minifantasy_Creatures_v3.0/Minifantasy_Creatures_Assets/Monsters/Zombie/Minifantasy_CreaturesZombieIdle_modified.png");

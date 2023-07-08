@@ -28,6 +28,7 @@ enum id {
 
     HumanBaseIdleAnimation,
     HumanBaseWalkAnimation,
+    HumanBaseAttackAnimation,
 
     ZombieIdleAnimation,
     ZombieWalkAnimation
