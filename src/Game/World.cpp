@@ -83,6 +83,7 @@ void World::buildScene() {
 
     std::unique_ptr<ZombieNPC> enemy(new ZombieNPC(mGrid, mTextures));
     enemy->addSceneNodeCategory(SceneNodeCategory::EnemyUnit);
+    enemy->addSceneNodeCategory(SceneNodeCategory::ImpassableUnit);
     enemy->setPosition(200.f, 100.f);
     mSceneLayers[Layer::Units]->attachChild(std::move(enemy));
 

@@ -49,6 +49,10 @@ void Unit::updateCurrent(sf::Time dt) {
     std::vector<const SceneNode*> impassableNodes;
     sceneGraph->getAllNodeOfCategoryPtrs(SceneNodeCategory::ImpassableZone, impassableNodes);
 
+    if (getSceneNodeCategory() & SceneNodeCategory::EnemyUnit) {
+        sceneGraph->getAllNodeOfCategoryPtrs(SceneNodeCategory::ImpassableUnit, impassableNodes);
+    }
+
     const CollidableNode* collidableNode;
     sf::FloatRect collisionRect = getCollisionBoxRect();
     sf::FloatRect collisionWithRect;

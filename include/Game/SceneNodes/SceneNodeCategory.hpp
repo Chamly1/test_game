@@ -10,7 +10,7 @@ enum Type {
     EnemyUnit = 1 << 2,
     Player = 1 << 3,
     ImpassableZone = 1 << 4,
-    TransparentZone = 1 << 5
+    ImpassableUnit = 1 << 5
 };
 
 }
