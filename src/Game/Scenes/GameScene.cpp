@@ -3,6 +3,7 @@
 #include "GameEngine/SceneNodes/MovableNode.hpp"
 #include "Game/PlayerActionIdentifiers.hpp"
 #include "Game/Scenes/SceneIdentifiers.hpp"
+#include "Game/SceneNodes/Unit.hpp"
 
 void GameScene::bindPlayerActions() {
     Command command;
@@ -22,6 +23,10 @@ void GameScene::bindPlayerActions() {
     command.action = EntityMover(Direction::Right);
     command.sceneNodeCategory = SceneNodeCategory::Player;
     mPlayer.addPlayerActionBinding(sf::Keyboard::Key::Right, PlayerActionIdentifier::MoveRight, command, true);
+
+    command.action = UnitController(UnitAction::Attack);
+    command.sceneNodeCategory = SceneNodeCategory::Player;
+    mPlayer.addPlayerActionBinding(sf::Keyboard::Key::A, PlayerActionIdentifier::Attack, command, false);
 }
 
 GameScene::GameScene(SceneContext ctx, SceneList& sceneList)

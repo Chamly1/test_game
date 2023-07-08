@@ -7,7 +7,8 @@ enum PlayerAction {
     MoveUp,
     MoveDown,
     MoveLeft,
-    MoveRight
+    MoveRight,
+    Attack
 };
 
 }
