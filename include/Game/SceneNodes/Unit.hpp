@@ -31,6 +31,8 @@ private:
     sf::Time mTimePastAfterAttack;
     bool mIsAttacking;
 
+    void updateAttack(sf::Time dt);
+    void updateAnimations(sf::Time dt);
     void moveUnitWithCollisionResolving(sf::Time dt);
 
 protected:
