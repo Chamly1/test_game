@@ -119,10 +119,6 @@ Unit::Unit(UnitType unitType, const TextureHolder& textures)
 //    setOriginToCenter(animation);
 }
 
-bool Unit::isCollidable() const {
-    return true;
-}
-
 void Unit::onCollision(CollidableNode& collisionWith) {
     
 }

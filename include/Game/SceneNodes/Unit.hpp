@@ -19,7 +19,6 @@ protected:
 
 public:
     explicit Unit(UnitType unitType, const TextureHolder& textures);
-    virtual bool isCollidable() const;
     virtual void onCollision(CollidableNode& collisionWith);
 };
 
