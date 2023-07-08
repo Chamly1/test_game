@@ -17,30 +17,10 @@ void Unit::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const 
     CollidableNode::drawCurrent(target, states);
 }
 
-void Unit::updateCurrent(sf::Time dt) {
+void Unit::moveUnitWithCollisionResolving(sf::Time dt) {
     sf::Vector2f velocity = MovableNode::getVelocity();
 
-    AnimationType newAnimationType;
-    if (velocity.x != 0 || velocity.y != 0) {
-        newAnimationType = AnimationType::Walk;
-    } else {
-        newAnimationType = AnimationType::Idle;
-    }
-
-    DirectionType newDirectionType;
-    newDirectionType = moveVelocityToAnimationDirection(velocity, mAnimationManager.getCurrentDirectionType());
-
-    if (mAnimationManager.getCurrentAnimationType() != newAnimationType ||
-        mAnimationManager.getCurrentDirectionType() != newDirectionType) {
-        mAnimationManager.setAnimation(newAnimationType, newDirectionType);
-//        setOriginToCenter(animation);
-    }
-
-    mAnimationManager.update(dt);
-
-    // move section begin
-
-    //TODO skip move segment if node doesn't move
+    // skip move segment if node doesn't move
     if (velocity.x == 0.f && velocity.y == 0.f) {
         return;
     }
@@ -101,6 +81,31 @@ void Unit::updateCurrent(sf::Time dt) {
     } while (isCollisionAppear);
     move(movementVector);
     resetVelocity();
+}
+
+void Unit::updateCurrent(sf::Time dt) {
+    sf::Vector2f velocity = MovableNode::getVelocity();
+
+    AnimationType newAnimationType;
+    if (velocity.x != 0 || velocity.y != 0) {
+        newAnimationType = AnimationType::Walk;
+    } else {
+        newAnimationType = AnimationType::Idle;
+    }
+
+    DirectionType newDirectionType;
+    newDirectionType = moveVelocityToAnimationDirection(velocity, mAnimationManager.getCurrentDirectionType());
+
+    if (mAnimationManager.getCurrentAnimationType() != newAnimationType ||
+        mAnimationManager.getCurrentDirectionType() != newDirectionType) {
+        mAnimationManager.setAnimation(newAnimationType, newDirectionType);
+//        setOriginToCenter(animation);
+    }
+
+    mAnimationManager.update(dt);
+
+    // move section begin
+    moveUnitWithCollisionResolving(dt);
     // move section end
 }
 
