@@ -27,6 +27,10 @@ private:
     UnitType mUnitType;
     AnimationManager mAnimationManager;
 
+    sf::Time mAttackDuration;
+    sf::Time mTimePastAfterAttack;
+    bool mIsAttacking;
+
     void moveUnitWithCollisionResolving(sf::Time dt);
 
 protected:
@@ -35,6 +39,7 @@ protected:
 
 public:
     explicit Unit(UnitType unitType, const TextureHolder& textures);
+    void attack();
     virtual void onCollision(CollidableNode& collisionWith);
 };
 

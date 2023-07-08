@@ -32,8 +32,8 @@ void Unit::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const 
 void Unit::moveUnitWithCollisionResolving(sf::Time dt) {
     sf::Vector2f velocity = MovableNode::getVelocity();
 
-    // skip move segment if node doesn't move
-    if (velocity.x == 0.f && velocity.y == 0.f) {
+    // skip move segment if node doesn't move or is attacking
+    if ((velocity.x == 0.f && velocity.y == 0.f) || mIsAttacking) {
         return;
     }
 
@@ -98,8 +98,19 @@ void Unit::moveUnitWithCollisionResolving(sf::Time dt) {
 void Unit::updateCurrent(sf::Time dt) {
     sf::Vector2f velocity = MovableNode::getVelocity();
 
+    if (mIsAttacking) {
+        mTimePastAfterAttack += dt;
+        if (mTimePastAfterAttack >= mAttackDuration) {
+            mIsAttacking = false;
+            dt = mTimePastAfterAttack - mAttackDuration;
+            mTimePastAfterAttack = sf::Time::Zero;
+        }
+    }
+
     AnimationType newAnimationType;
-    if (velocity.x != 0 || velocity.y != 0) {
+    if (mIsAttacking) {
+        newAnimationType = AnimationType::Attack;
+    }else if (velocity.x != 0 || velocity.y != 0) {
         newAnimationType = AnimationType::Walk;
     } else {
         newAnimationType = AnimationType::Idle;
@@ -125,10 +136,17 @@ Unit::Unit(UnitType unitType, const TextureHolder& textures)
 : MovableNode(unitData[unitType].baseSpeed)
 , CollidableNode(unitData[unitType].collisionBoxSize)
 , mUnitType(unitType)
-, mAnimationManager(textures, unitData[unitType]) {
+, mAnimationManager(textures, unitData[unitType])
+, mAttackDuration(unitData[unitType].attackDuration)
+, mTimePastAfterAttack(sf::Time::Zero)
+, mIsAttacking(false) {
     setCollisionBoxOrigin(unitData[unitType].collisionBoxOrigin);
 //    mAnimationManager.setAnimation(AnimationType::Idle, DirectionType::BottomRight);
 //    setOriginToCenter(animation);
+}
+
+void Unit::attack() {
+    mIsAttacking = true;
 }
 
 void Unit::onCollision(CollidableNode& collisionWith) {
