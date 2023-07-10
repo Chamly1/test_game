@@ -83,6 +83,7 @@ void World::buildScene() {
     mPlayerCamera.setPlayer(player.get());
     player->addSceneNodeCategory(SceneNodeCategory::Player);
     player->setPosition(100.f, 100.f);
+    player->addEnemy(SceneNodeCategory::EnemyUnit);
     mSceneLayers[Layer::Units]->attachChild(std::move(player));
 
     std::unique_ptr<ZombieNPC> enemy(new ZombieNPC(mGrid, mTextures));

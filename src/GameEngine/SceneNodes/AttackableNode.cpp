@@ -1,5 +1,6 @@
 #include "GameEngine/SceneNodes/AttackableNode.hpp"
 #include "GameEngine/Utils/UtilsFunctions.hpp"
+#include "GameEngine/SceneNodes/DamageableNode.hpp"
 
 #ifndef NDEBUG
 #include "SFML/Graphics/RenderTarget.hpp"
@@ -14,6 +15,23 @@ void AttackableNode::updateCurrent(sf::Time dt) {
         mTimePastAfterAttack += dt;
         if (mTimePastAfterAttack >= mAttackDuration) {
             endAttack();
+        }
+
+        SceneNode* sceneGraph = getRootPtr();
+        std::vector<SceneNode*> enemyNodes;
+        sceneGraph->getAllNodeOfCategoryPtrs(mEnemySceneNodeCategories, enemyNodes);
+
+        DamageableNode* damageableEnemyNode;
+        for (SceneNode* enemyNode : enemyNodes) {
+            damageableEnemyNode = dynamic_cast<DamageableNode*>(enemyNode);
+            if (damageableEnemyNode != nullptr) {
+
+                if (mAttackCollisionBox.intersects(damageableEnemyNode->getHitBox())) {
+                    //TODO replace zero damage
+                    damageableEnemyNode->takeDamage(0);
+                }
+
+            }
         }
     }
 }
@@ -69,6 +87,10 @@ void AttackableNode::endAttack() {
     mIsAttacking = false;
 //            dt = mTimePastAfterAttack - mAttackDuration;
     mTimePastAfterAttack = sf::Time::Zero;
+}
+
+void AttackableNode::addEnemy(unsigned int enemySceneNodeCategory) {
+    mEnemySceneNodeCategories |= enemySceneNodeCategory;
 }
 
 #ifndef NDEBUG

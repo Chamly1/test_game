@@ -11,6 +11,7 @@
 class AttackableNode : virtual public SceneNode {
 private:
     DirectionType mLookingDirection;
+    unsigned int mEnemySceneNodeCategories;
 
     const sf::Time mAttackDuration;
     const float mAttackCollisionBoxShift;
@@ -33,6 +34,7 @@ public:
     void setLookingDirection(DirectionType lookingDirection);
     DirectionType getLookingDirection() const;
     void endAttack();
+    void addEnemy(unsigned int enemySceneNodeCategory);
 
 #ifndef NDEBUG
     void drawAttackCollisionRec(sf::RenderTarget& target, sf::RenderStates states) const;
