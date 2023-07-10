@@ -61,8 +61,8 @@ std::unordered_map<UnitType, UnitData> initUnitData() {
 
     data[UnitType::Zombie].maxHP = 200;
     data[UnitType::Zombie].hitBoxSize = sf::Vector2f(6.f * scaleFactor, 7.f * scaleFactor);
-    data[UnitType::Zombie].afterDamageInvulnerabilityTime = sf::milliseconds(1000);
-    data[UnitType::Zombie].afterDamageUncontrolTime = sf::milliseconds(1000);
+    data[UnitType::Zombie].afterDamageInvulnerabilityTime = sf::milliseconds(500);
+    data[UnitType::Zombie].afterDamageUncontrolTime = sf::milliseconds(500);
 
     data[UnitType::Zombie].animationsScaleFactor = sf::Vector2f(scaleFactor, scaleFactor);
     data[UnitType::Zombie].collisionBoxSize = sf::Vector2f(6.f * scaleFactor, 7.f * scaleFactor);
