@@ -32,6 +32,7 @@ public:
     bool isAttacking() const;
     void setLookingDirection(DirectionType lookingDirection);
     DirectionType getLookingDirection() const;
+    void endAttack();
 
 #ifndef NDEBUG
     void drawAttackCollisionRec(sf::RenderTarget& target, sf::RenderStates states) const;

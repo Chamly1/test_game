@@ -38,7 +38,9 @@ void Unit::updateAnimations(sf::Time dt) {
     AnimationType newAnimationType;
     if (isAttacking()) {
         newAnimationType = AnimationType::Attack;
-    }else if (velocity.x != 0 || velocity.y != 0) {
+    } else if (isAfterDamageUncontroled()) {
+        newAnimationType = AnimationType::Damage;
+    } else if (velocity.x != 0 || velocity.y != 0) {
         newAnimationType = AnimationType::Walk;
     } else {
         newAnimationType = AnimationType::Idle;
@@ -56,8 +58,8 @@ void Unit::updateAnimations(sf::Time dt) {
 void Unit::moveUnitWithCollisionResolving(sf::Time dt) {
     sf::Vector2f velocity = MovableNode::getVelocity();
 
-    // skip move segment if node doesn't move or is attacking
-    if ((velocity.x == 0.f && velocity.y == 0.f) || isAttacking()) {
+    // skip move segment if node doesn't move or is attacking or uncontroled after taking damage
+    if ((velocity.x == 0.f && velocity.y == 0.f) || isAttacking() || isAfterDamageUncontroled()) {
         return;
     }
 
@@ -122,7 +124,12 @@ void Unit::moveUnitWithCollisionResolving(sf::Time dt) {
 void Unit::updateCurrent(sf::Time dt) {
     setLookingDirection(moveVelocityToAnimationDirection(getVelocity(), getLookingDirection()));
 
+    if (isAttacking() && isAfterDamageUncontroled()) {
+        endAttack();
+    }
+
     AttackableNode::updateCurrent(dt);
+    DamageableNode::updateCurrent(dt);
     updateAnimations(dt);
     moveUnitWithCollisionResolving(dt);
 }
@@ -131,6 +138,7 @@ Unit::Unit(UnitType unitType, const TextureHolder& textures)
 : MovableNode(unitData[unitType].baseSpeed)
 , CollidableNode(unitData[unitType].collisionBoxSize)
 , AttackableNode(unitData[unitType].attackDuration, unitData[unitType].attackCollisionBoxShift, unitData[unitType].attackCollisionBoxSize)
+, DamageableNode(unitData[unitType].maxHP, unitData[unitType].afterDamageInvulnerabilityTime, unitData[unitType].afterDamageUncontrolTime)
 , mUnitType(unitType)
 , mAnimationManager(textures, unitData[unitType]) {
     setCollisionBoxOrigin(unitData[unitType].collisionBoxOrigin);

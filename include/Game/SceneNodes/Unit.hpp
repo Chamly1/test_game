@@ -6,6 +6,7 @@
 #include "Game/AnimationManager.hpp"
 #include "GameEngine/SceneNodes/CollidableNode.hpp"
 #include "GameEngine/SceneNodes/AttackableNode.hpp"
+#include "GameEngine/SceneNodes/DamageableNode.hpp"
 
 enum class UnitAction {
     Attack
@@ -23,7 +24,7 @@ public:
     void operator() (SceneNode& node, sf::Time dt) const;
 };
 
-class Unit : public MovableNode, public CollidableNode, public AttackableNode {
+class Unit : public MovableNode, public CollidableNode, public AttackableNode, public DamageableNode {
 private:
     UnitType mUnitType;
     AnimationManager mAnimationManager;

@@ -13,9 +13,7 @@ void AttackableNode::updateCurrent(sf::Time dt) {
     if (mIsAttacking) {
         mTimePastAfterAttack += dt;
         if (mTimePastAfterAttack >= mAttackDuration) {
-            mIsAttacking = false;
-//            dt = mTimePastAfterAttack - mAttackDuration;
-            mTimePastAfterAttack = sf::Time::Zero;
+            endAttack();
         }
     }
 }
@@ -65,6 +63,12 @@ void AttackableNode::setLookingDirection(DirectionType lookingDirection) {
 
 DirectionType AttackableNode::getLookingDirection() const {
     return mLookingDirection;
+}
+
+void AttackableNode::endAttack() {
+    mIsAttacking = false;
+//            dt = mTimePastAfterAttack - mAttackDuration;
+    mTimePastAfterAttack = sf::Time::Zero;
 }
 
 #ifndef NDEBUG
