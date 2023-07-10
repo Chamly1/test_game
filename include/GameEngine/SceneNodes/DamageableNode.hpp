@@ -8,6 +8,7 @@ private:
     const int mMaxHP;
     const sf::Time mAfterDamageInvulnerabilityTime;
     const sf::Time mAfterDamageUncontrolTime;
+    const sf::Vector2f mHitBoxSize;
     int mHP;
     sf::Time mTimePastAfterLastDamage;
 
@@ -15,9 +16,10 @@ protected:
     virtual void updateCurrent(sf::Time dt);
 
 public:
-    DamageableNode(int maxHP, sf::Time afterDamageInvulnerabilityTime, sf::Time afterDamageUncontrolTime);
+    DamageableNode(int maxHP, const sf::Vector2f& hitBoxSize, sf::Time afterDamageInvulnerabilityTime, sf::Time afterDamageUncontrolTime);
     void takeDamage(int damage);
     bool isAfterDamageUncontroled() const;
+    sf::FloatRect getHitBox() const;
 
 };
 

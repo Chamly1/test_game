@@ -33,6 +33,7 @@ struct UnitData {
     sf::Vector2f attackCollisionBoxSize;
 
     int maxHP;
+    sf::Vector2f hitBoxSize;
     sf::Time afterDamageInvulnerabilityTime;
     sf::Time afterDamageUncontrolTime;
 

@@ -4,8 +4,9 @@ void DamageableNode::updateCurrent(sf::Time dt) {
     mTimePastAfterLastDamage += dt;
 }
 
-DamageableNode::DamageableNode(int maxHP, sf::Time afterDamageInvulnerabilityTime, sf::Time afterDamageUncontrolTime)
+DamageableNode::DamageableNode(int maxHP, const sf::Vector2f& hitBoxSize, sf::Time afterDamageInvulnerabilityTime, sf::Time afterDamageUncontrolTime)
 : mMaxHP(maxHP)
+, mHitBoxSize(hitBoxSize)
 , mAfterDamageInvulnerabilityTime(afterDamageInvulnerabilityTime)
 , mAfterDamageUncontrolTime(afterDamageUncontrolTime)
 , mHP(maxHP) {
@@ -24,4 +25,8 @@ bool DamageableNode::isAfterDamageUncontroled() const {
         return true;
     }
     return false;
+}
+
+sf::FloatRect DamageableNode::getHitBox() const {
+    return sf::FloatRect(getPosition() - mHitBoxSize / 2.f, mHitBoxSize);
 }
