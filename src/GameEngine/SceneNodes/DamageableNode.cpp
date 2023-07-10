@@ -16,6 +16,9 @@ DamageableNode::DamageableNode(int maxHP, const sf::Vector2f& hitBoxSize, sf::Ti
 void DamageableNode::takeDamage(int damage) {
     if (mTimePastAfterLastDamage > mAfterDamageInvulnerabilityTime) {
         mHP -= damage;
+        if (mHP < 0) {
+            mHP = 0;
+        }
         mTimePastAfterLastDamage = sf::Time::Zero;
     }
 }
