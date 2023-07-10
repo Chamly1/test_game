@@ -100,7 +100,7 @@ void SceneNode::onCommand(const Command& command, sf::Time dt) {
     }
 }
 
-const SceneNode* SceneNode::getRootPtr() const {
+SceneNode* SceneNode::getRootPtr() {
     if (mParent == nullptr) {
         return this;
     } else {
@@ -108,8 +108,8 @@ const SceneNode* SceneNode::getRootPtr() const {
     }
 }
 
-const SceneNode* SceneNode::getFirstNodeOfCategoryPtr(unsigned int sceneNodeCategory) const {
-    const SceneNode* resPtr = nullptr;
+SceneNode* SceneNode::getFirstNodeOfCategoryPtr(unsigned int sceneNodeCategory) {
+    SceneNode* resPtr = nullptr;
 
     if (mSceneNodeCategory & sceneNodeCategory) {
         return this;
@@ -125,7 +125,7 @@ const SceneNode* SceneNode::getFirstNodeOfCategoryPtr(unsigned int sceneNodeCate
     return resPtr;
 }
 
-void SceneNode::getAllNodeOfCategoryPtrs(unsigned int sceneNodeCategory, std::vector<const SceneNode*>& res) const {
+void SceneNode::getAllNodeOfCategoryPtrs(unsigned int sceneNodeCategory, std::vector<SceneNode*>& res) {
 
     if (mSceneNodeCategory & sceneNodeCategory) {
         res.push_back(this);

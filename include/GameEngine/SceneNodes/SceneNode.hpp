@@ -57,9 +57,9 @@ public:
      */
     void onCommand(const Command& command, sf::Time dt);
 
-    const SceneNode* getRootPtr() const;
-    const SceneNode* getFirstNodeOfCategoryPtr(unsigned int sceneNodeCategory) const;
-    void getAllNodeOfCategoryPtrs(unsigned int sceneNodeCategory, std::vector<const SceneNode*>& res) const;
+    SceneNode* getRootPtr();
+    SceneNode* getFirstNodeOfCategoryPtr(unsigned int sceneNodeCategory);
+    void getAllNodeOfCategoryPtrs(unsigned int sceneNodeCategory, std::vector<SceneNode*>& res);
 
     friend void checkNodeCollisions(SceneNode& thisNode, SceneNode& nodeToCheck, std::set<std::pair<SceneNode*, SceneNode*>>& collisionPairs);
     friend void checkNodeAndChildrenCollisions(SceneNode& thisNode, SceneNode& nodeToCheck, std::set<std::pair<SceneNode*, SceneNode*>>& collisionPairs);

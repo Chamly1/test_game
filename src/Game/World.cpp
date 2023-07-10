@@ -98,7 +98,7 @@ void World::buildScene() {
                                                                           sf::Color(255, 0, 0),
                                                                           mapScaleFactor));
 
-    std::vector<const SceneNode*> impassableNodes;
+    std::vector<SceneNode*> impassableNodes;
     mSceneLayers[ImpassableZones]->getAllNodeOfCategoryPtrs(SceneNodeCategory::ImpassableZone, impassableNodes);
     for (const SceneNode* impassableNode : impassableNodes) {
         mGrid->setContainObstacleFlags(dynamic_cast<const CollidableNode*>(impassableNode)->getCollisionBoxRect());

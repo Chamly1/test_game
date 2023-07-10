@@ -64,8 +64,8 @@ void Unit::moveUnitWithCollisionResolving(sf::Time dt) {
     }
 
 //    MovableNode::updateCurrent(dt);
-    const SceneNode* sceneGraph = getRootPtr();
-    std::vector<const SceneNode*> impassableNodes;
+    SceneNode* sceneGraph = getRootPtr();
+    std::vector<SceneNode*> impassableNodes;
     sceneGraph->getAllNodeOfCategoryPtrs(SceneNodeCategory::ImpassableZone, impassableNodes);
 
     if (getSceneNodeCategory() & SceneNodeCategory::EnemyUnit) {
