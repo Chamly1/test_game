@@ -4,6 +4,7 @@
 #include "GameEngine/Animation.hpp"
 #include "Game/SceneNodes/UnitType.hpp"
 #include "GameEngine/ResourceHolders/TextureHolder.hpp"
+#include "GameEngine/DirectionType.hpp"
 
 #include <unordered_map>
 #include <memory>
@@ -15,13 +16,6 @@ struct AnimationData {
     int numFrames;
     sf::Time frameDuration;
     bool repeat;
-};
-
-enum class DirectionType {
-    BottomRight,
-    BottomLeft,
-    TopRight,
-    TopLeft,
 };
 
 enum class AnimationType {
