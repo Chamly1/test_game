@@ -27,6 +27,9 @@ void UnitController::operator() (SceneNode& node, sf::Time dt) const {
 void Unit::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(mAnimationManager, states);
     CollidableNode::drawCurrent(target, states);
+#ifndef NDEBUG
+    AttackableNode::drawAttackCollisionRec(target, states);
+#endif
 }
 
 void Unit::updateAnimations(sf::Time dt) {

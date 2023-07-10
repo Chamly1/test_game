@@ -4,6 +4,10 @@
 #include "GameEngine/SceneNodes/SceneNode.hpp"
 #include "GameEngine/DirectionType.hpp"
 
+#ifndef NDEBUG
+#include "SFML/Graphics/RectangleShape.hpp"
+#endif
+
 class AttackableNode : virtual public SceneNode {
 private:
     DirectionType mLookingDirection;
@@ -15,6 +19,10 @@ private:
     sf::Time mTimePastAfterAttack;
     bool mIsAttacking;
 
+#ifndef NDEBUG
+    sf::RectangleShape mAttackCollisionBoxShape;
+#endif
+
 protected:
     virtual void updateCurrent(sf::Time dt);
 
@@ -25,6 +33,9 @@ public:
     void setLookingDirection(DirectionType lookingDirection);
     DirectionType getLookingDirection() const;
 
+#ifndef NDEBUG
+    void drawAttackCollisionRec(sf::RenderTarget& target, sf::RenderStates states) const;
+#endif
 };
 
 #endif //TEST_GAME_ATTACKABLENODE_HPP
