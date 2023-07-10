@@ -31,6 +31,10 @@ struct UnitData {
     float attackCollisionBoxShift; // shit from Unit's center
     sf::Vector2f attackCollisionBoxSize;
 
+    int maxHP;
+    sf::Time afterDamageInvulnerabilityTime;
+    sf::Time afterDamageUncontrolTime;
+
     sf::Vector2f collisionBoxSize;
     sf::Vector2f collisionBoxOrigin;
     sf::Vector2f animationsScaleFactor;
