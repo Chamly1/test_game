@@ -122,7 +122,9 @@ void Unit::moveUnitWithCollisionResolving(sf::Time dt) {
 }
 
 void Unit::updateCurrent(sf::Time dt) {
-    setLookingDirection(moveVelocityToAnimationDirection(getVelocity(), getLookingDirection()));
+    if (!isAttacking() && !isAfterDamageUncontroled()) {
+        setLookingDirection(moveVelocityToAnimationDirection(getVelocity(), getLookingDirection()));
+    }
 
     // to prevent attacking while unit is stunned by damage
     if (isAttacking() && isAfterDamageUncontroled()) {
