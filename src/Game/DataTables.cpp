@@ -9,11 +9,16 @@ std::unordered_map<UnitType, UnitData> initUnitData() {
     //****************************** Human ******************************
 
     data[UnitType::Human].baseSpeed = 400.f;
+
     data[UnitType::Human].attackDuration = sf::milliseconds(300);
+    data[UnitType::Human].attackCollisionBoxShift = -1.f * scaleFactor;
+    data[UnitType::Human].attackCollisionBoxSize = sf::Vector2f(11.f * scaleFactor, 7.f * scaleFactor);
+
     data[UnitType::Human].animationsScaleFactor = sf::Vector2f(scaleFactor, scaleFactor);
     data[UnitType::Human].collisionBoxSize = sf::Vector2f(6.f * scaleFactor, 7.f * scaleFactor);
     data[UnitType::Human].collisionBoxOrigin = data[UnitType::Human].collisionBoxSize / 2.f;
 
+    // animations data
     data[UnitType::Human].defaultAnimationType = AnimationType::Idle;
     data[UnitType::Human].defaultAnimationDirectionType = DirectionType::BottomRight;
 

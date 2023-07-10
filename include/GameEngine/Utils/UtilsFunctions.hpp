@@ -1,6 +1,8 @@
 #ifndef TEST_GAME_UTILSFUNCTIONS_HPP
 #define TEST_GAME_UTILSFUNCTIONS_HPP
 
+#include "GameEngine/DirectionType.hpp"
+
 #include "SFML/Graphics/Rect.hpp"
 
 /**
@@ -112,5 +114,7 @@ float dotProduct(const sf::Vector2f& vector1, const sf::Vector2f& vector2);
  * @return reflection.
  */
 sf::Vector2f reflectionVector(const sf::Vector2f& vectorV, const sf::Vector2f& vectorN);
+
+sf::Vector2f directionTypeToVector(DirectionType directionType);
 
 #endif //TEST_GAME_UTILSFUNCTIONS_HPP

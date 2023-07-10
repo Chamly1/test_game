@@ -121,3 +121,13 @@ float dotProduct(const sf::Vector2f& vector1, const sf::Vector2f& vector2) {
 sf::Vector2f reflectionVector(const sf::Vector2f& vectorV, const sf::Vector2f& vectorN) {
     return vectorV - vectorN * 2.f * dotProduct(vectorV, vectorN);
 }
+
+sf::Vector2f directionTypeToVector(DirectionType directionType) {
+    switch (directionType) {
+        case DirectionType::BottomRight: return sf::Vector2f(1.f, 1.f);
+        case DirectionType::BottomLeft: return sf::Vector2f(-1.f, 1.f);
+        case DirectionType::TopRight: return sf::Vector2f(1.f, -1.f);
+        case DirectionType::TopLeft: return sf::Vector2f(-1.f, -1.f);
+        default: return sf::Vector2f(0.f, 0.f);
+    }
+}

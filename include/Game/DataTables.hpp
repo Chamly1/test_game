@@ -26,11 +26,16 @@ enum class AnimationType {
 
 struct UnitData {
     float baseSpeed;
+
     sf::Time attackDuration;
+    float attackCollisionBoxShift; // shit from Unit's center
+    sf::Vector2f attackCollisionBoxSize;
+
     sf::Vector2f collisionBoxSize;
     sf::Vector2f collisionBoxOrigin;
     sf::Vector2f animationsScaleFactor;
 
+    // animations data
     AnimationType defaultAnimationType;
     DirectionType defaultAnimationDirectionType;
     std::unordered_map<AnimationType, AnimationData> animationData;

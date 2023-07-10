@@ -29,22 +29,11 @@ void Unit::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const 
     CollidableNode::drawCurrent(target, states);
 }
 
-void Unit::updateAttack(sf::Time dt) {
-    if (mIsAttacking) {
-        mTimePastAfterAttack += dt;
-        if (mTimePastAfterAttack >= mAttackDuration) {
-            mIsAttacking = false;
-            dt = mTimePastAfterAttack - mAttackDuration;
-            mTimePastAfterAttack = sf::Time::Zero;
-        }
-    }
-}
-
 void Unit::updateAnimations(sf::Time dt) {
     sf::Vector2f velocity = MovableNode::getVelocity();
 
     AnimationType newAnimationType;
-    if (mIsAttacking) {
+    if (isAttacking()) {
         newAnimationType = AnimationType::Attack;
     }else if (velocity.x != 0 || velocity.y != 0) {
         newAnimationType = AnimationType::Walk;
@@ -52,12 +41,9 @@ void Unit::updateAnimations(sf::Time dt) {
         newAnimationType = AnimationType::Idle;
     }
 
-    DirectionType newDirectionType;
-    newDirectionType = moveVelocityToAnimationDirection(velocity, mAnimationManager.getCurrentDirectionType());
-
     if (mAnimationManager.getCurrentAnimationType() != newAnimationType ||
-        mAnimationManager.getCurrentDirectionType() != newDirectionType) {
-        mAnimationManager.setAnimation(newAnimationType, newDirectionType);
+        mAnimationManager.getCurrentDirectionType() != getLookingDirection()) {
+        mAnimationManager.setAnimation(newAnimationType, getLookingDirection());
 //        setOriginToCenter(animation);
     }
 
@@ -68,7 +54,7 @@ void Unit::moveUnitWithCollisionResolving(sf::Time dt) {
     sf::Vector2f velocity = MovableNode::getVelocity();
 
     // skip move segment if node doesn't move or is attacking
-    if ((velocity.x == 0.f && velocity.y == 0.f) || mIsAttacking) {
+    if ((velocity.x == 0.f && velocity.y == 0.f) || isAttacking()) {
         return;
     }
 
@@ -131,7 +117,9 @@ void Unit::moveUnitWithCollisionResolving(sf::Time dt) {
 }
 
 void Unit::updateCurrent(sf::Time dt) {
-    updateAttack(dt);
+    setLookingDirection(moveVelocityToAnimationDirection(getVelocity(), getLookingDirection()));
+
+    AttackableNode::updateCurrent(dt);
     updateAnimations(dt);
     moveUnitWithCollisionResolving(dt);
 }
@@ -139,18 +127,12 @@ void Unit::updateCurrent(sf::Time dt) {
 Unit::Unit(UnitType unitType, const TextureHolder& textures)
 : MovableNode(unitData[unitType].baseSpeed)
 , CollidableNode(unitData[unitType].collisionBoxSize)
+, AttackableNode(unitData[unitType].attackDuration, unitData[unitType].attackCollisionBoxShift, unitData[unitType].attackCollisionBoxSize)
 , mUnitType(unitType)
-, mAnimationManager(textures, unitData[unitType])
-, mAttackDuration(unitData[unitType].attackDuration)
-, mTimePastAfterAttack(sf::Time::Zero)
-, mIsAttacking(false) {
+, mAnimationManager(textures, unitData[unitType]) {
     setCollisionBoxOrigin(unitData[unitType].collisionBoxOrigin);
 //    mAnimationManager.setAnimation(AnimationType::Idle, DirectionType::BottomRight);
 //    setOriginToCenter(animation);
-}
-
-void Unit::attack() {
-    mIsAttacking = true;
 }
 
 void Unit::onCollision(CollidableNode& collisionWith) {

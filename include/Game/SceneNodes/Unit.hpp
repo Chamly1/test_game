@@ -5,6 +5,7 @@
 #include "GameEngine/ResourceHolders/TextureHolder.hpp"
 #include "Game/AnimationManager.hpp"
 #include "GameEngine/SceneNodes/CollidableNode.hpp"
+#include "GameEngine/SceneNodes/AttackableNode.hpp"
 
 enum class UnitAction {
     Attack
@@ -22,16 +23,11 @@ public:
     void operator() (SceneNode& node, sf::Time dt) const;
 };
 
-class Unit : public MovableNode, public CollidableNode {
+class Unit : public MovableNode, public CollidableNode, public AttackableNode {
 private:
     UnitType mUnitType;
     AnimationManager mAnimationManager;
 
-    sf::Time mAttackDuration;
-    sf::Time mTimePastAfterAttack;
-    bool mIsAttacking;
-
-    void updateAttack(sf::Time dt);
     void updateAnimations(sf::Time dt);
     void moveUnitWithCollisionResolving(sf::Time dt);
 
@@ -41,7 +37,6 @@ protected:
 
 public:
     explicit Unit(UnitType unitType, const TextureHolder& textures);
-    void attack();
     virtual void onCollision(CollidableNode& collisionWith);
 };
 
