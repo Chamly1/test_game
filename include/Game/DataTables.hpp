@@ -34,6 +34,7 @@ struct UnitData {
 
     int maxHP;
     sf::Vector2f hitBoxSize;
+    //TODO bug in animations when afterDamageInvulnerabilityTime < afterDamageUncontrolTime. Make damage animation restart?
     sf::Time afterDamageInvulnerabilityTime;
     sf::Time afterDamageUncontrolTime;
 
