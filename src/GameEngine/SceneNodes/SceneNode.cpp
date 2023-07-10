@@ -128,7 +128,11 @@ SceneNode* SceneNode::getFirstNodeOfCategoryPtr(unsigned int sceneNodeCategory) 
 void SceneNode::getAllNodeOfCategoryPtrs(unsigned int sceneNodeCategory, std::vector<SceneNode*>& res) {
 
     if (mSceneNodeCategory & sceneNodeCategory) {
-        res.push_back(this);
+        //TODO optimize it
+        if (std::find(res.begin(), res.end(), this) == res.end()) {
+            // "this" not in "res", add it
+            res.push_back(this);
+        }
     }
 
     for (const std::unique_ptr<SceneNode>& child : mChildren) {
