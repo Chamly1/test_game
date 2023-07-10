@@ -22,32 +22,21 @@ DirectionType moveVelocityToAnimationDirection(const sf::Vector2f& velocity, Dir
         return oldDirection;
     }
 
+    bool isRight = velocity.x > 0 || (velocity.x == 0 && (oldDirection == DirectionType::TopRight || oldDirection == DirectionType::BottomRight));
+    bool isTop = velocity.y < 0 || (velocity.y == 0 && (oldDirection == DirectionType::TopRight || oldDirection == DirectionType::TopLeft));
+
     DirectionType newDirection;
-    if (velocity.y >= 0) {
-        if (velocity.x > 0) {
-            newDirection = DirectionType::BottomRight;
-        } else if (velocity.x < 0) {
-            newDirection = DirectionType::BottomLeft;
+    if (isRight) {
+        if (isTop) {
+            newDirection = DirectionType::TopRight;
         } else {
-            if (oldDirection == DirectionType::BottomRight ||
-                oldDirection == DirectionType::TopRight) {
-                newDirection = DirectionType::BottomRight;
-            } else {
-                newDirection = DirectionType::BottomLeft;
-            }
+            newDirection = DirectionType::BottomRight;
         }
     } else {
-        if (velocity.x > 0) {
-            newDirection = DirectionType::TopRight;
-        } else if (velocity.x < 0) {
+        if (isTop) {
             newDirection = DirectionType::TopLeft;
         } else {
-            if (oldDirection == DirectionType::BottomRight ||
-                oldDirection == DirectionType::TopRight) {
-                newDirection = DirectionType::TopRight;
-            } else {
-                newDirection = DirectionType::TopLeft;
-            }
+            newDirection = DirectionType::BottomLeft;
         }
     }
 
