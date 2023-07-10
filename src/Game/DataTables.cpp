@@ -10,6 +10,7 @@ std::unordered_map<UnitType, UnitData> initUnitData() {
 
     data[UnitType::Human].baseSpeed = 400.f;
 
+    data[UnitType::Human].damage = 20;
     data[UnitType::Human].attackDuration = sf::milliseconds(300);
     data[UnitType::Human].attackCollisionBoxShift = -1.f * scaleFactor;
     data[UnitType::Human].attackCollisionBoxSize = sf::Vector2f(11.f * scaleFactor, 7.f * scaleFactor);

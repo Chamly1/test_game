@@ -12,6 +12,7 @@ class AttackableNode : virtual public SceneNode {
 private:
     DirectionType mLookingDirection;
     unsigned int mEnemySceneNodeCategories;
+    const int mDamage;
 
     const sf::Time mAttackDuration;
     const float mAttackCollisionBoxShift;
@@ -28,7 +29,7 @@ protected:
     virtual void updateCurrent(sf::Time dt);
 
 public:
-    AttackableNode(sf::Time attackDuration, float attackCollisionBoxShift, const sf::Vector2f& attackCollisionBoxSize);
+    AttackableNode(int damage, sf::Time attackDuration, float attackCollisionBoxShift, const sf::Vector2f& attackCollisionBoxSize);
     void attack();
     bool isAttacking() const;
     void setLookingDirection(DirectionType lookingDirection);

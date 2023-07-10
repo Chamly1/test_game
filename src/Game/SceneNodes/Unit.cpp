@@ -141,7 +141,7 @@ void Unit::updateCurrent(sf::Time dt) {
 Unit::Unit(UnitType unitType, const TextureHolder& textures)
 : MovableNode(unitData[unitType].baseSpeed)
 , CollidableNode(unitData[unitType].collisionBoxSize)
-, AttackableNode(unitData[unitType].attackDuration, unitData[unitType].attackCollisionBoxShift, unitData[unitType].attackCollisionBoxSize)
+, AttackableNode(unitData[unitType].damage, unitData[unitType].attackDuration, unitData[unitType].attackCollisionBoxShift, unitData[unitType].attackCollisionBoxSize)
 , DamageableNode(unitData[unitType].maxHP, unitData[unitType].hitBoxSize, unitData[unitType].afterDamageInvulnerabilityTime, unitData[unitType].afterDamageUncontrolTime)
 , mUnitType(unitType)
 , mAnimationManager(textures, unitData[unitType]) {

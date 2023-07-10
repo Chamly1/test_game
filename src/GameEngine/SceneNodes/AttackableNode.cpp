@@ -27,8 +27,7 @@ void AttackableNode::updateCurrent(sf::Time dt) {
             if (damageableEnemyNode != nullptr) {
 
                 if (mAttackCollisionBox.intersects(damageableEnemyNode->getHitBox())) {
-                    //TODO replace zero damage
-                    damageableEnemyNode->takeDamage(0);
+                    damageableEnemyNode->takeDamage(mDamage);
                 }
 
             }
@@ -36,9 +35,10 @@ void AttackableNode::updateCurrent(sf::Time dt) {
     }
 }
 
-AttackableNode::AttackableNode(sf::Time attackDuration, float attackCollisionBoxShift, const sf::Vector2f& attackCollisionBoxSize)
+AttackableNode::AttackableNode(int damage, sf::Time attackDuration, float attackCollisionBoxShift, const sf::Vector2f& attackCollisionBoxSize)
 : mLookingDirection(DirectionType::BottomRight)
 , mAttackDuration(attackDuration)
+, mDamage(damage)
 , mAttackCollisionBoxShift(attackCollisionBoxShift)
 , mAttackCollisionBoxSize(attackCollisionBoxSize)
 , mAttackCollisionBox()
