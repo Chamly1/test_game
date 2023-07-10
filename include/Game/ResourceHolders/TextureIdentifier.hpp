@@ -31,7 +31,8 @@ enum id {
     HumanBaseAttackAnimation,
 
     ZombieIdleAnimation,
-    ZombieWalkAnimation
+    ZombieWalkAnimation,
+    ZombieDamageAnimation
 };
 
 }

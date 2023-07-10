@@ -21,7 +21,8 @@ struct AnimationData {
 enum class AnimationType {
     Idle,
     Walk,
-    Attack
+    Attack,
+    Damage
 };
 
 struct UnitData {

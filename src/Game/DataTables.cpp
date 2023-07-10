@@ -58,6 +58,11 @@ std::unordered_map<UnitType, UnitData> initUnitData() {
     //****************************** Zombie ******************************
 
     data[UnitType::Zombie].baseSpeed = 200.f;
+
+    data[UnitType::Zombie].maxHP = 200;
+    data[UnitType::Zombie].afterDamageInvulnerabilityTime = sf::milliseconds(1000);
+    data[UnitType::Zombie].afterDamageUncontrolTime = sf::milliseconds(1000);
+
     data[UnitType::Zombie].animationsScaleFactor = sf::Vector2f(scaleFactor, scaleFactor);
     data[UnitType::Zombie].collisionBoxSize = sf::Vector2f(6.f * scaleFactor, 7.f * scaleFactor);
     data[UnitType::Zombie].collisionBoxOrigin = data[UnitType::Zombie].collisionBoxSize / 2.f;
@@ -86,6 +91,17 @@ std::unordered_map<UnitType, UnitData> initUnitData() {
     data[UnitType::Zombie].firstFramePosition[AnimationType::Walk][DirectionType::BottomLeft] = sf::Vector2i(0, 32);
     data[UnitType::Zombie].firstFramePosition[AnimationType::Walk][DirectionType::TopRight] = sf::Vector2i(0, 64);
     data[UnitType::Zombie].firstFramePosition[AnimationType::Walk][DirectionType::TopLeft] = sf::Vector2i(0, 96);
+
+    data[UnitType::Zombie].animationData[AnimationType::Damage].textureId = TextureIdentifier::ZombieDamageAnimation;
+    data[UnitType::Zombie].animationData[AnimationType::Damage].frameSize = sf::Vector2i(32, 32);
+    data[UnitType::Zombie].animationData[AnimationType::Damage].frameOrigin = sf::Vector2f(32.f, 32.f) / 2.f;
+    data[UnitType::Zombie].animationData[AnimationType::Damage].numFrames = 4;
+    data[UnitType::Zombie].animationData[AnimationType::Damage].frameDuration = data[UnitType::Zombie].afterDamageUncontrolTime / static_cast<float>(data[UnitType::Zombie].animationData[AnimationType::Damage].numFrames);
+    data[UnitType::Zombie].animationData[AnimationType::Damage].repeat = false;
+    data[UnitType::Zombie].firstFramePosition[AnimationType::Damage][DirectionType::BottomRight] = sf::Vector2i(0, 0);
+    data[UnitType::Zombie].firstFramePosition[AnimationType::Damage][DirectionType::BottomLeft] = sf::Vector2i(0, 32);
+    data[UnitType::Zombie].firstFramePosition[AnimationType::Damage][DirectionType::TopRight] = sf::Vector2i(0, 64);
+    data[UnitType::Zombie].firstFramePosition[AnimationType::Damage][DirectionType::TopLeft] = sf::Vector2i(0, 96);
 
     return data;
 }

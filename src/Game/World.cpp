@@ -53,6 +53,8 @@ void World::loadTextures() {
                    "resources/textures/Minifantasy_Creatures_v3.0/Minifantasy_Creatures_Assets/Monsters/Zombie/Minifantasy_CreaturesZombieIdle_modified.png");
     mTextures.load(TextureIdentifier::ZombieWalkAnimation,
                    "resources/textures/Minifantasy_Creatures_v3.0/Minifantasy_Creatures_Assets/Monsters/Zombie/Minifantasy_CreaturesZombieWalk.png");
+    mTextures.load(TextureIdentifier::ZombieDamageAnimation,
+                   "resources/textures/Minifantasy_Creatures_v3.0/Minifantasy_Creatures_Assets/Monsters/Zombie/Minifantasy_CreaturesZombieDmg.png");
 
     mTextures.load(TextureIdentifier::MapEmptyRoom,
                    "resources/textures/maps/empty_room/empty_room.png");
