@@ -6,6 +6,8 @@
 
 #include "SFML/Graphics/Font.hpp"
 
+#include <functional>
+
 namespace GUI {
 /**
  * Class to represent vertical list of buttons.

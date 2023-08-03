@@ -110,6 +110,7 @@ World::World(sf::RenderWindow& window)
 : mWindow(window)
 , mPlayerCamera(window.getDefaultView())
 , mSceneGraph()
+, mSceneLayers()
 , mGrid(new VectorFieldGrid(sf::Vector2f(0.f, 0.f), sf::Vector2f(1360.f, 1120.f), 40.f)) {
     loadTextures();
     buildScene();

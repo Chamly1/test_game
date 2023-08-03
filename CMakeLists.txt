@@ -3,6 +3,10 @@ project(test_game)
 
 set(CMAKE_CXX_STANDARD 17)
 
+message(*************************************)
+message(${CMAKE_CXX_COMPILER_ID})
+message(*************************************)
+
 set(SFML_ROOT "${CMAKE_SOURCE_DIR}/external/SFML-2.5.1")
 set(SFML_STATIC_LIBRARIES TRUE)
 find_package(SFML COMPONENTS system window graphics network audio main)

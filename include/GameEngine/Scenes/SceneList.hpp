@@ -3,6 +3,7 @@
 
 #include "GameEngine/Scenes/Scene.hpp"
 
+#include <functional>
 #include <list>
 
 class SceneList : private sf::NonCopyable {

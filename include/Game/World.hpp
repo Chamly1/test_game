@@ -9,6 +9,8 @@
 
 #include "SFML/Graphics/RenderWindow.hpp"
 
+#include <array>
+
 class World : private sf::NonCopyable {
 private:
     enum Layer {
